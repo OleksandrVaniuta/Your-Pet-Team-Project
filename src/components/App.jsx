@@ -1,16 +1,15 @@
-export const App = () => {
+// import { lazy, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './Layout/Layout';
+
+function App() {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <main>
+      <Routes>
+        <Route path="/" element={<Layout />}></Route>
+      </Routes>
+    </main>
   );
-};
+}
+
+export default App;
