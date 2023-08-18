@@ -4,4 +4,4 @@ const ContentWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export { ContentWrapper, Main };
+export { ContentWrapper };
