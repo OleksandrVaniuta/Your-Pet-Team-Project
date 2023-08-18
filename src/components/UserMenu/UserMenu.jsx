@@ -1,10 +1,22 @@
-import { NavLink } from 'react-router-dom';
+import { Wrapper } from './UserMenu.styled';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
-export const UserMenu = () => {
+const UserMenu = ({ userName, showName, setIsOpen }) => {
   return (
-    <div>
-      <button type="buttom">logOut</button>
-      <NavLink to="/user">User</NavLink>
-    </div>
+    <Wrapper to="/user" onClick={() => setIsOpen(false)}>
+      <AccountCircleOutlinedIcon
+        sx={[
+          {
+            fontSize: 28,
+            color: '#FFC107',
+            cursor: 'pointer',
+          },
+          { '&:hover': { color: '#ffffff' } },
+        ]}
+      />
+      {showName && userName}
+    </Wrapper>
   );
 };
+
+export default UserMenu;
