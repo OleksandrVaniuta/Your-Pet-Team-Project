@@ -4,11 +4,9 @@ import { Layout } from './Layout/Layout';
 
 function App() {
   return (
-    <main>
-      <Routes>
-        <Route path="/" element={<Layout />}></Route>
-      </Routes>
-    </main>
+    <Routes>
+      <Route path="/" element={<Layout />}></Route>
+    </Routes>
   );
 }
 
