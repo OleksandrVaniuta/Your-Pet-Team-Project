@@ -12,7 +12,7 @@ const clearAuthHeader = () => {
 
 export const register = createAsyncThunk('', async (credentials, thunkAPI) => {
   try {
-    const res = await axios.post('', credentials);
+    // const res = await axios.post('', credentials);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -20,7 +20,7 @@ export const register = createAsyncThunk('', async (credentials, thunkAPI) => {
 
 export const login = createAsyncThunk('', async (credentials, thunkAPI) => {
   try {
-    const res = await axios.post('', credentials);
+    // const res = await axios.post('', credentials);
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
