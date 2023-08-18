@@ -73,4 +73,34 @@ button {
 div#root {
   text-align: center;
   align-items: center;
+  background-image: url('./images/background/bg_mobile_1x.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat-y;
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url('./images/background/bg_mobile_2x.png');
+  }
+
+  @media screen and (min-width: 768px) {
+    background-image: url('images/background/bg_tablet_1x.png');
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('images/background/bg_tablet_2x.png');
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    background-image: url('images/background/bg_desctop_1x.png');
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('images/background/bg_desctop_2x.png');
+    }
+  }
 }
