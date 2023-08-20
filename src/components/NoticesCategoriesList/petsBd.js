@@ -134,3 +134,18 @@ export const PetList = [
     title: 'Сute dog looking for a home',
   },
 ];
+
+export const categories = [
+  { 
+    name: 'sell',
+    label: 'sell'
+  },
+  {
+    name: 'lost/found',
+    label: 'lost/found'
+  },
+  {
+    name: 'in_good_hands',
+    label: 'in good hands'
+  },
+];
