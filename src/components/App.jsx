@@ -4,11 +4,13 @@ import { PublicRoute } from 'PublicRoute';
 import { Layout } from './Layout/Layout';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
+import NotiesCategoriesNav from './NoticesCategoriesNav/NotiesCategoriesNav';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route exact index element={<NotiesCategoriesNav />} />
         <Route
           path="/register"
           element={<PublicRoute redirectTo="/" component={<RegisterPage />} />}
@@ -17,6 +19,7 @@ function App() {
           path="/login"
           element={<PublicRoute redirectTo="/" component={<LoginPage />} />}
         />
+
         {/* <Route index element={<MainPage />} /> */}
         {/* <Route element={<PublicRoute />}>
           <Route path="/register" element={<RegisterPage />} /> */}

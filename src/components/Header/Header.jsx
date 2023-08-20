@@ -28,7 +28,7 @@ import { HeaderWrapper, Wrapper, NavWrapper, Menu } from './Header.styled';
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [screenWidth] = useWindowSize();
-  const [isLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(true);
 
   return (
     <HeaderWrapper>
