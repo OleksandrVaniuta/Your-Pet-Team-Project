@@ -1,0 +1,22 @@
+.categoriesList_nav{
+    margin-bottom: 42px;
+}
+.categoriesList{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.list_item{
+    display: flex;
+    height: 35px;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 40px;
+    background-color:  #CCE4FB;
+}
+.list_item .active{
+    background-color: #54ADFF;
+}
