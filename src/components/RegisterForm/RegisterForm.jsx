@@ -27,7 +27,7 @@ import {
   ErrorIcon,
   CheckMarkIcon,
   InfoMessage,
-  RegisterErrorMessage,
+  // RegisterErrorMessage,
   LoginText,
   LoginLink,
 } from './RegisterForm.styled';
@@ -326,13 +326,13 @@ const RegisterForm = () => {
                 <ErrorMessage>{errors.confirmPassword}</ErrorMessage>
               )}
             </RegisterFormPasswordContainer>
-
+            {/* 
             {!emailAvailable && (
               <RegisterErrorMessage>
                 This email is already in use. Please, try with another email or
                 log in!
               </RegisterErrorMessage>
-            )}
+            )} */}
 
             <RegisterBtn type="submit" disabled={isSubmitting}>
               Registration
