@@ -19,8 +19,11 @@ import Navigation from '../Navigation/Navigation';
 import UserMenu from '../UserMenu/UserMenu';
 import AuthNav from '../AuthNav/AuthNav';
 import BurgerButton from '../BurgerBtn/BurgerBtn';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
-// import { useSelector } from 'react-redux';
+import { selectAuth } from 'redux/Auth/AuthSelectors';
+// import { UseSelector } from 'react-redux/es/hooks/useSelector';
+// import { useSelector } from 'react-redux';1
 // import { selectUser, selectAuth } from 'redux/auth/selectors';
 import { useWindowSize } from 'hooks/useResize';
 import { HeaderWrapper, Wrapper, NavWrapper, Menu } from './Header.styled';
@@ -28,7 +31,7 @@ import { HeaderWrapper, Wrapper, NavWrapper, Menu } from './Header.styled';
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [screenWidth] = useWindowSize();
-  const [isLoggedIn] = useState(true);
+  const { isLoggedIn } = useSelector(selectAuth);
 
   return (
     <HeaderWrapper>
