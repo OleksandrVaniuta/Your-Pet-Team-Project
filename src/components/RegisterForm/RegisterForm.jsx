@@ -1,9 +1,9 @@
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
-// import { register } from 'redux/auth/operations';
+import { register } from 'redux/Auth/AuthOperations';
 
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -27,7 +27,7 @@ import {
   ErrorIcon,
   CheckMarkIcon,
   InfoMessage,
-  // RegisterErrorMessage,
+  RegisterErrorMessage,
   LoginText,
   LoginLink,
 } from './RegisterForm.styled';
@@ -71,13 +71,13 @@ const fieldValidation = values => {
 };
 
 const RegisterForm = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [emailAvailable, setEmailAvailable] = useState(true);
+  const [emailAvailable, setEmailAvailable] = useState(true);
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevState => !prevState);
@@ -93,26 +93,26 @@ const RegisterForm = () => {
     }
 
     setLoading(true);
-    // const credentials = {
-    //   email: values.email,
-    //   password: values.password,
-    //   username: values.username,
-    // };
+    const credentials = {
+      email: values.email,
+      password: values.password,
+      username: values.username,
+    };
 
-    //     try {
-    //       const response = await dispatch(register(credentials));
-    //       if (response.error) {
-    //         setEmailAvailable(false);
-    //       } else {
-    //         setEmailAvailable(true);
-    //         navigate('/user');
-    //       }
-    //     } catch (error) {
-    //       console.error(error);
-    //     } finally {
-    //       setLoading(false);
-    //       setSubmitting(false);
-    //     }
+    try {
+      const response = await dispatch(register(credentials));
+      if (response.error) {
+        setEmailAvailable(false);
+      } else {
+        setEmailAvailable(true);
+        navigate('/');
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -326,19 +326,19 @@ const RegisterForm = () => {
                 <ErrorMessage>{errors.confirmPassword}</ErrorMessage>
               )}
             </RegisterFormPasswordContainer>
-            {/* 
+
             {!emailAvailable && (
               <RegisterErrorMessage>
                 This email is already in use. Please, try with another email or
                 log in!
               </RegisterErrorMessage>
-            )} */}
+            )}
 
             <RegisterBtn type="submit" disabled={isSubmitting}>
               Registration
             </RegisterBtn>
             <LoginText>
-              Already have an account?{' '}
+              Already have an account?
               <LoginLink to={'/login'}>Log In</LoginLink>
             </LoginText>
           </RegisterFormEl>
