@@ -4,13 +4,13 @@ import { PublicRoute } from 'PublicRoute';
 import { Layout } from './Layout/Layout';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
-import MainPage from 'pages/Mainpage/MainPage';
+// import MainPage from 'pages/Mainpage/MainPage';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<MainPage />} />
+        {/* <Route index element={<MainPage />} /> */}
         <Route
           path="/register"
           element={<PublicRoute redirectTo="/" component={<RegisterPage />} />}
