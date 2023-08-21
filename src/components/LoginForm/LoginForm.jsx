@@ -1,10 +1,10 @@
 import { useState } from 'react';
-// import { useNavigate } from 'react-router';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
-// import { logIn } from 'redux/auth/operations';
-// import { selectError } from 'redux/auth/selectors';
+import { login } from 'redux/Auth/AuthOperations';
+// import { selectError } from 'redux/Auth/AuthSelectors';
 
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -49,11 +49,11 @@ const fieldValidation = values => {
 };
 
 const LoginForm = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   //   const loginError = useSelector(selectError);
 
@@ -69,10 +69,11 @@ const LoginForm = () => {
     setLoading(true);
 
     try {
-      //   await dispatch(logIn(values));
+      await dispatch(login(values));
       //   if (!loginError) {
-      //     navigate('/');
+      // navigate('/');
       //   }
+      navigate('/');
     } catch (error) {
       console.log(error);
     } finally {
