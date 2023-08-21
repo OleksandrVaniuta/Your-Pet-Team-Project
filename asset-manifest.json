@@ -1,19 +1,7 @@
 {
   "files": {
-    "main.css": "/Your-Pet-Team-Project/static/css/main.6bb09642.css",
-    "main.js": "/Your-Pet-Team-Project/static/js/main.44ac808a.js",
-    "static/media/pet7.png": "/Your-Pet-Team-Project/static/media/pet7.39c8d1af055ddec1ac70.png",
-    "static/media/pet1.png": "/Your-Pet-Team-Project/static/media/pet1.4692cc58dadc83801112.png",
-    "static/media/pet11.png": "/Your-Pet-Team-Project/static/media/pet11.d4105eb6be4c28ce372d.png",
-    "static/media/pet3.png": "/Your-Pet-Team-Project/static/media/pet3.e037f4982aaa9223fdef.png",
-    "static/media/pet5.png": "/Your-Pet-Team-Project/static/media/pet5.64d6131932f3133ab98c.png",
-    "static/media/pet12.png": "/Your-Pet-Team-Project/static/media/pet12.e99a44ea4cd83dd2ef8e.png",
-    "static/media/pet8.png": "/Your-Pet-Team-Project/static/media/pet8.1b6d59d1766bc8ed9459.png",
-    "static/media/pet6.png": "/Your-Pet-Team-Project/static/media/pet6.44d18d00cf6732187754.png",
-    "static/media/pet10.png": "/Your-Pet-Team-Project/static/media/pet10.2d7a920f8fe55e742ee6.png",
-    "static/media/pet4.png": "/Your-Pet-Team-Project/static/media/pet4.eef4a038e0beedc1404b.png",
-    "static/media/pet9.png": "/Your-Pet-Team-Project/static/media/pet9.1ceff583bc6e14734095.png",
-    "static/media/pet2.png": "/Your-Pet-Team-Project/static/media/pet2.a2b27c79733d8ce683f6.png",
+    "main.css": "/Your-Pet-Team-Project/static/css/main.d7db90d9.css",
+    "main.js": "/Your-Pet-Team-Project/static/js/main.6e4fdb45.js",
     "static/media/bg_tablet_2x.png": "/Your-Pet-Team-Project/static/media/bg_tablet_2x.67b668a7489f35b0a3da.png",
     "static/media/bg_desctop_2x.png": "/Your-Pet-Team-Project/static/media/bg_desctop_2x.a96eddddeed269beeb44.png",
     "static/media/bg_tablet_1x.png": "/Your-Pet-Team-Project/static/media/bg_tablet_1x.b7eb05ffad718448eedb.png",
@@ -24,11 +12,11 @@
     "static/media/bg_mobile_1x.png": "/Your-Pet-Team-Project/static/media/bg_mobile_1x.0cd02ce1d43a46754e63.png",
     "static/media/pawprint.svg": "/Your-Pet-Team-Project/static/media/pawprint.68a099edaab4a9f3dc97a9f60faf202d.svg",
     "index.html": "/Your-Pet-Team-Project/index.html",
-    "main.6bb09642.css.map": "/Your-Pet-Team-Project/static/css/main.6bb09642.css.map",
-    "main.44ac808a.js.map": "/Your-Pet-Team-Project/static/js/main.44ac808a.js.map"
+    "main.d7db90d9.css.map": "/Your-Pet-Team-Project/static/css/main.d7db90d9.css.map",
+    "main.6e4fdb45.js.map": "/Your-Pet-Team-Project/static/js/main.6e4fdb45.js.map"
   },
   "entrypoints": [
-    "static/css/main.6bb09642.css",
-    "static/js/main.44ac808a.js"
+    "static/css/main.d7db90d9.css",
+    "static/js/main.6e4fdb45.js"
   ]
 }
