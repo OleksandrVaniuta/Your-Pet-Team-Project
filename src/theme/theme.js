@@ -11,11 +11,11 @@ export const theme = {
   ],
   fonts: {
     main: {
-      regular: 'Manrope-Regular', //400
-      medium: 'Manrope-Medium', //500
-      semiBold: 'Manrope-SemiBold', //600
-      bold: 'Manrope-Bold', //700
-      extraBold: 'Manrope-ExtraBold', //800
+      regular: 'Manrope', //400
+      medium: 'Manrope', //500
+      semiBold: 'Manrope', //600
+      bold: 'Manrope', //700
+      extraBold: 'Manrope', //800
     },
   },
   fontSizes: [

@@ -6,6 +6,7 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 // import NotiesCategoriesNav from './NoticesCategoriesNav/NotiesCategoriesNav';
 import MainPage from 'pages/Mainpage/MainPage';
+// import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
 
 function App() {
