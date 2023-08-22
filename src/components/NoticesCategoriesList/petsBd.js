@@ -1,4 +1,17 @@
-import { pet1, pet10, pet11, pet12, pet2, pet3, pet4, pet5, pet6, pet7, pet8, pet9 } from "./img";
+import {
+  pet1,
+  pet10,
+  pet11,
+  pet12,
+  pet2,
+  pet3,
+  pet4,
+  pet5,
+  pet6,
+  pet7,
+  pet8,
+  pet9,
+} from './img';
 
 export const PetList = [
   {
@@ -136,16 +149,16 @@ export const PetList = [
 ];
 
 export const categories = [
-  { 
+  {
     name: 'sell',
-    label: 'sell'
+    label: 'sell',
   },
   {
-    name: 'lost/found',
-    label: 'lost/found'
+    name: 'lost_found',
+    label: 'lost/found',
   },
   {
     name: 'in_good_hands',
-    label: 'in good hands'
+    label: 'in good hands',
   },
 ];
