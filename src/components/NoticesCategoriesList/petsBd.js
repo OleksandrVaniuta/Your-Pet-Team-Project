@@ -10,6 +10,9 @@ export const PetList = [
       age: '1 year',
       sex: 'female',
     },
+    name: 'Rich',
+    birthday: '20.09.2020',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -21,6 +24,9 @@ export const PetList = [
       age: '4 year',
       sex: 'female',
     },
+    name: 'Cailo',
+    birthday: '21.03.2020',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -32,6 +38,9 @@ export const PetList = [
       age: '1 year',
       sex: 'female',
     },
+    name: 'Martin',
+    birthday: '10.05.2021',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -43,6 +52,9 @@ export const PetList = [
       age: '1 year',
       sex: 'female',
     },
+    name: 'Kailo',
+    birthday: '23.01.2020',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -54,6 +66,9 @@ export const PetList = [
       age: '2 year',
       sex: 'female',
     },
+    name: 'Lucia',
+    birthday: '20.09.2019',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -65,6 +80,9 @@ export const PetList = [
       age: '1 year',
       sex: 'female',
     },
+    name: 'Tor',
+    birthday: '20.09.2019',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -76,6 +94,9 @@ export const PetList = [
       age: '1 year',
       sex: 'female',
     },
+    name: 'Anadel',
+    birthday: '20.09.2022',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -87,6 +108,9 @@ export const PetList = [
       age: '7 year',
       sex: 'female',
     },
+    name: 'Koria',
+    birthday: '20.09.2020',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -98,6 +122,9 @@ export const PetList = [
       age: '2 year',
       sex: 'female',
     },
+    name: 'Nika',
+    birthday: '20.09.2030',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -109,6 +136,9 @@ export const PetList = [
       age: '3 year',
       sex: 'female',
     },
+    name: 'Ulia',
+    birthday: '20.09.2019',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -120,6 +150,9 @@ export const PetList = [
       age: '1 year',
       sex: 'female',
     },
+    name: 'Santa',
+    birthday: '20.09.2019',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
   {
@@ -131,11 +164,18 @@ export const PetList = [
       age: '6 year',
       sex: 'female',
     },
+    name: 'Varia',
+    birthday: '20.09.2019',
+    type: 'Pomeranian',
     title: 'Сute dog looking for a home',
   },
 ];
 
+<<<<<<< Updated upstream
 export const categories = [
+  { 
+=======
+export const categoriesNoLog = [
   { 
     name: 'sell',
     label: 'sell'
@@ -145,7 +185,39 @@ export const categories = [
     label: 'lost/found'
   },
   {
+    name: 'in+good+hands',
+    label: 'in good hands'
+  },
+];
+export const categoriesLog = [
+  {
+>>>>>>> Stashed changes
+    name: 'sell',
+    label: 'sell'
+  },
+  {
+    name: 'lost/found',
+<<<<<<< Updated upstream
+    label: 'lost/found'
+  },
+  {
     name: 'in_good_hands',
     label: 'in good hands'
   },
+=======
+    label: 'lost/found',
+  },
+  {
+    name: 'in+good+hands',
+    label: 'in good hands',
+  },
+  {
+    name: 'favorite_ads',
+    label: 'favorite ads',
+  },
+  {
+    name: 'my_ads',
+    label: 'my ads',
+  },
+>>>>>>> Stashed changes
 ];

@@ -11,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { activeReducer } from './Modal/ModalSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -23,6 +24,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
+    active: activeReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
