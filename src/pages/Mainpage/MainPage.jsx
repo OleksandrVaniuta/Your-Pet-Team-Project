@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { MainContainer, MainTitle, ImageContainer } from './MainPage.styled';
+import { MainContainer, MainTitle } from './MainPage.styled';
 
 const MainPage = () => {
   useEffect(() => {
@@ -12,7 +12,6 @@ const MainPage = () => {
   return (
     <MainContainer>
       <MainTitle>Take good care of your small pets</MainTitle>
-      <ImageContainer></ImageContainer>
     </MainContainer>
   );
 };
