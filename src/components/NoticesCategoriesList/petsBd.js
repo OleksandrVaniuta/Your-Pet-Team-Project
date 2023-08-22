@@ -171,10 +171,6 @@ export const PetList = [
   },
 ];
 
-<<<<<<< Updated upstream
-export const categories = [
-  { 
-=======
 export const categoriesNoLog = [
   { 
     name: 'sell',
@@ -191,20 +187,11 @@ export const categoriesNoLog = [
 ];
 export const categoriesLog = [
   {
->>>>>>> Stashed changes
     name: 'sell',
     label: 'sell'
   },
   {
     name: 'lost/found',
-<<<<<<< Updated upstream
-    label: 'lost/found'
-  },
-  {
-    name: 'in_good_hands',
-    label: 'in good hands'
-  },
-=======
     label: 'lost/found',
   },
   {
@@ -219,5 +206,4 @@ export const categoriesLog = [
     name: 'my_ads',
     label: 'my ads',
   },
->>>>>>> Stashed changes
 ];
