@@ -49,6 +49,7 @@ const MainTitle = styled.h1`
   padding-top: ${({ theme }) => theme.space[5] + 'px'};
   font-family: ${({ theme }) => theme.fonts.main.bold};
   font-size: ${({ theme }) => theme.fontSizes[6]};
+  font-weight: 700;
   line-height: 1.38;
   color: #000000;
   text-align: left;
@@ -66,6 +67,7 @@ const MainTitle = styled.h1`
     height: 264px;
     padding-top: ${({ theme }) => theme.space[6] + 111 + 'px'};
     font-family: ${({ theme }) => theme.fonts.main.extraBold};
+    font-weight: 800;
     font-size: ${({ theme }) => theme.fontSizes[8]};
     line-height: 1.3;
   }
