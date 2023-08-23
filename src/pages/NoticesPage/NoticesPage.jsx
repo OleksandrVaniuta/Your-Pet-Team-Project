@@ -11,6 +11,7 @@ export const NoticesPage = () => {
   // eslint-disable-next-line no-unused-vars
   const [search, setSearch] = useState('');
   const [notices, setNotices] = useState([]);
+  const [filteredNotices, setFilteredNotices] = useState([]);
 
   const currentPath = window.location.pathname;
   const category = currentPath.split('/').pop();
@@ -18,14 +19,18 @@ export const NoticesPage = () => {
   const handleNoticeSearch = search => {
     setPage(1);
     setSearch(search);
+
+    const filtered = notices.filter(notice => notice.title.includes(search));
+    setFilteredNotices(filtered);
   };
 
   useEffect(() => {
     axios
-      .get(`https://your-pet-backend-cmwy.onrender.com/api/notices/category/${category}`)
+      .get(
+        `https://your-pet-backend-cmwy.onrender.com/api/notices/category/${category}`
+      )
       .then(response => {
         setNotices(response.data);
-        
       })
       .catch(error => {
         console.error('Error fetching notices:', error);
@@ -37,7 +42,9 @@ export const NoticesPage = () => {
       <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch handleSearch={handleNoticeSearch} />
       <NotiesCategoriesNav />
-      <NoticesCategoriesList notice={notices}></NoticesCategoriesList>
+      <NoticesCategoriesList
+        notice={filteredNotices.length > 0 ? filteredNotices : notices}
+      ></NoticesCategoriesList>
     </div>
   );
 };
