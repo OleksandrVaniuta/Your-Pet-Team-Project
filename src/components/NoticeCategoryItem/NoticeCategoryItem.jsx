@@ -9,9 +9,11 @@ import { pawprint } from 'components/NoticesCategoriesList/img';
 
 
 
-function NoticeCategoryItem({ elem }) {
+
+function NoticeCategoryItem({ elem, openModal}) {
+
   return (
-    <li key={elem.id} className={css.category_item}>
+       <li key={elem.id} className={css.category_item}>
           <div className={css.category_item__content}>
               <div className={css.category_info__container}>
                   <p className={css.category_text}>{elem.category}</p>
@@ -44,7 +46,7 @@ function NoticeCategoryItem({ elem }) {
        </div>
      <div className={css.text_container}>
        <p className={css.title}>{elem.title}</p>
-              <button className={css.button_more}>Learn more
+              <button className={css.button_more} onClick={() => openModal(elem)}>Learn more
                   <img src={pawprint} alt="icon_dog" className={css.icon_button} /> 
             </button>
      </div>
