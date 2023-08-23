@@ -1,20 +1,19 @@
 import React from 'react';
-import { PetList } from './petsBd';
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import css from './NoticesCategoriesList.module.css';
 import Modal from 'components/Modal/Modal';
 import { useState } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-export default function NoticesCategoriesList() {
+export default function NoticesCategoriesList({notice}) {
   const [dataElem, setDataElem] = useState(null);
-  const [isActive, setIsActive] = useState();
+  const [isActive, setIsActive] = useState(false);
 
 
   const openModal = (elem) => {
       setDataElem(elem)
       setIsActive(true);
-      document.body.style.overflow = 'hidden'; 
+    document.body.style.overflow = 'hidden'; 
   }
   
 
@@ -25,7 +24,7 @@ export default function NoticesCategoriesList() {
   return (
     <>
        <ul className={css.categories_list}>
-              {PetList.map(elem => (
+              {notice.map(elem => (
                 <NoticeCategoryItem elem={elem} openModal={openModal} />
               ))}
       </ul>
@@ -38,7 +37,7 @@ export default function NoticesCategoriesList() {
                   <p className={css.category_text}>{dataElem.category}</p>
                 </div>
                   <div className={css.img_container}>
-                   <img src={dataElem.img} alt="img_pet" className={css.img} />
+                   <img src={dataElem.avatarURL} alt="img_pet" className={css.img} />
                   </div>
               </div>
              
@@ -76,7 +75,7 @@ export default function NoticesCategoriesList() {
                       Place:
                     </span>
                     <span className={css.value}>
-                       {dataElem.infoPet.city}
+                       {dataElem.location}
                     </span>
                   </li>
                   <li className={css.list_info__item}>
@@ -84,7 +83,7 @@ export default function NoticesCategoriesList() {
                       The sex:
                     </span>
                     <span className={css.value}>
-                      {dataElem.infoPet.sex}
+                      {dataElem.sex}
                     </span>
                     
                   </li>
