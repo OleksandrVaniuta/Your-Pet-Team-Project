@@ -83,7 +83,7 @@
 .buttons_container{
     margin-top: 70px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .button_add{
     margin-right: 17px;
