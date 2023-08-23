@@ -16,6 +16,14 @@
 
     border-radius: 40px;
     background-color:  #CCE4FB;
+
+
+    color:  #54ADFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.56px;
 }
 .list_item .active{
     background-color: #54ADFF;
