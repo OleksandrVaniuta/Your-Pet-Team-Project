@@ -50,10 +50,10 @@ const NoticesSearch = ({ handleSearch }) => {
           />
           <MuiBtnWrapper>
             <MuiBtnSearc type="submit">
-              <SearchIcon />
+              <SearchIcon onClick={() => handleSearch(formik.values.search)} />
             </MuiBtnSearc>{' '}
             {formik.values.search && (
-              <MuiBtnSearcCross type="reset">
+              <MuiBtnSearcCross type="reset" onClick={handleCrossButtonClick}>
                 <SearcCrossIcon />
               </MuiBtnSearcCross>
             )}
@@ -73,7 +73,7 @@ const NoticesSearch = ({ handleSearch }) => {
           />
           <MuiBtnWrapper>
             <MuiBtnSearc type="submit">
-              <SearchIcon />
+              <SearchIcon onClick={() => handleSearch(formik.values.search)} />
             </MuiBtnSearc>{' '}
             {formik.values.search && (
               <MuiBtnSearcCross type="reset" onClick={handleCrossButtonClick}>
