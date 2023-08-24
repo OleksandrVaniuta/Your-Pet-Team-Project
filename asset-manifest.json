@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Your-Pet-Team-Project/static/css/main.b71888cb.css",
+    "main.css": "/Your-Pet-Team-Project/static/css/main.91095db9.css",
     "main.js": "/Your-Pet-Team-Project/static/js/main.ac447267.js",
     "static/media/mainpagedesktop2.png": "/Your-Pet-Team-Project/static/media/mainpagedesktop2.f76268a381c635a49e94.png",
     "static/media/mainpagetablet2.png": "/Your-Pet-Team-Project/static/media/mainpagetablet2.49e0c5ca251ead8f7b47.png",
@@ -32,11 +32,11 @@
     "index.html": "/Your-Pet-Team-Project/index.html",
     "static/media/search.svg": "/Your-Pet-Team-Project/static/media/search.637e307a1fe43260a63223e6e557701e.svg",
     "static/media/searchCross.svg": "/Your-Pet-Team-Project/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
-    "main.b71888cb.css.map": "/Your-Pet-Team-Project/static/css/main.b71888cb.css.map",
+    "main.91095db9.css.map": "/Your-Pet-Team-Project/static/css/main.91095db9.css.map",
     "main.ac447267.js.map": "/Your-Pet-Team-Project/static/js/main.ac447267.js.map"
   },
   "entrypoints": [
-    "static/css/main.b71888cb.css",
+    "static/css/main.91095db9.css",
     "static/js/main.ac447267.js"
   ]
 }
