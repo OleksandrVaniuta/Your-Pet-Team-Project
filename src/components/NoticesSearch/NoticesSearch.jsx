@@ -20,7 +20,7 @@ const NoticesSearch = ({ handleSearch }) => {
     },
     onSubmit: (values, actions) => {
       const { search } = values;
-      if (search.trim() === '' || search.trim().length > 50) {
+      if (search.trim() === '' || search.trim().length > 20) {
         toast.error('Invalid query');
       } else {
         handleSearch(search);
@@ -28,7 +28,7 @@ const NoticesSearch = ({ handleSearch }) => {
     },
   });
 
-  const handleCrossButtonClick = () => {
+  const handleReset = () => {
     handleSearch('');
     formik.resetForm();
   };
@@ -45,6 +45,7 @@ const NoticesSearch = ({ handleSearch }) => {
             id="search"
             name="search"
             type="text"
+            placeholder="Search"
             onChange={formik.handleChange}
             value={formik.values.search}
           />
@@ -53,7 +54,7 @@ const NoticesSearch = ({ handleSearch }) => {
               <SearchIcon onClick={() => handleSearch(formik.values.search)} />
             </MuiBtnSearc>{' '}
             {formik.values.search && (
-              <MuiBtnSearcCross type="reset" onClick={handleCrossButtonClick}>
+              <MuiBtnSearcCross type="reset" onClick={handleReset}>
                 <SearcCrossIcon />
               </MuiBtnSearcCross>
             )}
@@ -68,6 +69,7 @@ const NoticesSearch = ({ handleSearch }) => {
             id="search"
             name="search"
             type="text"
+            placeholder="Search"
             onChange={formik.handleChange}
             value={formik.values.search}
           />
@@ -76,7 +78,7 @@ const NoticesSearch = ({ handleSearch }) => {
               <SearchIcon onClick={() => handleSearch(formik.values.search)} />
             </MuiBtnSearc>{' '}
             {formik.values.search && (
-              <MuiBtnSearcCross type="reset" onClick={handleCrossButtonClick}>
+              <MuiBtnSearcCross type="reset" onClick={handleReset}>
                 <SearcCrossIcon />
               </MuiBtnSearcCross>
             )}

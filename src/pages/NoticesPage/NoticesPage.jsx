@@ -1,50 +1,57 @@
-import axios from 'axios';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NotiesCategoriesNav from 'components/NoticesCategoriesNav/NotiesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch';
 import { PageTitle } from 'components/NoticesSearch/PageTitle.styled';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { fetchNoticesByCategory } from 'redux/notices/operations';
+import {
+  selectNotices,
+  // , selectTotalPages
+} from 'redux/notices/selectors';
 
 export const NoticesPage = () => {
-  // eslint-disable-next-line no-unused-vars
   const [page, setPage] = useState(1);
-  // eslint-disable-next-line no-unused-vars
   const [search, setSearch] = useState('');
-  const [notices, setNotices] = useState([]);
-  const [filteredNotices, setFilteredNotices] = useState([]);
 
-  const currentPath = window.location.pathname;
-  const category = currentPath.split('/').pop();
+  const dispatch = useDispatch();
+  const notices = useSelector(selectNotices);
+
+  // хто робить пагінацію? це як отримати кількість сторінок загальну
+  // const totalPages = useSelector(selectTotalPages);
+  // console.log(totalPages);
+  // --------------------------------------------------------------------
+
+  const params = useParams();
+  const category = params.category;
 
   const handleNoticeSearch = search => {
     setPage(1);
     setSearch(search);
+  };
 
-    const filtered = notices.filter(notice => notice.title.includes(search));
-    setFilteredNotices(filtered);
+  const handleCategoryChange = () => {
+    setPage(1);
   };
 
   useEffect(() => {
-    axios
-      .get(
-        `https://your-pet-backend-cmwy.onrender.com/api/notices/category/${category}`
-      )
-      .then(response => {
-        setNotices(response.data.notices);
+    dispatch(
+      fetchNoticesByCategory({
+        category,
+        search,
+        page,
+        limit: 8,
       })
-      .catch(error => {
-        console.error('Error fetching notices:', error);
-      });
-  }, [category]);
+    );
+  }, [dispatch, page, category, search]);
 
   return (
     <div>
       <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch handleSearch={handleNoticeSearch} />
-      <NotiesCategoriesNav />
-      <NoticesCategoriesList
-        notice={filteredNotices.length > 0 ? filteredNotices : notices}
-      ></NoticesCategoriesList>
+      <NotiesCategoriesNav onCategoryChange={handleCategoryChange} />
+      <NoticesCategoriesList notice={notices}></NoticesCategoriesList>
     </div>
   );
 };

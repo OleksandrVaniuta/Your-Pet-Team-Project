@@ -19,13 +19,18 @@ export default function NoticesCategoriesList({ notice }) {
     setIsActive(false);
     document.body.style.overflow = 'auto';
   };
+
   return (
     <>
-      <ul className={css.categories_list}>
-        {notice.map(elem => (
-          <NoticeCategoryItem elem={elem} openModal={openModal} />
-        ))}
-      </ul>
+      {notice.length === 0 ? (
+        <img src="./img/no-img.jpg" alt="No Data" />
+      ) : (
+        <ul className={css.categories_list}>
+          {notice.map(elem => (
+            <NoticeCategoryItem elem={elem} openModal={openModal} />
+          ))}
+        </ul>
+      )}
       {dataElem && (
         <Modal isActive={isActive} closeModal={closeModal}>
           <div className={css.modal_container}>
