@@ -31,10 +31,6 @@ export const NoticesPage = () => {
     setSearch(search);
   };
 
-  const handleCategoryChange = () => {
-    setPage(1);
-  };
-
   useEffect(() => {
     dispatch(
       fetchNoticesByCategory({
@@ -50,7 +46,7 @@ export const NoticesPage = () => {
     <div>
       <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch handleSearch={handleNoticeSearch} />
-      <NotiesCategoriesNav onCategoryChange={handleCategoryChange} />
+      <NotiesCategoriesNav />
       <NoticesCategoriesList notice={notices}></NoticesCategoriesList>
     </div>
   );
