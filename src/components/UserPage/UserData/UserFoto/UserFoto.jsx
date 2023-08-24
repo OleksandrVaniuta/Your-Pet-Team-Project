@@ -19,6 +19,7 @@ export default function UserPhotoEl(edit) {
         setPrewiew(reader.result);
       };
     }
+    setUserPhoto(null);
   }, [file]);
 
   return (
