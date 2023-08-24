@@ -16,7 +16,7 @@ export const fetchNoticesByCategory = createAsyncThunk(
     });
     try {
       const response = await axios.get(
-        `/api/notices/category/${params.category}`
+        `/api/notices/category/${params.category}?${searchParams.toString()}`
       );
       return response.data;
     } catch (error) {
