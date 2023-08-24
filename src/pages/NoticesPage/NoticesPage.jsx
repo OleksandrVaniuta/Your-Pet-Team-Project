@@ -24,8 +24,7 @@ export const NoticesPage = () => {
     axios
       .get(`https://your-pet-backend-cmwy.onrender.com/api/notices/category/${category}`)
       .then(response => {
-        setNotices(response.data);
-        
+        setNotices(response.data.notices);   
       })
       .catch(error => {
         console.error('Error fetching notices:', error);
