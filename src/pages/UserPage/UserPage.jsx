@@ -1,5 +1,10 @@
 // import { useState } from 'react';
+import UserForm from 'components/UserPage/UserData/UserForm/UserForm';
 
-export const UserPagw = () => {
-  return <div></div>;
+export const UserPage = () => {
+  return (
+    <div>
+      <UserForm />
+    </div>
+  );
 };

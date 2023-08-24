@@ -1,26 +1,49 @@
-import { IconContext } from 'react-icons';
-import { AiOutlineUser } from 'react-icons/ai';
-import css from './UserFoto.module.css';
-export default function UserFoto({ userFoto, user }) {
-  let { photoURL } = user;
+// import { useState } from 'react';
+import UserPhotoContainer from './UserPhotoContainer/UserPhotoContainer';
+import { PhotoEl } from './UserPhotoEl.styled';
+import UserPhotoUpload from './UserPhotoUpload/UserPhotoUpload';
+import { useState, useEffect } from 'react';
+import UserPhotoConfirm from './UserPhotoConfirm/UserPhotoConfirm';
 
-  if (userFoto !== null) {
-    photoURL = userFoto;
-  }
+export default function UserPhotoEl(edit) {
+  const [userPhoto, setUserPhoto] = useState(null);
+  const [prewiew, setPrewiew] = useState(null);
+  const [file, setFile] = useState(null);
+  const [photoUpoaded, setPhotoUpoaded] = useState(false);
+
+  useEffect(() => {
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setPrewiew(reader.result);
+      };
+    }
+  }, [file]);
 
   return (
-    <>
-      <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
-        <div className={css.conteiner_foto}>
-          {photoURL ? (
-            <img src={photoURL} alt="User Foto" className={css.foto_img}></img>
+    <PhotoEl>
+      <UserPhotoContainer photoUrl={prewiew ? prewiew : userPhoto} />
+      {/* {edit && (
+        <div>
+          {!photoUpoaded ? (
+            <UserPhotoUpload setFile={setFile} uploaded={setPhotoUpoaded} />
           ) : (
-            <div className={css.foto_svg_container}>
-              <AiOutlineUser className={css.foto_svg} />
-            </div>
+            <UserPhotoConfirm file={file} uploaded={setPhotoUpoaded} />
           )}
         </div>
-      </IconContext.Provider>
-    </>
+      )} */}
+      {edit && !photoUpoaded && (
+        <UserPhotoUpload setFile={setFile} uploaded={setPhotoUpoaded} />
+      )}
+      {edit && photoUpoaded && (
+        <UserPhotoConfirm file={file} uploaded={setPhotoUpoaded} />
+      )}
+      {/* {!photoUpoaded ? (
+        <UserPhotoUpload setFile={setFile} uploaded={setPhotoUpoaded} />
+      ) : (
+        <UserPhotoConfirm file={file} uploaded={setPhotoUpoaded} />
+      )} */}
+    </PhotoEl>
   );
 }

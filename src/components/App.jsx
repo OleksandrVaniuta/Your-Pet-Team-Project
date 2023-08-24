@@ -8,6 +8,8 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import MainPage from 'pages/Mainpage/MainPage';
 // import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
+// import { PrivateRoute } from 'PriviteRoute';
+import { UserPage } from 'pages/UserPage/UserPage';
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
           element={<PublicRoute redirectTo="sell" element={<NoticesPage />} />}
         />
         <Route path="notices/:category" element={<NoticesPage />} />
+        <Route path="user" element={<UserPage />} />
         {/* <Route index element={<MainPage />} /> */}
         {/* <Route element={<PublicRoute />}>
           <Route path="/register" element={<RegisterPage />} /> */}
