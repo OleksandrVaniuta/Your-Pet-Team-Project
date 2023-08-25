@@ -5,6 +5,7 @@ import Modal from 'components/Modal/Modal';
 import { useState } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CloseIcon from '@mui/icons-material/Close';
+import noImageData from './img/no-img.jpg';
 
 export default function NoticesCategoriesList({ notice }) {
   const [dataElem, setDataElem] = useState(null);
@@ -20,14 +21,18 @@ export default function NoticesCategoriesList({ notice }) {
     setIsActive(false);
     document.body.style.overflow = 'auto';
   };
-  const splitWord = (word) => {
+  const splitWord = word => {
     return word.split('-').join(' ');
-  }
+  };
 
   return (
     <>
       {notice.length === 0 ? (
-        <img src="./img/no-img.jpg" alt="No Data" />
+        <img
+          src={noImageData}
+          alt="No Data"
+          style={{ width: '200px', height: '150px' }}
+        />
       ) : (
         <ul className={css.categories_list}>
           {notice.map(elem => (
@@ -41,7 +46,9 @@ export default function NoticesCategoriesList({ notice }) {
             <div className={css.content_container}>
               <div className={css.positional_container}>
                 <div className={css.category_container}>
-                  <p className={css.category_text}>{splitWord(dataElem.category)}</p>
+                  <p className={css.category_text}>
+                    {splitWord(dataElem.category)}
+                  </p>
                 </div>
                 <div className={css.img_container}>
                   <img
@@ -104,8 +111,12 @@ export default function NoticesCategoriesList({ notice }) {
               </button>
               <button className={css.button_contact}>Contact</button>
             </div>
-             <button type='button' className={css.close_modal_button} onClick={closeModal}> 
-              <CloseIcon className={css.icon_close}/>
+            <button
+              type="button"
+              className={css.close_modal_button}
+              onClick={closeModal}
+            >
+              <CloseIcon className={css.icon_close} />
             </button>
           </div>
         </Modal>
