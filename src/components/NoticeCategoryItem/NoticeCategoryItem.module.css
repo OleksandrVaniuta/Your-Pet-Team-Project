@@ -3,7 +3,6 @@
     border-radius: 0px 0px 40px 40px;
     background: #FFF;
     box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-    position: relative;
     transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .category_item:hover {
@@ -40,6 +39,9 @@
 .info_pet__item {
     display: flex;
     width: 80px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     padding: 2px 4px;
     justify-content: center;
     align-items: center;
@@ -61,8 +63,10 @@
 }
 
 .title {
-    margin-bottom: 20px;
-    width: 231px;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     text-align: left;
     color: #111;
     font-family: Manrope;
@@ -72,12 +76,12 @@
 }
 
 .button_more {
+    margin-top: 20px;
     display: flex;
-    margin-left: auto;
-    margin-right: auto;
     width: 248px;
     padding: 8px 28px;
-    
+    margin-left: auto;
+    margin-right: auto;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -85,7 +89,6 @@
     background-color: #FFF;
     border: 2px solid #54ADFF;
     color: #54ADFF;
-    font-family: Manrope;
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
@@ -133,7 +136,6 @@
 }
 .icon_box{
     cursor: pointer;
-    margin-left: 110px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,6 +145,11 @@
     background-color: #CCE4FB;
     flex-shrink: 0;
     
+}
+.icon_favorite{
+    width: 24px;
+    height: 24px;
+    color: #54ADFF;
 }
 .icon_box:hover .icon_hidden{
     display: block;
