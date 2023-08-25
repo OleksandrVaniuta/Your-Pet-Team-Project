@@ -1,9 +1,9 @@
 import React from 'react';
 import css from './Modal.module.css';
 
-function Modal({isActive, closeModal, children}) {
+function Modal({isActive, children}) {
   return (
-      <div className={isActive ? css.active : css.modal} onClick={closeModal}>
+      <div className={isActive ? css.active : css.modal}>
           {children}
       </div>
   )

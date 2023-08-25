@@ -6,6 +6,7 @@
 }
 
 .modal_container {
+  position: relative;
   width: 681px;
   padding: 32px;
   border-radius: 40px;
@@ -70,6 +71,7 @@
   margin-top: 20px;
 }
 .comments {
+  margin-top: 28px;
   text-align: left;
   align-items: baseline;
   color: #000;
@@ -155,20 +157,42 @@
   font-weight: 500;
   line-height: normal;
 }
+.close_modal_button{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min-content;
+    background-color: rgba(84, 173, 255, 0);
+}
+.icon_close{
+    width: 24px;
+    height: 24px;
+    color: #54adff;
+}
 
 @media screen and (max-width: 768px) {
   .modal_container {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
     width: 280px;
-    padding: 20px;
+    padding: 24px;
   }
   .content_container {
     flex-wrap: wrap;
   }
   .img_container {
+    height: auto;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
+    .info_container {
+      margin-top: 20px;
+    }
   .title {
     text-align: left;
     color: #000;
@@ -179,8 +203,8 @@
     margin-left: 0;
   }
   .comments {
-    margin-top: 13px;
     color: #000;
+    margin-top: 13px;
     font-family: Manrope;
     font-size: 14px;
     font-style: normal;
@@ -199,5 +223,9 @@
   .button_contact {
     width: 100%;
     margin-top: 8px;
+  }
+  .close_modal_button{
+     top: 2px;
+     right: 2px;
   }
 }
