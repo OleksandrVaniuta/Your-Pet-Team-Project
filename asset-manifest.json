@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Your-Pet-Team-Project/static/css/main.3980b4b2.css",
-    "main.js": "/Your-Pet-Team-Project/static/js/main.8fc91abf.js",
+    "main.css": "/Your-Pet-Team-Project/static/css/main.063a54da.css",
+    "main.js": "/Your-Pet-Team-Project/static/js/main.d511eb47.js",
     "static/media/mainpagedesktop2.png": "/Your-Pet-Team-Project/static/media/mainpagedesktop2.f76268a381c635a49e94.png",
     "static/media/mainpagetablet2.png": "/Your-Pet-Team-Project/static/media/mainpagetablet2.49e0c5ca251ead8f7b47.png",
     "static/media/mainpagedesktop.png": "/Your-Pet-Team-Project/static/media/mainpagedesktop.effbefed5b2e4574fc60.png",
@@ -31,12 +31,14 @@
     "static/media/pawprint.svg": "/Your-Pet-Team-Project/static/media/pawprint.68a099edaab4a9f3dc97a9f60faf202d.svg",
     "index.html": "/Your-Pet-Team-Project/index.html",
     "static/media/search.svg": "/Your-Pet-Team-Project/static/media/search.637e307a1fe43260a63223e6e557701e.svg",
+    "static/media/close.svg": "/Your-Pet-Team-Project/static/media/close.619d1b9e2251b97a4b26e53d498883c5.svg",
     "static/media/searchCross.svg": "/Your-Pet-Team-Project/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
-    "main.3980b4b2.css.map": "/Your-Pet-Team-Project/static/css/main.3980b4b2.css.map",
-    "main.8fc91abf.js.map": "/Your-Pet-Team-Project/static/js/main.8fc91abf.js.map"
+    "static/media/plus.svg": "/Your-Pet-Team-Project/static/media/plus.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
+    "main.063a54da.css.map": "/Your-Pet-Team-Project/static/css/main.063a54da.css.map",
+    "main.d511eb47.js.map": "/Your-Pet-Team-Project/static/js/main.d511eb47.js.map"
   },
   "entrypoints": [
-    "static/css/main.3980b4b2.css",
-    "static/js/main.8fc91abf.js"
+    "static/css/main.063a54da.css",
+    "static/js/main.d511eb47.js"
   ]
 }
