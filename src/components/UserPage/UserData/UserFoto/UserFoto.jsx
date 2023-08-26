@@ -5,7 +5,7 @@ import UserPhotoUpload from './UserPhotoUpload/UserPhotoUpload';
 import { useState, useEffect } from 'react';
 import UserPhotoConfirm from './UserPhotoConfirm/UserPhotoConfirm';
 
-export default function UserPhotoEl(edit) {
+export default function UserPhotoEl({ edit }) {
   const [userPhoto, setUserPhoto] = useState(null);
   const [prewiew, setPrewiew] = useState(null);
   const [file, setFile] = useState(null);
@@ -23,7 +23,7 @@ export default function UserPhotoEl(edit) {
   }, [file]);
 
   return (
-    <PhotoEl>
+    <PhotoEl edit>
       <UserPhotoContainer photoUrl={prewiew ? prewiew : userPhoto} />
       {/* {edit && (
         <div>

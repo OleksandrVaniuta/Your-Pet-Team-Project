@@ -3,15 +3,14 @@ import { Form } from 'formik';
 
 export const PhotoForm = styled(Form)`
   padding: 0;
-  padding-top: 14px;
   width: 140px;
   height: 24px;
   margin: 0 auto;
+  margin-top: 14px;
 `;
 
 export const LabelPhoto = styled.label`
   display: inline-block;
-  padding: 10px 20px;
   background-color: #fff;
   cursor: pointer;
   border-radius: 4px;

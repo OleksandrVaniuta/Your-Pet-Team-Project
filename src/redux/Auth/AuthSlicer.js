@@ -6,7 +6,7 @@ const AuthInitialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isRefreshing: true,
 };
 
 export const authSlice = createSlice({
@@ -15,18 +15,20 @@ export const authSlice = createSlice({
   extraReducers: {
     [register.fulfilled](state, action) {
       state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.token = action.payload.accessToken;
       state.isLoggedIn = true;
     },
     [login.fulfilled](state, action) {
       state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.token = action.payload.accessToken;
       state.isLoggedIn = true;
+      state.isRefreshing = false;
     },
     [logout.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
+      state.isRefreshing = true;
     },
     [refresh.pending](state) {
       state.isRefreshing = true;

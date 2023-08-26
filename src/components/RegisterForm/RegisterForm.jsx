@@ -96,7 +96,7 @@ const RegisterForm = () => {
     const credentials = {
       email: values.email,
       password: values.password,
-      username: values.username,
+      name: values.username,
     };
 
     try {

@@ -7,6 +7,7 @@ export const PhotoEl = styled.div`
   margin-bottom: 21px;
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 0;
   }
 
   @media screen and (min-width: 1280px) {

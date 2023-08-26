@@ -1,5 +1,10 @@
 import UserFormItem from '../UserFormItem/UserFormItem';
-import { UserFormComtainer } from './UserForm.styled';
+import {
+  UserFormComtainer,
+  UserFormWraper,
+  PhotoContainerWrapper,
+  UserDataTitle,
+} from './UserForm.styled';
 import UserPhotoEl from '../UserFoto/UserFoto';
 import { useState } from 'react';
 import EditBtn from '../EditUserFrormBtn/EditUserFormBtn';
@@ -9,9 +14,15 @@ export default function UserForm() {
 
   return (
     <UserFormComtainer>
-      <EditBtn edit={edit} changed={setEdit} />
-      <UserPhotoEl edit={edit} />
-      <UserFormItem edit={edit} />
+      <UserDataTitle>My information:</UserDataTitle>
+      <UserFormWraper>
+        <PhotoContainerWrapper>
+          <EditBtn edit={edit} changed={setEdit} />
+          <UserPhotoEl edit={edit} />
+        </PhotoContainerWrapper>
+
+        <UserFormItem edit={edit} />
+      </UserFormWraper>
     </UserFormComtainer>
   );
 }
