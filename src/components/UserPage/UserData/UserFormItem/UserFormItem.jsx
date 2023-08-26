@@ -10,10 +10,8 @@ import {
   UserInputTitle,
   UserInputBtn,
   UserInputValidateMsg,
-  FromWrapper,
 } from './UserForm.styled';
 import LogOut from '../LogOut/LogOut';
-import { useWindowSize } from 'hooks/useResize';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -46,8 +44,6 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function UserFormItem({ edit }) {
-  const [screenWidth] = useWindowSize();
-
   const handleSubmit = async (values, { validateForm }) => {
     const validationErrors = await validateForm(values);
 

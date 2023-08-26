@@ -1,11 +1,11 @@
-import { lazy, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PublicRoute } from 'PublicRoute';
 import { Layout } from './Layout/Layout';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refresh } from '../redux/Auth/AuthOperations';
-import { selectIsRefreshing } from '../redux/Auth/AuthSelectors';
+// import { selectIsRefreshing } from '../redux/Auth/AuthSelectors';
 import LoginPage from 'pages/LoginPage/LoginPage';
 // import NotiesCategoriesNav from './NoticesCategoriesNav/NotiesCategoriesNav';
 import MainPage from 'pages/Mainpage/MainPage';
@@ -16,7 +16,7 @@ import { UserPage } from 'pages/UserPage/UserPage';
 
 function App() {
   const dispatch = useDispatch();
-  const refteshing = useSelector(selectIsRefreshing);
+  // const refteshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refresh());
