@@ -28,23 +28,27 @@
 
 .modal-content {
   background-color: white;
+  color: black;
   width: 608px;
   height: 429px;
   border-radius: 40px;
   padding: 60px 40px;
+  font-family: Manrope;
   text-align: center;
   position: relative;
 }
 
 .modal-content h2 {
   font-size: 36px;
-  color: black;
+  margin-bottom: 40px;
+  letter-spacing: 1.44px;
 }
 
 .modal-content p {
   font-size: 20px;
-  color: black;
-  margin-top: 20px;
+  margin-bottom: 40px;
+  line-height: 28px;
+  letter-spacing: 0.8px;
 }
 
 .modal-content svg {

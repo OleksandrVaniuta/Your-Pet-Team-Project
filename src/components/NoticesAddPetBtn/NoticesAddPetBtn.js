@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactComponent as PlusIcon } from './plus.svg';
 import { ReactComponent as CloseIcon } from './close.svg';
 import {
@@ -17,7 +17,7 @@ import './NoticesAddPetBtn.css';
 const NoticesAddPetBtn = () => {
   const isMobileScreen = useMediaQuery('(max-width: 767px)');
   const isLogIn = useSelector(selectIsLoggedIn);
-  const [isModalActive, setIsModalActive] = React.useState(false);
+  const [isModalActive, setIsModalActive] = useState(false);
 
   const handleNavLinkClick = () => {
     setIsModalActive(true);
@@ -25,6 +25,14 @@ const NoticesAddPetBtn = () => {
 
   const handleCloseModal = () => {
     setIsModalActive(false);
+  };
+
+  const closeModal = () => {
+    if (isModalActive) {
+      setIsModalActive(false);
+    } else {
+      setIsModalActive(false);
+    }
   };
 
   return (
@@ -52,7 +60,11 @@ const NoticesAddPetBtn = () => {
           <PlusIcon />
         </AddPetStyledBtn>
       )}
-      <Modal isActive={isModalActive} className="custom-modal">
+      <Modal
+        isActive={isModalActive}
+        closeModal={closeModal}
+        className="custom-modal"
+      >
         <div className="modal-content">
           <h2>Attention</h2>
           <p>
