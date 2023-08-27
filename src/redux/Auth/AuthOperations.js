@@ -29,7 +29,6 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.post('/api/auth/login', credentials);
       setAuthHeader(response.data.accessToken);
-      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -46,11 +45,52 @@ export const logout = createAsyncThunk('/logout', async (_, thunkAPI) => {
   }
 });
 
+export const updateUser = createAsyncThunk(
+  '/updateUser',
+  async (credentials, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const response = await axios.patch('/api/auth/profile', credentials);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  '/updateAvatar',
+  async (credentials, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setAuthHeader(persistedToken);
+      const response = await axios.patch(
+        '/api/auth/profile/avatar',
+        credentials
+      );
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refresh = createAsyncThunk('/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
-  console.log(state);
   const persistedToken = state.auth.token;
-  console.log(persistedToken);
 
   if (persistedToken === null) {
     return thunkAPI.rejectWithValue('Unable to fetch user');
@@ -58,7 +98,6 @@ export const refresh = createAsyncThunk('/refresh', async (_, thunkAPI) => {
   try {
     setAuthHeader(persistedToken);
     const res = await axios.get('/api/auth/current');
-    console.log(res.data);
     return res.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

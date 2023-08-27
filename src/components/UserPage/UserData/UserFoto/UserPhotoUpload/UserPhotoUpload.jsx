@@ -78,7 +78,7 @@ export default function UserPhotoUpload({ setFile, uploaded }) {
                 type="file"
                 name="fileInput"
                 id="fileInput"
-                ccept="image/*,.png,.jpg,.gif,.web,"
+                ccept="image/*,.png,.jpg,"
                 validate={validationSchema}
                 onChange={handleSubmit}
               />
