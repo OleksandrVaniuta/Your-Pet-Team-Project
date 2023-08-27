@@ -5,6 +5,8 @@ export const PetItemCintainer = styled.li`
   background-color: #ffffff;
   box-shadow: 3px 8px 14px 0px #88c6fd30;
   margin-bottom: 20px;
+  padding: 16px 20px 40px 20px;
+  text-align: center;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -22,6 +24,7 @@ export const PhotoContainer = styled.div`
   width: 240px;
   height: 240px;
   border-radius: 40px;
+  margin-botton: 20px;
 
   & img {
     width: 100%;
@@ -30,7 +33,9 @@ export const PhotoContainer = styled.div`
     border-radius: 40px;
   }
 
-  @media screen and (min-width: 320px) {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    margin: 0 auto;
+    margin-bottom: 20px;
   }
 
   @media screen and (min-width: 390px) {
@@ -50,7 +55,9 @@ export const PhotoContainer = styled.div`
 export const PetInfo = styled.div`
   text-align: left;
 
-  @media screen and (min-width: 320px) {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 240px;
+    margin: 0 auto;
   }
 
   @media screen and (min-width: 390px) {

@@ -5,6 +5,7 @@ import {
   LabelPhoto,
   EditPhoto,
   PhotoForm,
+  ErrorMsgText,
 } from './UserPhotoUpload.styled';
 import { useState } from 'react';
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
@@ -83,7 +84,7 @@ export default function UserPhotoUpload({ setFile, uploaded }) {
                 onChange={handleSubmit}
               />
             </LabelPhoto>
-            {erroMsg && <div>{erroMsg}</div>}
+            {erroMsg && <ErrorMsgText>{erroMsg}</ErrorMsgText>}
           </div>
         </PhotoForm>
       )}
