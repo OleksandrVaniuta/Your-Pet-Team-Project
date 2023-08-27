@@ -52,6 +52,7 @@ export const NoticesPage = () => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
+          marginBottom: '42px',
         }}
       >
         <NotiesCategoriesNav />
