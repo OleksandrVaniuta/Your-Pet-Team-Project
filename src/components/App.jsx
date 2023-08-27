@@ -3,8 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import { PublicRoute } from 'PublicRoute';
 import { Layout } from './Layout/Layout';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from '../redux/Auth/AuthOperations';
+import { selectAuth } from '../redux/Auth/AuthSelectors';
 // import { selectIsRefreshing } from '../redux/Auth/AuthSelectors';
 import LoginPage from 'pages/LoginPage/LoginPage';
 // import NotiesCategoriesNav from './NoticesCategoriesNav/NotiesCategoriesNav';
@@ -17,9 +18,12 @@ import { UserPage } from 'pages/UserPage/UserPage';
 function App() {
   const dispatch = useDispatch();
   // const refteshing = useSelector(selectIsRefreshing);
+  const { isLoggedIn } = useSelector(selectAuth);
 
   useEffect(() => {
-    dispatch(refresh());
+    if (isLoggedIn) {
+      dispatch(refresh());
+    }
   }, [dispatch]);
 
   return (
