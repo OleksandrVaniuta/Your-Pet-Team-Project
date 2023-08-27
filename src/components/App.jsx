@@ -24,7 +24,7 @@ function App() {
     if (isLoggedIn) {
       dispatch(refresh());
     }
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn]);
 
   return (
     <Routes>
