@@ -5,7 +5,7 @@
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../../redux/Auth/AuthOperations';
 import { Formik, Form } from 'formik';
-import { refresh } from '../../../../redux/Auth/AuthOperations';
+import { updateProfile } from '../../../../redux/Profile/ProfileOperations';
 import * as Yup from 'yup';
 import {
   UserInput,
@@ -73,7 +73,7 @@ export default function UserFormItem({ edit, user, setEdit }) {
       const filteredObject = Object.fromEntries(filteredValues);
 
       await dispatch(updateUser({ ...filteredObject }));
-      dispatch(refresh());
+      dispatch(updateProfile());
       setEdit(!edit);
     } else {
       console.log('Форма содержит ошибки', validationErrors);

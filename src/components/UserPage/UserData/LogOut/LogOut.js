@@ -2,19 +2,22 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 // import { useLogOutMutation } from 'redux/auth/fetchUser';
 // import { useNavigate } from 'react-router-dom';
 import { LogOutBtn, LogOutBtnComtainer } from './LogOut.styled';
+// import { logout } from 'redux/Auth/AuthOperations';
+// import { useDispatch } from 'react-redux';
 
 export default function LogOut() {
+  // const dispatch = useDispatch();
   // const [LogOut] = useLogOutMutation();
   // const navigate = useNavigate();
 
-  // const handleLogoutClick = () => {
-  //   LogOut();
-  //   navigate('/');
-  // };
+  const handleLogoutClick = async () => {
+    // await dispatch(logout());
+    // navigate('/');
+  };
 
   return (
     <LogOutBtnComtainer>
-      <LogOutBtn type="LogOutBtn" onClick={() => {}}>
+      <LogOutBtn type="LogOutBtn" onClick={handleLogoutClick}>
         <LogoutOutlinedIcon
           sx={[
             {

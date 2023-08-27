@@ -1,6 +1,7 @@
 import UserFormItem from '../UserFormItem/UserFormItem';
 import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/Auth/AuthSelectors';
+// import { selectUser } from 'redux/Auth/AuthSelectors';
+import {selectUserData} from 'redux/Profile/ProfileSelectors'
 import {
   UserFormComtainer,
   UserFormWraper,
@@ -14,8 +15,7 @@ import LogOut from '../LogOut/LogOut';
 
 export default function UserForm() {
   const [edit, setEdit] = useState(false);
-  const user = useSelector(selectUser);
-  // console.log(user);
+  const user = useSelector(selectUserData);
 
   return (
     <UserFormComtainer>
