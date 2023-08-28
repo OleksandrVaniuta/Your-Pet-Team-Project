@@ -32,7 +32,8 @@ export const authSlice = createSlice({
       state.user.email = action.payload.email;
       state.user.name = action.payload.name;
       state.token = action.payload.accessToken;
-      state.isLoggedIn = true;
+      // state.isLoggedIn = true;
+      // state.isRefreshing = false;
     },
     [login.fulfilled](state, action) {
       state.user = action.payload.user;

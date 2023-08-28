@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-
 import { login } from 'redux/Auth/AuthOperations';
 // import { selectError } from 'redux/Auth/AuthSelectors';
 
@@ -70,9 +69,7 @@ const LoginForm = () => {
 
     try {
       await dispatch(login(values));
-      //   if (!loginError) {
-      // navigate('/');
-      //   }
+
       navigate('/');
     } catch (error) {
       console.log(error);
