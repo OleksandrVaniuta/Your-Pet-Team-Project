@@ -13,6 +13,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { friendsSlice} from './friends/slice';
 
 const persistConfig = {
   key: 'auth',
@@ -27,6 +28,7 @@ export const store = configureStore({
     auth: persistedReducer,
     notices: noticesSlice.reducer,
     profile: profileReducer,
+    friends: friendsSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
