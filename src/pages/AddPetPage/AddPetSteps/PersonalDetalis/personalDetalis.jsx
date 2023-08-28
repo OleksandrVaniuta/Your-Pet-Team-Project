@@ -1,12 +1,11 @@
-import { Field} from 'formik';
-import {  AddHeader} from '../AddHeader/addHeader';
+import { Field } from 'formik';
+import { AddHeader } from '../AddHeader/addHeader';
 import {
   Container,
- InputBox,
+  InputBox,
   TitleLabel,
   Input,
 } from '../PersonalDetalis/personalDetalis.styled';
-
 
 export const PersonalDetals = ({ pets, step, errors, touched }) => {
   // const handleChange = evt => {
@@ -37,7 +36,7 @@ export const PersonalDetals = ({ pets, step, errors, touched }) => {
 
   return (
     <Container>
-      <AddPetHeader category={pets.category} step={1} />
+      <AddHeader category={pets.category} step={1} />
 
       <InputBox category={pets.category}>
         {pets.category !== 'your pet' && (
@@ -94,5 +93,3 @@ export const PersonalDetals = ({ pets, step, errors, touched }) => {
     </Container>
   );
 };
-
- 
