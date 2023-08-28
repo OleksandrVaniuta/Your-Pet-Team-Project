@@ -8,6 +8,7 @@ export const ValidSchema = step => {
         .required(),
     });
   }
+
   if (step === 1) {
     schema = Yup.object({
       category: Yup.string().required(),
@@ -22,17 +23,18 @@ export const ValidSchema = step => {
         .required('This field must be filled in!'),
     });
   }
-  if (step === 2) {
-    schema = Yup.object({
-      file: Yup.string('The file is too big, max 3MB').required(
-        'This field is required'
-      ),
-      sex: Yup.string('male' | 'female').required(
-        'Specify the gender of the pet'
-      ),
-      location: Yup.string(/^[A-Z][a-z]+$/).required('This field is required'),
-      comments: Yup.string('Too long, max 120 characters').max(120),
-      price: Yup.number().min(0.1).required('This field is required'),
-    });
-  }
+
+  // if (step === 2) {
+  //   schema = Yup.object({
+  //     file: Yup.string('The file is too big, max 3MB').required(
+  //       'This field is required'
+  //     ),
+  //     sex: Yup.string('male' | 'female').required(
+  //       'Specify the gender of the pet'
+  //     ),
+  //     location: Yup.string(/^[A-Z][a-z]+$/).required('This field is required'),
+  //     comments: Yup.string('Too long, max 120 characters').max(120),
+  //     price: Yup.number().min(0.1).required('This field is required'),
+  //   });
+  // }
 };

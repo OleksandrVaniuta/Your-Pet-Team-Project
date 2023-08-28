@@ -37,7 +37,7 @@ export const PersonalDetals = ({ pets, step, errors, touched }) => {
 
   return (
     <Container>
-      <AddPetHeader category={pets.category} step={1} />
+      <AddHeader category={pets.category} step={1} />
 
       <InputBox category={pets.category}>
         {pets.category !== 'your pet' && (

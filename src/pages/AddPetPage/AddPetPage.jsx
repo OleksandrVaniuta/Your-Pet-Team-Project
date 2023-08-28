@@ -33,7 +33,7 @@ const initialPets = {
 
 export const AddPetPage = () => {
   const [step, setStep] = useState(0);
-  const [touched, setTouched] = useState(false);
+  // const [touched, setTouched] = useState(false);
   const navigate = useNavigate();
 
   //Click для повернення на попередній крок та звідки прийшов
@@ -176,12 +176,12 @@ export const AddPetPage = () => {
                 <BtnNextDone
                   type="button"
                   onClick={e => {
-                    setTouched({
-                      name: true,
-                      dateOfBirth: true,
-                      breed: true,
-                      title: true,
-                    });
+                    // setTouched({
+                    //   name: true,
+                    //   dateOfBirth: true,
+                    //   breed: true,
+                    //   title: true,
+                    // });
                     handleClickNext(e);
                   }}
                 >
