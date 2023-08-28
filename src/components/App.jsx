@@ -13,6 +13,7 @@ import MainPage from 'pages/Mainpage/MainPage';
 import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
 import { PrivateRoute } from 'PriviteRoute';
 import { UserPage } from 'pages/UserPage/UserPage';
+import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ function App() {
             <PrivateRoute redirectTo="/login" component={<UserPage />} />
           }
         />
+         <Route path="/friends" element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
+        />
+        
         {/* <Route index element={<MainPage />} /> */}
         {/* <Route element={<PublicRoute />}>
           <Route path="/register" element={<RegisterPage />} /> */}
