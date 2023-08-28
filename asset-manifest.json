@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Your-Pet-Team-Project/static/css/main.91aed34f.css",
-    "main.js": "/Your-Pet-Team-Project/static/js/main.f2e6f433.js",
+    "main.js": "/Your-Pet-Team-Project/static/js/main.809956d0.js",
     "static/media/mainpagedesktop2.png": "/Your-Pet-Team-Project/static/media/mainpagedesktop2.f76268a381c635a49e94.png",
     "static/media/mainpagetablet2.png": "/Your-Pet-Team-Project/static/media/mainpagetablet2.49e0c5ca251ead8f7b47.png",
     "static/media/mainpagedesktop.png": "/Your-Pet-Team-Project/static/media/mainpagedesktop.effbefed5b2e4574fc60.png",
@@ -37,10 +37,10 @@
     "static/media/searchCross.svg": "/Your-Pet-Team-Project/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "static/media/plus.svg": "/Your-Pet-Team-Project/static/media/plus.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "main.91aed34f.css.map": "/Your-Pet-Team-Project/static/css/main.91aed34f.css.map",
-    "main.f2e6f433.js.map": "/Your-Pet-Team-Project/static/js/main.f2e6f433.js.map"
+    "main.809956d0.js.map": "/Your-Pet-Team-Project/static/js/main.809956d0.js.map"
   },
   "entrypoints": [
     "static/css/main.91aed34f.css",
-    "static/js/main.f2e6f433.js"
+    "static/js/main.809956d0.js"
   ]
 }
