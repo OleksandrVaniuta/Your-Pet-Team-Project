@@ -155,7 +155,7 @@ export const AddPetPage = () => {
                 <BtnNextDone
                   type="button"
                   onClick={e => {
-                    setTouched({ category: true });
+                    // setTouched({ category: true });
                     handleClickNext(e);
                   }}
                 >
