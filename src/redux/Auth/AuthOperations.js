@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-
 axios.defaults.baseURL = 'https://your-pet-backend-cmwy.onrender.com';
 
 const setAuthHeader = token => {
@@ -28,7 +27,6 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/api/auth/login', credentials);
-      console.log(response.data.accessToken);
       setAuthHeader(response.data.accessToken);
       return response.data;
     } catch (error) {

@@ -69,8 +69,12 @@ const LoginForm = () => {
 
     try {
       await dispatch(login(values));
-
-      navigate('/');
+      const firstvisit = localStorage.getItem('isNewRegistration');
+      if (JSON.parse(firstvisit)) {
+        navigate('/user');
+      } else {
+        navigate('/');
+      }
     } catch (error) {
       console.log(error);
     } finally {
