@@ -69,7 +69,9 @@ const NoticesAddPetBtn = () => {
             register to access these features.
           </p>
           <AuthNav />
-          <CloseIcon onClick={handleCloseModal}>Close</CloseIcon>
+          <CloseIcon className={css.modalContentSvg} onClick={handleCloseModal}>
+            Close
+          </CloseIcon>
         </div>
       </Modal>
     </>
