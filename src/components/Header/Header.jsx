@@ -1,18 +1,3 @@
-// import { Navigation } from '../Navigation/Navigation';
-// import { AuthNav } from '../AuthNav/AuthNav';
-// import { UserMenu } from '../UserMenu/UserMenu';
-
-// export const Header = () => {
-//   const isLogedIn = true;
-
-//   return (
-//     <header>
-//       <Navigation />
-//       {isLogedIn ? <UserMenu /> : <AuthNav />}
-//     </header>
-//   );
-// };
-
 import Container from '../Container/Container';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
@@ -22,17 +7,21 @@ import BurgerButton from '../BurgerBtn/BurgerBtn';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { selectAuth } from 'redux/Auth/AuthSelectors';
-// import { UseSelector } from 'react-redux/es/hooks/useSelector';
-// import { useSelector } from 'react-redux';1
 // import { selectUser, selectAuth } from 'redux/auth/selectors';
 import { useWindowSize } from 'hooks/useResize';
 import { HeaderWrapper, Wrapper, NavWrapper, Menu } from './Header.styled';
+import { useEffect } from 'react';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [screenWidth] = useWindowSize();
   const { isLoggedIn } = useSelector(selectAuth);
 
+  useEffect(() => {
+    document.body.classList.add('no-scroll');
+
+    return () => document.body.classList.remove('no-scroll');
+  }, []);
   return (
     <HeaderWrapper>
       <Container>

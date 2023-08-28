@@ -1,7 +1,7 @@
 import UserFormItem from '../UserFormItem/UserFormItem';
 import { useSelector } from 'react-redux';
 // import { selectUser } from 'redux/Auth/AuthSelectors';
-import {selectUserData} from 'redux/Profile/ProfileSelectors'
+import { selectUserData } from 'redux/Profile/ProfileSelectors';
 import {
   UserFormComtainer,
   UserFormWraper,

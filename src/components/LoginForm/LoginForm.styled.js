@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 export const LogInForm = styled.form`
   height: 100%;
-  display: flex;
+  // display: flex;
   flex-direction: column;
   align-items: center;
 `;
