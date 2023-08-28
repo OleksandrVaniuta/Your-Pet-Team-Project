@@ -39,15 +39,15 @@ const Item = styled.li`
       isOpen &&
       'visibility: visible; opacity: 1; transform: translateY(0); transition: opacity 350ms ease, transform 250ms ease;'}
 
-    &:nth-child(1) {
+    &:nth-of-type(1) {
       transition-delay: ${({ isOpen }) => (isOpen ? '620ms' : '180ms')};
     }
 
-    &:nth-child(2) {
+    &:nth-of-type(2) {
       transition-delay: ${({ isOpen }) => (isOpen ? '700ms' : '130ms')};
     }
 
-    &:nth-child(3) {
+    &:nth-of-type(3) {
       transition-delay: ${({ isOpen }) => (isOpen ? '780ms' : '80ms')};
     }
   }

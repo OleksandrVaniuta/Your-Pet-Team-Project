@@ -1,6 +1,13 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+const UserBox = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 24px;
+  align-items: center;
+`;
+
 const Wrapper = styled(Link)`
   display: flex;
   justify-content: center;
@@ -12,6 +19,7 @@ const Wrapper = styled(Link)`
   font-family: ${({ theme }) => theme.fonts.main.semiBold};
   font-size: ${({ theme }) => theme.fontSizes[2]};
   color: ${({ theme }) => theme.colors.yellow};
+  font-weight: 700;
 
   transition: color 350ms ${({ theme }) => theme.transition.main};
 
@@ -32,4 +40,4 @@ const Wrapper = styled(Link)`
   }
 `;
 
-export { Wrapper };
+export { Wrapper, UserBox };
