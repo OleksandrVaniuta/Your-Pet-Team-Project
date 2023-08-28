@@ -36,7 +36,7 @@ export const BtnNextDone = styled.button`
   gap: 12px;
   border-radius: 40px;
   border: none;
-  background-color: #54adff;
+  background-color: ${({ theme }) => theme.colors.blue};
   text-decoration-line: underline;
 `;
 export const BtnTitle = styled.p`
@@ -49,7 +49,7 @@ export const BtnTitle = styled.p`
   text-decoration-line: underline;
 `;
 export const LinkTitle = styled.p`
-  color: #54adff;
+  color: ${({ theme }) => theme.colors.blue};
 
   font-size: 16px;
   font-style: normal;

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import { theme } from '../../../theme/theme';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,9 +10,11 @@ export const Container = styled.div`
   padding: 20px 8px 17px 8px;
   border-radius: 40px;
 
-  border: 1px solid #000;
+  border: none;
   background-color: #fff;
-
+boxShadows: {
+    main: '3px 8px 14px rgba(136, 198, 253, 0.19)',
+  },
   @media screen and (min-width: 767px) {
     padding: 20px 32px;
     max-width: ${props =>

@@ -1,4 +1,3 @@
-
 import {
   Options,
   OptionDecor,
@@ -6,7 +5,7 @@ import {
   OptionBox,
   TitlePage,
   HeaderBox,
-} from '../Styles/addHeader.styled';
+} from './addHeader.styled';
 
 const options = [
   { option: 'Choose option', id: 1 },
@@ -14,15 +13,19 @@ const options = [
   { option: 'More info', id: 3 },
 ];
 
-export const AddHeader = ({pets, step}) => {
-console.log(step)
+export const AddHeader = ({ pets, step }) => {
+  console.log(step);
   return (
-    <HeaderBox >
+    <HeaderBox>
       {step === 0 ? <TitlePage>Add pet</TitlePage> : null}
 
       {pets.category === 'your pet' ? <TitlePage>Add pet</TitlePage> : null}
-      {pets.category === 'sell' ? <TitlePage>Add pet for sell</TitlePage> : null}
-      {pets.category === 'lost/found' ? <TitlePage>Add lost pet</TitlePage> : null}
+      {pets.category === 'sell' ? (
+        <TitlePage>Add pet for sell</TitlePage>
+      ) : null}
+      {pets.category === 'lost/found' ? (
+        <TitlePage>Add lost pet</TitlePage>
+      ) : null}
       {pets.category === 'in good hands' ? (
         <TitlePage>Add in good hands</TitlePage>
       ) : null}

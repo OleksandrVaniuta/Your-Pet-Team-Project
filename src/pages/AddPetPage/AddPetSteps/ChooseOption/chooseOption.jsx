@@ -4,10 +4,9 @@ import {
   Container,
   CategoryForm,
   CheckedLabel,
-} from '../Styles/chooseOption.styled';
+} from '../ChooseOption/chooseOption.styled';
 
-import { AddHeader } from 'components/AddPetPage/AddPetSteps/addHeader';
-// import { AddButtons } from './addButtons';
+import { AddHeader } from '../AddHeader/addHeader';
 
 const categorieItem = [
   { item: 'your pet', id: 1 },
@@ -21,15 +20,15 @@ export const ChooseOption = ({ pets}) => {
   return (
     <Container>
       <AddHeader step={0} />
-      <CategoryForm>
+      <CategoryForm role="group">
         {categorieItem.map(({ item, id }) => (
-          <CheckedLabel id={id} >
+          <CheckedLabel id={id}>
             <Field
               type="radio"
               name="category"
               value={item}
               id={id}
-              checked={(pets.category =  {item})}
+              checked={(pets.category = { item })}
             />
             {item}
           </CheckedLabel>
@@ -39,3 +38,4 @@ export const ChooseOption = ({ pets}) => {
   );
 };
 
+ 

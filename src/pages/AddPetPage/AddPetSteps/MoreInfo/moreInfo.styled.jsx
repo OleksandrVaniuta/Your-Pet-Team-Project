@@ -1,29 +1,5 @@
 import styled from '@emotion/styled';
 export const Container = styled.div`
-  // display: flex;
-  // box-sizing: border-box;
-  // flex-direction: column;
-  // align-items: center;
-  // text-align: center;
-  // maxheight: 723px;
-  // width: 280px;
-  // margin: 68px 20px 34px 20px;
-  // padding: 20px 8px 17px 8px;
-  // border-radius: 40px;
-  // border: none;
-  // border: 1px solid #000;
-  // background: #fff;
-
-  // @media screen and (min-width: 767px) {
-  //   maxheight: 602px;
-  //   width: 704px;
-  //   margin: 108px 229px 138px 229px;
-  //   padding: 20px 32px 20px 32px;
-  // }
-  // @media screen and (min-width: 1280px) {
-  //   margin: 108px 229px 138px 229px;
-  //   width: 822px;
-  // }
 `;
 export const Form = styled.form`
   width: 394px;
@@ -35,8 +11,7 @@ export const Forma = styled.div`
   margin-top: 16px;
 `;
 export const TitleLabel = styled.p`
-
-  color: #111111;
+  color: ${({ theme }) => theme.colors.black};
   font-weight: 500;
   font-size: 14px;
   line-hieght: normal;
@@ -51,7 +26,7 @@ export const Label = styled.label`
   width: 264px;
 `;
 export const Input = styled.input`
-  color: #111111;
+  color: ${({ theme }) => theme.colors.black};
   border-color: #54adff;
   box-sizing: border-box;
   font-weight: 400;
@@ -86,7 +61,7 @@ export const InputImage = styled.input`
   height: 112px;
   flex-shrink: 0;
   border-radius: 20px;
-  background: #cce4fb;
+  background-color: ${({ theme }) => theme.colors.lightBlue};
 `;
 export const Icon = styled.image`
   fontSize: 50, color: '#54ADFF' 
@@ -94,7 +69,7 @@ export const Icon = styled.image`
 
 
 export const InputComments = styled.input`
-  color: #111111;
+  color: ${({ theme }) => theme.colors.black};
   box-sizing: border-box;
   font-weight: 400;
   font-size: 14px;
@@ -104,7 +79,7 @@ export const InputComments = styled.input`
   height: 92px;
   width: 264px;
   border-radius: 20px;
-  border-color: #54adff;
+  border-color: ${({ theme }) => theme.colors.blue};
   @media screen and (min-width: 767px) {
     width: 395px;
     height: 48px;
@@ -156,3 +131,6 @@ export const SexTitle = styled.p`
   line-hieght: 19px;
 `;
 
+export const Male = styled.div``;
+export const Feale = styled.div``;
+export const Photo = styled.div``;
