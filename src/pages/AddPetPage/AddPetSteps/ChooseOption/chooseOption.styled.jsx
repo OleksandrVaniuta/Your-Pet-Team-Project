@@ -2,9 +2,7 @@ import styled from '@emotion/styled';
 // // import { theme } from '../../../theme/theme';
 export const Container = styled.div`
 `;
-// color: ${({ theme }) => theme.colors.blue};
-  // box-schadow: ${({ theme }) => theme.boxShadows.main};
-  // margin-bottom: ${({ error }) => (error ? '1px' : '24px')};
+
 export const CategoryForm = styled.ul`
   display: flex;
   flex-direction: column;
@@ -45,11 +43,4 @@ export const CheckedLabel = styled.label`
 
   }
 `;
-// color: ${({ theme }) => theme.color.blue};
-//   background-color: ${({ theme }) => theme.color.lightBlue};
-//   &cheked, &hover,
-//   &focus: {
-//     color: ${({ theme }) => theme.color.lightBlue};
-//     background-color: ${({ theme }) => theme.color.blue};
-//   }
 
