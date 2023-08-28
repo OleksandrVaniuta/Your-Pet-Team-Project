@@ -4,7 +4,6 @@ export const LogInPage = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 80px;
-  height: 100vh;
   background-repeat: no-repeat;
   background-size: contain;
 

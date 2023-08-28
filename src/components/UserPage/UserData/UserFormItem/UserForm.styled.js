@@ -24,14 +24,7 @@ export const UserInputTitle = styled.h3`
   font-family: Manrope;
 
   @media screen and (min-width: 390px) {
-    mfont-size: 18px;
-  }
-
-  @media screen and (min-width: 768px) {
-    mfont-size: 18px;
-  }
-
-  @media screen and (min-width: 1280px) {
+    font-size: 18px;
   }
 `;
 

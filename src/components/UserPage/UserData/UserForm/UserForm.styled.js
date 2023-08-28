@@ -10,7 +10,8 @@ export const UserFormComtainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    width: 395px;
+    min-width: 395px;
+    max-width: 395px;
   }
 `;
 

@@ -1,11 +1,11 @@
-import { lazy, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PublicRoute } from 'PublicRoute';
 import { Layout } from './Layout/Layout';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refresh } from '../redux/Auth/AuthOperations';
-import { selectIsRefreshing } from '../redux/Auth/AuthSelectors';
+// import { selectIsRefreshing } from '../redux/Auth/AuthSelectors';
 import LoginPage from 'pages/LoginPage/LoginPage';
 // import NotiesCategoriesNav from './NoticesCategoriesNav/NotiesCategoriesNav';
 import MainPage from 'pages/Mainpage/MainPage';
@@ -13,10 +13,11 @@ import MainPage from 'pages/Mainpage/MainPage';
 import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
 import { PrivateRoute } from 'PriviteRoute';
 import { UserPage } from 'pages/UserPage/UserPage';
+import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
 
 function App() {
   const dispatch = useDispatch();
-  const refteshing = useSelector(selectIsRefreshing);
+  // const refteshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refresh());
@@ -39,18 +40,16 @@ function App() {
           element={<PublicRoute redirectTo="sell" element={<NoticesPage />} />}
         />
         <Route path="notices/:category" element={<NoticesPage />} />
-        <Route path="user" element={<UserPage />} />
         <Route
           path="/user"
           element={
             <PrivateRoute redirectTo="/login" component={<UserPage />} />
           }
         />
-        {/* <Route index element={<MainPage />} /> */}
-        {/* <Route element={<PublicRoute />}>
-          <Route path="/register" element={<RegisterPage />} /> */}
-        {/* <Route path="login" element={<LoginPage />} /> */}
-        {/* </Route> */}
+        <Route
+          path="/friends"
+          element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
+        />
       </Route>
     </Routes>
   );

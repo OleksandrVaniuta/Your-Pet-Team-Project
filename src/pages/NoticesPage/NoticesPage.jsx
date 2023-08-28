@@ -1,3 +1,5 @@
+import { Box } from '@mui/material';
+import NoticesAddPetBtn from 'components/NoticesAddPetBtn/NoticesAddPetBtn';
 import NoticesCategoriesList from 'components/NoticesCategoriesList/NoticesCategoriesList';
 import NotiesCategoriesNav from 'components/NoticesCategoriesNav/NotiesCategoriesNav';
 import NoticesSearch from 'components/NoticesSearch';
@@ -44,7 +46,16 @@ export const NoticesPage = () => {
     <div>
       <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch handleSearch={handleNoticeSearch} />
-      <NotiesCategoriesNav />
+      <Box
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: '42px',
+        }}
+      >
+        <NotiesCategoriesNav />
+        <NoticesAddPetBtn />
+      </Box>
       <NoticesCategoriesList notice={notices}></NoticesCategoriesList>
       <Pagination 
       handlePagination={handlePagination}

@@ -1,8 +1,11 @@
 // import UserDataItem from './UserDataItem/UserDataItem';
-// import { useState } from 'react';
+// import { useState, useEffect, useRef } from 'react';
 // import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../../redux/Auth/AuthOperations';
 import { Formik, Form } from 'formik';
+import { updateProfile } from '../../../../redux/Profile/ProfileOperations';
 import * as Yup from 'yup';
 import {
   UserInput,
@@ -10,10 +13,10 @@ import {
   UserInputTitle,
   UserInputBtn,
   UserInputValidateMsg,
-  FromWrapper,
 } from './UserForm.styled';
-import LogOut from '../LogOut/LogOut';
-import { useWindowSize } from 'hooks/useResize';
+
+// /^\\d{2}-\\d{2}-\\d{4}$/;
+// /^\d{2}\-\d{2}\-\d{4}$/;
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,7 +31,7 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
   birthday: Yup.string()
-    .matches(/^\d{2}\.\d{2}\.\d{4}$/, 'Invalid date format')
+    .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date format')
     .required('Required'),
   phone: Yup.string()
     .matches(/^\+\d{12}$/, 'Invalid phone number')
@@ -45,14 +48,33 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export default function UserFormItem({ edit }) {
-  const [screenWidth] = useWindowSize();
+export default function UserFormItem({ edit, user, setEdit }) {
+  const dispatch = useDispatch();
+
+  // console.log(user);
+  // console.log(userData.name);
+  // const formikRef = useRef();
+
+  // useEffect(() => {
+  //   if (!edit) {
+  //     formikRef.current.resetForm();
+  //   }
+  // }, [dispatch, edit]);
+  // .replace(/-/g, '.')
 
   const handleSubmit = async (values, { validateForm }) => {
     const validationErrors = await validateForm(values);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Форма отправлена', values);
+      const filteredValues = Object.entries(values).filter(([key, value]) => {
+        return user[key] !== value;
+      });
+
+      const filteredObject = Object.fromEntries(filteredValues);
+
+      await dispatch(updateUser({ ...filteredObject }));
+      dispatch(updateProfile());
+      setEdit(!edit);
     } else {
       console.log('Форма содержит ошибки', validationErrors);
     }
@@ -60,19 +82,20 @@ export default function UserFormItem({ edit }) {
 
   return (
     <Formik
+      // innerRef={formikRef}
       initialValues={{
-        name: '',
-        email: '',
-        birthday: '',
-        phone: '',
-        city: '',
+        name: user.name || '',
+        email: user.email || '',
+        birthday: user.birthday || '',
+        phone: user.phone || '',
+        city: user.city || '',
       }}
       validationSchema={SignupSchema}
       validateOnChange={false}
       validateOnBlur={false}
       onSubmit={handleSubmit}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, resetForm }) => (
         <Form>
           <UserInputWrapper>
             <UserInputTitle>Name:</UserInputTitle>
@@ -98,7 +121,7 @@ export default function UserFormItem({ edit }) {
               <UserInput
                 name="birthday"
                 type="text"
-                placeholder="00.00.0000"
+                placeholder="dd.mm.yyyy"
                 disabled={!edit}
               />
               {errors.birthday && touched.birthday ? (
@@ -135,7 +158,6 @@ export default function UserFormItem({ edit }) {
             </div>
           </UserInputWrapper>
           {edit && <UserInputBtn type="submit">Save</UserInputBtn>}
-          {!edit && <LogOut />}
         </Form>
       )}
     </Formik>

@@ -6,25 +6,60 @@ import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import FemaleIcon from '@mui/icons-material/Female';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
-import { differenceInYears, differenceInMonths, differenceInDays } from 'date-fns';
+import {
+  differenceInYears,
+  differenceInMonths,
+  differenceInDays,
+} from 'date-fns';
 import MaleIcon from '@mui/icons-material/Male';
+import { selectIsLoggedIn, selectToken } from 'redux/Auth/AuthSelectors';
 import { useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
-function NoticeCategoryItem({ elem, openModal }) {
-   const [isFavorited, setIsFavorited] = useState(false);
+function NoticeCategoryItem({ elem, openInfoModal, openNologModal }) {
+  const [isFavorited, setIsFavorited] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const accessToken = useSelector(selectToken); 
 
-  const onClickIconFavorit = () => {
+// заптин на додавання --->>>>>>>
+  const addToFavorit = async (id) => {
+  try {
+   const response = await axios.patch(
+      `https://your-pet-backend-cmwy.onrender.com/api/notices/${id}/favorite`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     setIsFavorited(prevState => !prevState);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
   };
-   const age = (inputDate) => {
-  const currentDate = new Date();
-  const [day, month, year] = inputDate.split('-').map(Number);
+// ---------------------------->
+  
 
-  const parsedInputDate = new Date(year, month - 1, day);
+  const onClickIconFavorit = (id) => {
+    if (isLoggedIn) {
+        addToFavorit(id);
+    }
+    else {
+        openNologModal();
+    }
+  };
 
-  const yearsDifference = differenceInYears(currentDate, parsedInputDate);
-  const monthsDifference = differenceInMonths(currentDate, parsedInputDate);
-  const daysDifference = differenceInDays(currentDate, parsedInputDate);
+  const age = inputDate => {
+    const currentDate = new Date();
+    const [day, month, year] = inputDate.split('-').map(Number);
+
+    const parsedInputDate = new Date(year, month - 1, day);
+
+    const yearsDifference = differenceInYears(currentDate, parsedInputDate);
+    const monthsDifference = differenceInMonths(currentDate, parsedInputDate);
+    const daysDifference = differenceInDays(currentDate, parsedInputDate);
 
     if (yearsDifference === 0) {
     
@@ -35,16 +70,16 @@ function NoticeCategoryItem({ elem, openModal }) {
         }
         return daysDifference + "days";
       }
-    if (monthsDifference === 1) {
-      return monthsDifference + "month";
+      if (monthsDifference === 1) {
+        return monthsDifference + 'mo.';
+      }
+      return monthsDifference + 'mos.';
     }
-    return monthsDifference + "months";
-  }
     if (yearsDifference === 1) {
-      return yearsDifference + "yaer";
-   }
-  return yearsDifference + "yaers";
-  }
+      return yearsDifference + 'yr.';
+    }
+    return yearsDifference + 'yrs.';
+  };
 
   const catWord = (word) => {
     if (word.length > 6) {
@@ -53,8 +88,8 @@ function NoticeCategoryItem({ elem, openModal }) {
     return word;
   };
 
-  const splitWord = (word) => {
-    return word.split('-').join(' ');
+  const splitWord = word => {
+       return word.split('-').join(' ');   
   };
   return (
     <li key={elem.id} className={css.category_item}>
@@ -62,15 +97,15 @@ function NoticeCategoryItem({ elem, openModal }) {
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
             <p className={css.category_text}>{splitWord(elem.category)}</p>
-            <div className={css.icon_box} onClick={onClickIconFavorit}>
+            <div className={css.icon_box} onClick={() => onClickIconFavorit(elem._id)}>
               {isFavorited ? (
-                  <FavoriteRoundedIcon className={css.icon_favorite} />
+                <FavoriteRoundedIcon className={css.icon_favorite} />
               ) : (
-                  <>
-                    <FavoriteBorderIcon className={css.icon} />
-                    <FavoriteRoundedIcon className={css.icon_hidden}/>
-                  </>
-                )}
+                <>
+                  <FavoriteBorderIcon className={css.icon} />
+                  <FavoriteRoundedIcon className={css.icon_hidden} />
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -78,7 +113,7 @@ function NoticeCategoryItem({ elem, openModal }) {
           <ul className={css.info_pet__list}>
             <li key="1" className={css.info_pet__item}>
               <FmdGoodOutlinedIcon className={css.icon} />
-               {catWord(elem.location)}
+              {catWord(elem.location)}
             </li>
             <li key="2" className={css.info_pet__item}>
               <QueryBuilderIcon className={css.icon} />
@@ -87,13 +122,10 @@ function NoticeCategoryItem({ elem, openModal }) {
             <li key="3" className={css.info_pet__item}>
               {elem.sex === 'male' ? (
                 <MaleIcon className={css.icon} />
-              )
-              :
-              (
-              <FemaleIcon className={css.icon} /> 
-              ) 
-               }
-               {elem.sex}
+              ) : (
+                <FemaleIcon className={css.icon} />
+              )}
+              {elem.sex}
             </li>
           </ul>
         </div>
@@ -103,7 +135,7 @@ function NoticeCategoryItem({ elem, openModal }) {
       </div>
       <div className={css.text_container}>
         <p className={css.title}>{elem.title}</p>
-        <button className={css.button_more} onClick={() => openModal(elem)}>
+        <button className={css.button_more} onClick={() => openInfoModal(elem)}>
           Learn more
           <img src={pawprint} alt="icon_pet" className={css.icon_button} />
         </button>
