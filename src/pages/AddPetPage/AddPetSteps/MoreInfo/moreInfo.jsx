@@ -1,5 +1,5 @@
 import { Field } from 'formik';
-import { AddHeader } from './addHeader';
+import { AddHeader } from '../AddHeader/addHeader';
 import {
   Container,
   Forma,
@@ -12,14 +12,13 @@ import {
   SexBox,
   SexInput,
   SexTitle,
-  Icon
-} from '../Styles/moreInfo.styled';
-// import { AddButtons } from './addButtons';
+  Male, Female, Photo
+} from '../MoreInfo/moreInfo.styled';
+import photo from '../../iconAdd/photo.svg';
+import male from '../../iconAdd/male.svg';
+import female from '../../iconAdd/female.svg';
 
-
-export const MoreInfo = ({  step, pets, errors, touched }) => {
-
-
+export const MoreInfo = ({ step, pets, errors, touched }) => {
   // const handleChange = evt => {
   //   const { name, value } = evt.target;
   //   switch (name) {
@@ -67,6 +66,16 @@ export const MoreInfo = ({  step, pets, errors, touched }) => {
                   checked={pets.sex === 'Female'}
                   // onChange={handleChange}
                 />
+                <Female
+                  src={female}
+                  sx={[
+                    {
+                      width: 24,
+                      height: 24,
+                      color: '#F43F5E',
+                    },
+                  ]}
+                />
                 Female
               </SexLabel>
               <SexLabel checked={pets.sex === 'Male'}>
@@ -76,6 +85,16 @@ export const MoreInfo = ({  step, pets, errors, touched }) => {
                   value="Male"
                   checked={pets.sex === 'Male'}
                   // onChange={handleChange}
+                />{' '}
+                <Male
+                  src={male}
+                  sx={[
+                    {
+                      width: 24,
+                      height: 24,
+                      color: '#00C3AD',
+                    },
+                  ]}
                 />
                 Male
               </SexLabel>
@@ -85,20 +104,30 @@ export const MoreInfo = ({  step, pets, errors, touched }) => {
             {pets.file ? 'Add foto' : 'Load the pets image'}
             <TitleLabel>
               {!pets.file ? (
-                <Icon alt="Photo" />
+                <Photo
+                  src={photo}
+                  sx={[
+                    {
+                      width: 182,
+                      height: 182,
+                      color: '#54ADFF',
+                    },
+                  ]}
+                />
               ) : (
                 <image src={URL.createObjectURL(pets.file)} alt="pet" />
               )}
-
               <InputImage
                 type="file"
                 name="file"
                 // value={file}
                 // onChange={handleChange}
                 multiple={false}
-                // accept=".png, .jpg"
+                accept=".png, .jpg"
                 hidden
+                errors={touched.file && errors.file}
               />
+              {touched.file && errors.file && <div>{errors.file}</div>}
             </TitleLabel>
           </ImageBox>
           {pets.category !== 'your pet' && (
@@ -110,7 +139,9 @@ export const MoreInfo = ({  step, pets, errors, touched }) => {
                 placeholder="City"
                 name="city"
                 // onChange={handleChange}
+                errors={touched.city && errors.city}
               />
+              {touched.city && errors.name && <div>{errors.city}</div>}
             </Field>
           )}
           {pets.category === 'sell' && (
@@ -122,8 +153,9 @@ export const MoreInfo = ({  step, pets, errors, touched }) => {
                 placeholder="Price"
                 name="price"
                 // onChange={handleChange}
-                required
+                errors={touched.price && errors.price}
               />
+              {touched.price && errors.price && <div>{errors.price}</div>}
             </Field>
           )}
           <Field>
@@ -134,7 +166,11 @@ export const MoreInfo = ({  step, pets, errors, touched }) => {
               // onChange={handleChange}
               placeholder="Type of pet"
               name="comments"
+              errors={touched.comments && errors.comments}
             />
+            {touched.comments && errors.comments && (
+              <div>{errors.comments}</div>
+            )}
           </Field>
         </form>
       </Forma>
