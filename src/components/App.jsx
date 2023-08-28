@@ -46,11 +46,6 @@ function App() {
             <PrivateRoute redirectTo="/login" component={<UserPage />} />
           }
         />
-        {/* <Route index element={<MainPage />} /> */}
-        {/* <Route element={<PublicRoute />}>
-          <Route path="/register" element={<RegisterPage />} /> */}
-        {/* <Route path="login" element={<LoginPage />} /> */}
-        {/* </Route> */}
       </Route>
     </Routes>
   );

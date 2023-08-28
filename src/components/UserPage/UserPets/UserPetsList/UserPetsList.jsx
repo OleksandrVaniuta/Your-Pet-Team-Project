@@ -8,6 +8,7 @@ export default function PetsList({ pets }) {
       {pets.map(({ _id, name, dateOfBirth, comments, type, avatarPet }) => {
         return (
           <PetsItem
+            key={_id}
             id={_id}
             name={name}
             dateOfBirth={dateOfBirth}
