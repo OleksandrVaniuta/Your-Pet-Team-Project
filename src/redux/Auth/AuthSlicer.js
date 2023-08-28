@@ -20,7 +20,7 @@ const AuthInitialState = {
   },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isRefreshing: true,
 };
 
 export const authSlice = createSlice({
@@ -37,18 +37,21 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.accessToken;
       state.isLoggedIn = true;
-      state.isRefreshing = true;
+      state.isRefreshing = false;
     },
     [logout.fulfilled](state) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
-      state.isRefreshing = false;
+      state.isRefreshing = true;
     },
     [refresh.pending](state) {
       state.isRefreshing = true;
     },
     [refresh.fulfilled](state, action) {
+      // state.user = action.payload;
+      // state.token = action.payload.accessToken;
+      state.isLoggedIn = true;
       state.isRefreshing = false;
       state.user.email = action.payload.email;
       state.user.name = action.payload.name;
@@ -61,6 +64,8 @@ export const authSlice = createSlice({
       state.isRefreshing = false;
     },
     [updateUser.fulfilled](state, action) {
+      // state.isLoggedIn = true;
+      // state.isRefreshing = false;
       state.user.email = action.payload.email;
       state.user.name = action.payload.name;
       state.user.phone = action.payload.phone;
