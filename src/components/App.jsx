@@ -40,16 +40,16 @@ function App() {
           element={<PublicRoute redirectTo="sell" element={<NoticesPage />} />}
         />
         <Route path="notices/:category" element={<NoticesPage />} />
-        <Route path="user" element={<UserPage />} />
         <Route
           path="/user"
           element={
             <PrivateRoute redirectTo="/login" component={<UserPage />} />
           }
         />
-         <Route path="/friends" element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
+        <Route
+          path="/friends"
+          element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
         />
-        
       </Route>
     </Routes>
   );
