@@ -10,7 +10,8 @@ export const PetItemCintainer = styled.li`
 
   @media screen and (min-width: 768px) {
     display: flex;
-    align-items: center;
+
+    align-items: start;
     padding: 20px 20px 20px 20px;
     border-radius: 40px;
   }
