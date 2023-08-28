@@ -91,7 +91,7 @@ const RegisterForm = () => {
     if (loading) {
       return;
     }
-
+    localStorage.setItem('isNewRegistration', 'true');
     setLoading(true);
     const credentials = {
       email: values.email,
@@ -105,7 +105,7 @@ const RegisterForm = () => {
         setEmailAvailable(false);
       } else {
         setEmailAvailable(true);
-        navigate('/');
+        navigate('/user');
       }
     } catch (error) {
       console.error(error);

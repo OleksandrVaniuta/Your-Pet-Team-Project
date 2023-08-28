@@ -21,6 +21,7 @@ const AuthInitialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
+  isVisitFirst: true,
 };
 
 export const authSlice = createSlice({
