@@ -75,7 +75,7 @@ const LoginForm = () => {
         if (JSON.parse(firstvisit)) {
           navigate('/user');
         } else {
-          navigate('/');
+          navigate('/notices/sell');
         }
       } else {
         toast.error(loginError);
