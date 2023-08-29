@@ -17,6 +17,7 @@ import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
 import { AddPetPage } from 'pages/AddPetPage/AddPetPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ function App() {
               <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
             }
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
       <ToastContainer />
