@@ -54,10 +54,7 @@ function App() {
               <PrivateRoute redirectTo="/login" component={<UserPage />} />
             }
           />
-          <Route
-            path="/friends"
-            element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
-          />
+          <Route path="/friends" element={<FriendsPage />} />
           <Route
             path="/add-pet"
             element={
