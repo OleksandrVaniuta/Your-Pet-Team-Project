@@ -23,7 +23,7 @@ export const noticesSlice = createSlice({
         state.isLoading = true;
       })
       .addMatcher(isAnyOf(fetchNoticesByCategory.rejected), state => {
-        return { ...state, items: [], isLoading: false };
+        return { ...state, items: [], totalPages: null, isLoading: false };
       });
   },
   reducers: {},

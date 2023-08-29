@@ -5,6 +5,7 @@ import {
   PetInfo,
   PetDecrStyled,
 } from './UserPetsItem.styled';
+import DltBtn from '../DeletPet/DeletPet';
 
 export default function PetsItem({
   id,
@@ -37,6 +38,7 @@ export default function PetsItem({
           {`${comments}`}
         </PetDescr>
       </PetInfo>
+      <DltBtn id={id} />
     </PetItemCintainer>
   );
 }

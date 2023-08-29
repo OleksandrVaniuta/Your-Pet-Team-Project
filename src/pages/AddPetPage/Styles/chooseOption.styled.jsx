@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-// // import { theme } from '../../../theme/theme';
-export const Container = styled.div`
-`;
+
+export const Container = styled.div``;
 
 export const CategoryForm = styled.ul`
   display: flex;

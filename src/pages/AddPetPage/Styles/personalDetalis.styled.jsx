@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
-export const Container = styled.div`
-  
-`;
+import { Field} from 'formik';
+export const Container = styled.div``;
 
 export const InputBox = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-   width: 264px;
+  width: 264px;
   maxheight: 314px;
   gap: 20px;
   margin-bottom: 95px;
@@ -15,17 +14,14 @@ display: flex;
   @media screen and (min-width: 768px) {
     margin-bottom: 137px;
     maxheight: 648px;
-   width: 458px;
+    width: 458px;
   }
 `;
-  
-  // margin-bottom: ${props => (props.category === 'your pet' ? 44 : 24)}px;
 
-
-
+// margin-bottom: ${props => (props.category === 'your pet' ? 44 : 24)}px;
 
 export const TitleLabel = styled.p`
- margin: 0px;
+  margin: 0px;
   color: #111111;
   font-weight: 500;
   font-size: 14px;
@@ -33,18 +29,18 @@ export const TitleLabel = styled.p`
   text-align: start;
 `;
 export const Label = styled.label`
-   gap: 4px;
-   text-align: start;
+  gap: 4px;
+  text-align: start;
   // width: 264px;
-   height: 63px;
-   @media screen and (min-width: 767px) {
+  height: 63px;
+  @media screen and (min-width: 767px) {
     gap: 8px;
-  //   width: 394px;
+    //   width: 394px;
     height: 83px;
-     }
+  }
 `;
-export const Input = styled.input`
-   width: 100%;
+export const FieldInput = styled(Field)`
+  width: 100%;
   padding: 9px 15px;
   margin-top: 4px;
   font-weight: 400;

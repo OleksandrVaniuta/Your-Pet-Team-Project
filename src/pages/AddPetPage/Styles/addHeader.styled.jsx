@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
-export const HeaderBox = styled.div`
-
-`;
+export const HeaderBox = styled.div``;
 export const TitlePage = styled.h1`
   color: #111;
   // align-items: start;
@@ -30,21 +28,33 @@ export const Options = styled.ul`
   }
   @media screen and (min-width: 767px) {
      gap: 16px;
-      // margin-bottom: ${props => (props.step === 0 ? '60px' : '36px')};
+       margin-bottom: ${props => (props.step === 0 ? '60px' : '36px')};
   }
 `;
 export const OptionBox = styled.div`
-// position: relative;
+  // position: relative;
   color: #8888;
   width: 80px;
   text-align: start;
   height: 34px;
   margin-top: 24px;
+  color: ${props => {
+    if (props.step === 0) {
+      return props.index === 0 ? '#54ADFF' : '#888888';
+    } else if (props.step === 1) {
+      return props.index === 0
+        ? '#00C3AD'
+        : props.index === 1
+        ? '#54ADFF'
+        : '#888888';
+    } else if (props.step === 2) {
+      return props.index < 2 ? '#00C3AD' : '#54ADFF';
+    }
+  }};
   @media screen and (min-width: 767px) {
     width: 120px;
   }
 `;
-
 
 export const OptionName = styled.p`
  
@@ -55,15 +65,27 @@ export const OptionName = styled.p`
    font-size: 16px;
 `;
 export const OptionDecor = styled.div`
-  background-color: #8888;
   border-radius: 8px;
   width: 80px;
   text-align: start;
   height: 8px;
   margin-top: 12px;
+   background-color: ${props => {
+     if (props.step === 0) {
+       return props.index === 0 ? '#54ADFF' : '#CCE4FB';
+     } else if (props.step === 1) {
+       return props.index === 0
+         ? '#00C3AD'
+         : props.index === 1
+         ? '#54ADFF'
+         : '#CCE4FB';
+     } else if (props.step === 2) {
+       return props.index < 2 ? '#00C3AD' : '#54ADFF';
+     }
+   }};
+  }
   @media screen and (min-width: 767px) {
     width: 120px;
   
   }
 `;
-

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const PetItemCintainer = styled.li`
+  position: relative;
   width: 100%;
   background-color: #ffffff;
   box-shadow: 3px 8px 14px 0px #88c6fd30;
