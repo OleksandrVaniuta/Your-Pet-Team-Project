@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 
-export const UserPetsTitle = styled.div`
+export const UserPetContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const UserPetsTitle = styled.h3`
   text-align: start;
   font-size: 24px;
   line-height: 1.33;

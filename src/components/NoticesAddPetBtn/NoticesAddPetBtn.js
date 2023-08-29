@@ -7,12 +7,14 @@ import { selectIsLoggedIn } from '../../redux/Auth/AuthSelectors';
 import AuthNav from 'components/AuthNav/AuthNav';
 import Modal from 'components/Modal/Modal';
 import css from './NoticesAddPetBtn.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const NoticesAddPetBtn = () => {
   const isMobileScreen = useMediaQuery('(max-width: 767px)');
   const isLogIn = useSelector(selectIsLoggedIn);
   const [isModalActive, setIsModalActive] = useState(false);
+
+  const location = useLocation();
 
   const handleNavLinkClick = () => {
     setIsModalActive(true);
@@ -34,7 +36,11 @@ const NoticesAddPetBtn = () => {
     <>
       {isMobileScreen ? (
         isLogIn ? (
-          <NavLink className={css.navLinkMobile} to={'/add-pet'}>
+          <NavLink
+            className={css.navLinkMobile}
+            to={'/add-pet'}
+            state={{ from: location }}
+          >
             <PlusIcon />
             <span>Add Pet</span>
           </NavLink>
@@ -45,7 +51,11 @@ const NoticesAddPetBtn = () => {
           </button>
         )
       ) : isLogIn ? (
-        <NavLink className={css.navLinkDesktop} to={'/add-pet'}>
+        <NavLink
+          className={css.navLinkDesktop}
+          to={'/add-pet'}
+          state={{ from: location }}
+        >
           <span>Add Pet</span>
           <PlusIcon />
         </NavLink>
