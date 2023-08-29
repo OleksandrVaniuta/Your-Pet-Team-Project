@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-export const Container = styled.div`
-`;
+import { Field } from 'formik';
+export const Container = styled.div``;
 export const Form = styled.form`
   width: 394px;
 `;
@@ -11,7 +11,7 @@ export const Forma = styled.div`
   margin-top: 16px;
 `;
 export const TitleLabel = styled.p`
-  color: ${({ theme }) => theme.colors.black};
+  // color: ${({ theme }) => theme.colors.black};
   font-weight: 500;
   font-size: 14px;
   line-hieght: normal;
@@ -25,8 +25,8 @@ export const Label = styled.label`
   margin-bottom: 20px;
   width: 264px;
 `;
-export const Input = styled.input`
-  color: ${({ theme }) => theme.colors.black};
+export const FieldInput = styled(Field)`
+  // color: ${({ theme }) => theme.colors.black};
   border-color: #54adff;
   box-sizing: border-box;
   font-weight: 400;
@@ -46,14 +46,13 @@ export const Input = styled.input`
   }
 `;
 
-
 export const ImageBox = styled.div`
   display: flex;
   gap: 12px;
   height: 112px;
   width: 207px;
   align-items: center;
- 
+
   margin-bottom: 24px;
 `;
 export const InputImage = styled.input`
@@ -61,15 +60,14 @@ export const InputImage = styled.input`
   height: 112px;
   flex-shrink: 0;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.colors.lightBlue};
+  // background-color: ${({ theme }) => theme.colors.lightBlue};
 `;
 export const Icon = styled.image`
   fontSize: 50, color: '#54ADFF' 
 `;
 
-
 export const InputComments = styled.input`
-  color: ${({ theme }) => theme.colors.black};
+  // color: ${({ theme }) => theme.colors.black};
   box-sizing: border-box;
   font-weight: 400;
   font-size: 14px;
@@ -79,7 +77,7 @@ export const InputComments = styled.input`
   height: 92px;
   width: 264px;
   border-radius: 20px;
-  border-color: ${({ theme }) => theme.colors.blue};
+  // border-color: ${({ theme }) => theme.colors.blue};
   @media screen and (min-width: 767px) {
     width: 395px;
     height: 48px;
@@ -96,8 +94,8 @@ export const SexBox = styled.div`
   margin-bottom: 16px;
 `;
 export const SexInput = styled.input`
-display: none;
-`
+  display: none;
+`;
 export const SexLabel = styled.label`
   height: 24px;
   text-align: center;
@@ -130,7 +128,6 @@ export const SexTitle = styled.p`
   font-size: 14px;
   line-hieght: 19px;
 `;
-
 export const Male = styled.div``;
-export const Feale = styled.div``;
+export const Female = styled.div``;
 export const Photo = styled.div``;

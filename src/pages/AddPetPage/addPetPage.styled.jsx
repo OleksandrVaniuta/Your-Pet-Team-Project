@@ -12,9 +12,10 @@ export const Container = styled.div`
 
   border: none;
   background-color: #fff;
-boxShadows: {
-    main: '3px 8px 14px rgba(136, 198, 253, 0.19)',
-  },
+  boxshadows: {
+    main: '3px 8px 14px rgba(136, 198, 253, 0.19)';
+  }
+  ,
   @media screen and (min-width: 767px) {
     padding: 20px 32px;
     max-width: ${props =>
@@ -29,4 +30,5 @@ boxShadows: {
         : '20px 32px'};
   }
 `;
-
+export const Dog = styled.svg``;
+export const Back = styled.svg``;

@@ -14,6 +14,7 @@ import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
 import { PrivateRoute } from 'PriviteRoute';
 import { UserPage } from 'pages/UserPage/UserPage';
 import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
+import { AddPetPage } from 'pages/AddPetPage/AddPetPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,12 @@ function App() {
         <Route
           path="/friends"
           element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
+        />
+        <Route
+          path="/add-pet"
+          element={
+            <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+          }
         />
       </Route>
     </Routes>

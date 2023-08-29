@@ -14,19 +14,17 @@ export const BtnBox = styled.div`
 
 export const BtnCancelBack = styled.button`
   display: flex;
-    gap: 12px;
+  gap: 12px;
   height: 17px;
   width: 76px;
   justify-content: center;
   align-items: center;
   border: none;
-  background: transparent;
+  background: #ffffff;
   text-decoration-line: underline;
-  cursor:  pointer;
 `;
 
 export const BtnNextDone = styled.button`
-  position: relative;
   display: flex;
   width: 248px;
   height: 40px;
@@ -35,8 +33,7 @@ export const BtnNextDone = styled.button`
   align-items: center;
   gap: 12px;
   border-radius: 40px;
-  border: none;
-  background-color: ${({ theme }) => theme.colors.blue};
+  background: #54adff;
   text-decoration-line: underline;
 `;
 export const BtnTitle = styled.p`
@@ -49,7 +46,7 @@ export const BtnTitle = styled.p`
   text-decoration-line: underline;
 `;
 export const LinkTitle = styled.p`
-  color: ${({ theme }) => theme.colors.blue};
+  color: #54adff;
 
   font-size: 16px;
   font-style: normal;
