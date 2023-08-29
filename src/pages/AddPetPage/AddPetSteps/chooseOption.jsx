@@ -4,6 +4,8 @@ import {
   CategoryForm,
   CheckedLabel,
 } from '../Styles/chooseOption.styled';
+import { useLocation, useNavigate } from 'react-router-dom';
+// location.state?.from
 
 import { AddHeader } from './addHeader';
 
@@ -16,6 +18,13 @@ import {
 } from '../Styles/button.styled';
 
 export const ChooseOption = ({ category, setCategory, setStep }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(location.state?.from);
+  };
+
   const handleChange = evt => {
     setCategory(evt.target.value);
     console.log(category);
@@ -74,7 +83,6 @@ export const ChooseOption = ({ category, setCategory, setStep }) => {
           setStep(state => {
             return state + 1;
           });
-          // console.log(setStep);
         }}
       >
         <BtnTitle>Next</BtnTitle>
@@ -88,7 +96,7 @@ export const ChooseOption = ({ category, setCategory, setStep }) => {
           ]}
         /> */}
       </BtnNextDone>
-      <BtnCancelBack type="button" onClick={() => setStep(0)}>
+      <BtnCancelBack type="button" onClick={goBack}>
         {/* <BackIcon
                     sx={[
                       {

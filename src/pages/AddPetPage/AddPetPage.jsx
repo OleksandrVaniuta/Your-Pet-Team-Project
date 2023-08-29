@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { ChooseOption } from './/AddPetSteps/chooseOption';
 import { PersonalDetals } from './AddPetSteps/personalDetalis';
 import { MoreInfo } from './AddPetSteps/moreInfo';
+import { useDispatch } from 'react-redux';
+import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const AddPetPage = () => {
   const [step, setStep] = useState(0);
@@ -17,55 +20,10 @@ export const AddPetPage = () => {
     city: '',
     comments: '',
   });
+  const dispatch = useDispatch();
 
-  //Click для повернення на попередній крок та звідки прийшов
-
-  //click  для переходу вперед для 1 та 2 кроку
-
-  //фінальний сабміт : валідація, пердача нанних та перехід до сторінок
-  // const handleSubmit = async pets => {
-  //   const formData = new FormData();
-
-  //   formData.append('category', pets.category);
-  //   formData.append('name', pets.name);
-  //   formData.append('type', pets.type);
-  //   formData.append('fil', pets.file);
-  //   formData.append('comments', pets.comments);
-  //   formData.append('date', pets.date);
-
-  //   formData.append('title', pets.title);
-  //   formData.append('city', pets.city);
-  //   formData.append('sex', pets.sex);
-
-  //   if (pets.category === 'lost/found' || pets.category === 'in good handle') {
-  //     try {
-  //       const request = new XMLHttpRequest();
-  //       await request.open('POST', formData, 'https://localhost:3000/api/pets');
-
-  //       pets.category === 'lost/found'
-  //         ? navigate('Notice/lost/found')
-  //         : navigate('Notice/in good handle');
-  //       // resetForm();
-  //     } catch (error) {
-  //       return error.message;
-  //     }
-  //   }
-
-  //   formData.append('price', pets.price);
-
-  //   if (pets.category === 'sell') {
-  //     try {
-  //       const request = new XMLHttpRequest();
-  //       await request.open('POST', formData, 'https://localhost:3000/api/pets');
-
-  //       navigate('sell');
-  //     } catch (error) {
-  //       return error.message;
-  //     }
-  //   }
-  //   const entries = Object.entries(formData);
-  //   console.log(entries);
-  // };
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleNext = values => {
     setPets(prevState => ({ ...prevState, ...values }));
@@ -80,16 +38,43 @@ export const AddPetPage = () => {
     setPets(prevState => ({ ...prevState, ...values }));
   };
 
-  const handlePets = () => {
+  const handlePets = async () => {
     const formData = new FormData();
 
-    formData.append('avatar', pets.file);
+    formData.append('category', category);
+    formData.append('type', pets.type);
     formData.append('name', pets.name);
-    formData.append('city', pets.city);
-    formData.append('date', pets.date);
-    for (const pair of formData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
+
+    if (category === 'sell') {
+      formData.append('avatarURL', pets.file);
+      formData.append('title', pets.title);
+      formData.append('location', pets.city);
+      formData.append('birthday', pets.date);
+      formData.append('sex', pets.sex);
+      formData.append('comment', pets.comments);
+      formData.append('price', pets.price);
     }
+
+    if (category === 'lost/found' || category === 'lost/found') {
+      formData.append('avatarURL', pets.file);
+      formData.append('title', pets.title);
+      formData.append('location', pets.city);
+      formData.append('birthday', pets.date);
+      formData.append('sex', pets.sex);
+      formData.append('comment', pets.comments);
+    }
+
+    if (category === 'your pet') {
+      formData.append('avatarPet', pets.file);
+      formData.append('dateOfBirth', pets.date);
+      formData.append('comments', pets.comments);
+      await dispatch(addMyPet(formData));
+      return;
+    }
+
+    await dispatch(addPet(formData));
+
+    navigate(location.state?.from);
   };
 
   return (

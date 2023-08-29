@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './Auth/AuthSlicer';
 import { noticesSlice } from './notices/noticesSlice';
 import { profileReducer } from './Profile/ProfileSlicer';
+import { petsReducer } from './AddPets/AddPetsSlice';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -13,7 +14,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { friendsSlice} from './friends/slice';
+import { friendsSlice } from './friends/slice';
 
 const persistConfig = {
   key: 'auth',
@@ -29,6 +30,7 @@ export const store = configureStore({
     notices: noticesSlice.reducer,
     profile: profileReducer,
     friends: friendsSlice.reducer,
+    add: petsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
