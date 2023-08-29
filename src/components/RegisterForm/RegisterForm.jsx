@@ -105,7 +105,7 @@ const RegisterForm = () => {
         setEmailAvailable(false);
       } else {
         setEmailAvailable(true);
-        navigate('/user');
+        navigate('/login');
       }
     } catch (error) {
       console.error(error);
