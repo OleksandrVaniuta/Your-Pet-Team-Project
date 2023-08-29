@@ -14,6 +14,8 @@ import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
 import { PrivateRoute } from 'PriviteRoute';
 import { UserPage } from 'pages/UserPage/UserPage';
 import { NewsPage } from 'pages/NewsPage/NewsPage';
+import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
+import { AddPetPage } from 'pages/AddPetPage/AddPetPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,19 +42,23 @@ function App() {
           element={<PublicRoute redirectTo="sell" element={<NoticesPage />} />}
         />
         <Route path="notices/:category" element={<NoticesPage />} />
-        <Route path="user" element={<UserPage />} />
         <Route
           path="/user"
           element={
             <PrivateRoute redirectTo="/login" component={<UserPage />} />
           }
         />
+        <Route
+          path="/friends"
+          element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
+        />
+        <Route
+          path="/add-pet"
+          element={
+            <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+          }
+        />
         <Route path="/news" element={<NewsPage />} />
-        {/* <Route index element={<MainPage />} /> */}
-        {/* <Route element={<PublicRoute />}>
-          <Route path="/register" element={<RegisterPage />} /> */}
-        {/* <Route path="login" element={<LoginPage />} /> */}
-        {/* </Route> */}
       </Route>
     </Routes>
   );

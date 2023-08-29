@@ -1,12 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { register, login, logout, refresh } from './AuthOperations';
+import {
+  register,
+  login,
+  logout,
+  refresh,
+  updateUser,
+  updateAvatar,
+} from './AuthOperations';
 
 const AuthInitialState = {
-  user: { name: null, email: null },
+  user: {
+    name: null,
+    email: null,
+    phone: null,
+    birthday: null,
+    city: null,
+    avatarURL: null,
+  },
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
+  isVisitFirst: true,
 };
 
 export const authSlice = createSlice({
@@ -14,12 +29,14 @@ export const authSlice = createSlice({
   initialState: AuthInitialState,
   extraReducers: {
     [register.fulfilled](state, action) {
-      state.user = action.payload.user;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
       state.token = action.payload.accessToken;
-      state.isLoggedIn = true;
+      // state.isLoggedIn = true;
+      // state.isRefreshing = false;
     },
     [login.fulfilled](state, action) {
-      state.user = action.payload.user;
+      state.user.email = action.payload.email;
       state.token = action.payload.accessToken;
       state.isLoggedIn = true;
       state.isRefreshing = false;
@@ -34,12 +51,31 @@ export const authSlice = createSlice({
       state.isRefreshing = true;
     },
     [refresh.fulfilled](state, action) {
-      state.user = action.payload;
+      // state.user = action.payload;
+      // state.token = action.payload.accessToken;
       state.isLoggedIn = true;
       state.isRefreshing = false;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
+      state.user.phone = action.payload.phone;
+      state.user.birthday = action.payload.birthday;
+      state.user.city = action.payload.city;
+      state.user.avatarURL = action.payload.avatarURL;
     },
     [refresh.rejected](state) {
       state.isRefreshing = false;
+    },
+    [updateUser.fulfilled](state, action) {
+      // state.isLoggedIn = true;
+      // state.isRefreshing = false;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
+      state.user.phone = action.payload.phone;
+      state.user.birthday = action.payload.birthday;
+      state.user.city = action.payload.city;
+    },
+    [updateAvatar.fulfilled](state, action) {
+      state.user.avatarURL = action.payload.avatarURL;
     },
   },
 });

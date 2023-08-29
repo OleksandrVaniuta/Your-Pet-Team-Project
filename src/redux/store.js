@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './Auth/AuthSlicer';
 import { noticesSlice } from './notices/noticesSlice';
 import { newsSlice } from './News/newsSlice';
+import { profileReducer } from './Profile/ProfileSlicer';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -13,6 +14,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { friendsSlice } from './friends/slice';
 
 const persistConfig = {
   key: 'auth',
@@ -27,6 +29,8 @@ export const store = configureStore({
     auth: persistedReducer,
     notices: noticesSlice.reducer,
     news: newsSlice.reducer,
+    profile: profileReducer,
+    friends: friendsSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

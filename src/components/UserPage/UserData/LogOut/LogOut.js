@@ -1,20 +1,32 @@
+import { useState } from 'react';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 // import { useLogOutMutation } from 'redux/auth/fetchUser';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LogOutBtn, LogOutBtnComtainer } from './LogOut.styled';
+import { logout } from 'redux/Auth/AuthOperations';
+import { useDispatch } from 'react-redux';
+
+// import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ModalLogout from 'components/ModalLogout/ModalLogout';
+import ApproveAction from '../../../ApproveAction/ApproveAction';
 
 export default function LogOut() {
-  // const [LogOut] = useLogOutMutation();
-  // const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const handleLogoutClick = () => {
-  //   LogOut();
-  //   navigate('/');
-  // };
+  const toggleModal = () => {
+    setIsModalOpen(prevState => !prevState);
+  };
+
+  const handleLogoutClick = async () => {
+    await dispatch(logout());
+    navigate('/');
+  };
 
   return (
     <LogOutBtnComtainer>
-      <LogOutBtn type="LogOutBtn" onClick={() => {}}>
+      <LogOutBtn type="LogOutBtn" onClick={toggleModal}>
         <LogoutOutlinedIcon
           sx={[
             {
@@ -28,6 +40,18 @@ export default function LogOut() {
         />
         <span>Log Out</span>
       </LogOutBtn>
+      {isModalOpen && (
+        <ModalLogout toggleModal={toggleModal}>
+          <ApproveAction
+            toggleModal={toggleModal}
+            type="button"
+            clickHandler={handleLogoutClick}
+            icon={<LogoutOutlinedIcon />}
+          >
+            Already leaving?
+          </ApproveAction>
+        </ModalLogout>
+      )}
     </LogOutBtnComtainer>
   );
 }

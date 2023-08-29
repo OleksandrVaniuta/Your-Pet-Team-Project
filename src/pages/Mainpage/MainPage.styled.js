@@ -45,7 +45,7 @@ const MainContainer = styled.div`
 
 const MainTitle = styled.h1`
   max-width: 280px;
-  height: 88px;
+  height: 100vh;
   padding-top: ${({ theme }) => theme.space[5] + 'px'};
   font-family: ${({ theme }) => theme.fonts.main.bold};
   font-size: ${({ theme }) => theme.fontSizes[6]};

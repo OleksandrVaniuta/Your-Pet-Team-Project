@@ -46,3 +46,10 @@ export const EditPhoto = styled.span`
   font-weight: 400;
   color: '#000';
 `;
+
+export const ErrorMsgText = styled.div`
+  color: #ff0000;
+  position: relative;
+  width: 200px;
+  margin-left: -25px;
+`;

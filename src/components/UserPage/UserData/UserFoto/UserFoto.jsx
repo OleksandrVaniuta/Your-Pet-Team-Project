@@ -1,12 +1,13 @@
-// import { useState } from 'react';
-import UserPhotoContainer from './UserPhotoContainer/UserPhotoContainer';
-import { PhotoEl } from './UserPhotoEl.styled';
-import UserPhotoUpload from './UserPhotoUpload/UserPhotoUpload';
 import { useState, useEffect } from 'react';
+import { selectUserAvatar } from 'redux/Auth/AuthSelectors';
+import { useSelector } from 'react-redux';
+import UserPhotoUpload from './UserPhotoUpload/UserPhotoUpload';
+import UserPhotoContainer from './UserPhotoContainer/UserPhotoContainer';
 import UserPhotoConfirm from './UserPhotoConfirm/UserPhotoConfirm';
+import { PhotoEl } from './UserPhotoEl.styled';
 
 export default function UserPhotoEl({ edit }) {
-  const [userPhoto, setUserPhoto] = useState(null);
+  const userPhoto = useSelector(selectUserAvatar);
   const [prewiew, setPrewiew] = useState(null);
   const [file, setFile] = useState(null);
   const [photoUpoaded, setPhotoUpoaded] = useState(false);
@@ -19,32 +20,22 @@ export default function UserPhotoEl({ edit }) {
         setPrewiew(reader.result);
       };
     }
-    setUserPhoto(null);
   }, [file]);
 
   return (
     <PhotoEl edit>
       <UserPhotoContainer photoUrl={prewiew ? prewiew : userPhoto} />
-      {/* {edit && (
-        <div>
-          {!photoUpoaded ? (
-            <UserPhotoUpload setFile={setFile} uploaded={setPhotoUpoaded} />
-          ) : (
-            <UserPhotoConfirm file={file} uploaded={setPhotoUpoaded} />
-          )}
-        </div>
-      )} */}
       {edit && !photoUpoaded && (
         <UserPhotoUpload setFile={setFile} uploaded={setPhotoUpoaded} />
       )}
       {edit && photoUpoaded && (
-        <UserPhotoConfirm file={file} uploaded={setPhotoUpoaded} />
+        <UserPhotoConfirm
+          file={file}
+          uploaded={setPhotoUpoaded}
+          setFile={setFile}
+          setPrewiew={setPrewiew}
+        />
       )}
-      {/* {!photoUpoaded ? (
-        <UserPhotoUpload setFile={setFile} uploaded={setPhotoUpoaded} />
-      ) : (
-        <UserPhotoConfirm file={file} uploaded={setPhotoUpoaded} />
-      )} */}
     </PhotoEl>
   );
 }
