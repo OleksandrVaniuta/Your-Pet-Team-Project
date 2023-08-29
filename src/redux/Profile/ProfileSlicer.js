@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { updateProfile } from './ProfileOperations';
+import { updateProfile, deletePet } from './ProfileOperations';
 
 const ProfileState = {
   user: {
@@ -31,6 +31,12 @@ export const profileSlice = createSlice({
       state.user.city = action.payload.user.city;
       state.user.avatarURL = action.payload.user.avatarURL;
       state.pets = action.payload.userPets;
+    },
+    [deletePet.pending](state) {
+      state.isUpdating = true;
+    },
+    [deletePet.fulfilled](state) {
+      state.isUpdating = false;
     },
   },
 });

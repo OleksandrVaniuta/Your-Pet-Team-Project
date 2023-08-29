@@ -27,3 +27,20 @@ export const updateProfile = createAsyncThunk(
     }
   }
 );
+
+export const deletePet = createAsyncThunk(
+  'notices/deletPet',
+  async (id, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    try {
+      setAuthHeader(persistedToken);
+      const response = await axios.delete(`/api/pets/${id}`);
+      console.log('deleted');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);

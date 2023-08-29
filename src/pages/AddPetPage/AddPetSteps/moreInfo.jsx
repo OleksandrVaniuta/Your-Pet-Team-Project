@@ -60,9 +60,9 @@ export const MoreInfo = ({
       console.log(values);
       console.log(petPhoto);
 
-      handleFinalState(values);
-
-      await handlePets();
+      // handleFinalState(values);
+      const { sex, comments, city, price } = values;
+      await handlePets(sex, comments, city, price);
       console.log(pets);
     } else {
       console.log('Форма содержит ошибки', validationErrors);

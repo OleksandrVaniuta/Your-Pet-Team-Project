@@ -38,36 +38,39 @@ export const AddPetPage = () => {
     setPets(prevState => ({ ...prevState, ...values }));
   };
 
-  const handlePets = async () => {
+  const handlePets = async (sex, comments, city, price) => {
+    // handleFinalState(values);
+
     const formData = new FormData();
 
-    formData.append('category', category);
     formData.append('type', pets.type);
     formData.append('name', pets.name);
 
     if (category === 'sell') {
+      formData.append('category', category);
       formData.append('avatarURL', pets.file);
       formData.append('title', pets.title);
-      formData.append('location', pets.city);
+      formData.append('location', city);
       formData.append('birthday', pets.date);
-      formData.append('sex', pets.sex);
-      formData.append('comment', pets.comments);
-      formData.append('price', pets.price);
+      formData.append('sex', sex);
+      formData.append('comment', comments);
+      formData.append('price', price);
     }
 
     if (category === 'lost/found' || category === 'lost/found') {
+      formData.append('category', category);
       formData.append('avatarURL', pets.file);
       formData.append('title', pets.title);
-      formData.append('location', pets.city);
+      formData.append('location', city);
       formData.append('birthday', pets.date);
-      formData.append('sex', pets.sex);
-      formData.append('comment', pets.comments);
+      formData.append('sex', sex);
+      formData.append('comment', comments);
     }
 
     if (category === 'your pet') {
       formData.append('avatarPet', pets.file);
       formData.append('dateOfBirth', pets.date);
-      formData.append('comments', pets.comments);
+      formData.append('comments', comments);
       await dispatch(addMyPet(formData));
       return;
     }
