@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const UserPetContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const UserPetsTitle = styled.h3`
@@ -14,5 +15,6 @@ export const UserPetsTitle = styled.h3`
   @media screen and (min-width: 768px) {
     font-size: 28px;
     margin-bottom: 24px;
+    margin-top: 40px;
   }
 `;
