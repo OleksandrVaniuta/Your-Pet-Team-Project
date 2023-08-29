@@ -1,8 +1,10 @@
 import Logout from 'components/Logout/Logout';
 import { Wrapper, UserBox } from './UserMenu.styled';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { useWindowSize } from 'hooks/useResize';
 
 const UserMenu = ({ userName, showName, setIsOpen }) => {
+  const [screenWidth] = useWindowSize();
   return (
     <UserBox>
       <Wrapper to="/user" onClick={() => setIsOpen(false)}>
@@ -18,7 +20,7 @@ const UserMenu = ({ userName, showName, setIsOpen }) => {
         />
         {showName && userName}
       </Wrapper>
-      <Logout />
+      {screenWidth > 1279 && <Logout />}
     </UserBox>
   );
 };
