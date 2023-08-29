@@ -51,28 +51,6 @@
   pointer-events: none;
 }
 
-/* .btnRight {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 35px;
-  height: 35px;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 50%;
-  border-color: #54ADFF;
-  background-color: inherit;
-  opacity: 0.5;
-
-  &:hover, 
-  &:focus {
-    opacity: 1;
-    border-color: #54ADFF;
-    cursor: pointer;
-
-  }
-} */
-
 .paginationNumber {
   display: flex;
   justify-content: center;
