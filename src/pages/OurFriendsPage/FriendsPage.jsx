@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllFriends } from "redux/friends/operation";
 import { allFriends} from "redux/friends/selectors";
 import FriendsList from "components/FriendsList.jsx/FriendsList";
-import { PageTitle } from "components/NoticesSearch/PageTitle.styled";
+import { TitlePage } from "./FriendsPage.styled";
 
 
 export const FriendsPage = () => {
@@ -17,7 +17,7 @@ export const FriendsPage = () => {
 
     return (
        <div>
-        <PageTitle>OurFriends</PageTitle>
+        <TitlePage>OurFriends</TitlePage>
         <FriendsList friend ={friends}/>
        </div>
     )
