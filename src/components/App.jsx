@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { PublicRoute } from 'PublicRoute';
 import { Layout } from './Layout/Layout';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from '../redux/Auth/AuthOperations';
 // import { selectIsRefreshing } from '../redux/Auth/AuthSelectors';
 import LoginPage from 'pages/LoginPage/LoginPage';
@@ -15,7 +15,7 @@ import { PrivateRoute } from 'PriviteRoute';
 import { UserPage } from 'pages/UserPage/UserPage';
 import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
 import { AddPetPage } from 'pages/AddPetPage/AddPetPage';
-
+import { selectIsLoggedIn } from 'redux/Auth/AuthSelectors';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,9 +23,13 @@ function App() {
   const dispatch = useDispatch();
   // const refteshing = useSelector(selectIsRefreshing);
 
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   useEffect(() => {
-    dispatch(refresh());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(refresh());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>
