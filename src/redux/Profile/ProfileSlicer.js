@@ -35,8 +35,10 @@ export const profileSlice = createSlice({
     [deletePet.pending](state) {
       state.isUpdating = true;
     },
-    [deletePet.fulfilled](state) {
+    [deletePet.fulfilled](state, action) {
       state.isUpdating = false;
+      const index = state.pets.findIndex(pet => pet.id === action.payload.id);
+      state.pets.splice(index, 1);
     },
   },
 });

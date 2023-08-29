@@ -37,8 +37,8 @@ export const deletePet = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.delete(`/api/pets/${id}`);
-      console.log('deleted');
-      return response.data;
+      console.log(response.data);
+      return { data: response.data, id };
     } catch (error) {
       return thunkAPI.rejectWithValue('');
     }
