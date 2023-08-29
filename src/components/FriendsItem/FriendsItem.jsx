@@ -80,7 +80,7 @@ const FriendsItem = ({ item }) => {
               
               {item.workDays !== null  && (
               <li className={css.info_list_item}> Time:
-            <a href="" className={css.info_main} onClick={openModal}>{renderWorkHours()}</a>
+            <a href="#" className={css.info_main} onClick={openModal}>{renderWorkHours()}</a>
             </li>
             )}
              {modalOpen && (
