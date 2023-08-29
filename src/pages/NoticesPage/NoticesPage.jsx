@@ -28,10 +28,6 @@ export const NoticesPage = () => {
   const handlePagination = page => setPage(page);
 
   useEffect(() => {
-    setPage(1);
-  }, [category, search]);
-
-  useEffect(() => {
     dispatch(
       fetchNoticesByCategory({
         category,
@@ -41,6 +37,10 @@ export const NoticesPage = () => {
       })
     );
   }, [dispatch, page, category, search]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [category, search]);
 
   return (
     <div>

@@ -21,37 +21,75 @@ const Pagination = ({handlePagination, category, search}) => {
 
     const handleCurrentPage = (e) => {
         currentElem.classList.remove(css.current);
-        setCurrentElem(e.target);
-        e.target.classList.add(css.current);
-        
         const currentNumber = Number(e.target.textContent);
         setCurrentPage(currentNumber);
-        // currentNumber === 1 ? leftBtnRef.current.style.display = "none" : leftBtnRef.current.style.display = "flex";
-        // currentNumber === totalPages ? rightBtnRef.current.style.display = "none" : rightBtnRef.current.style.display = "flex";  
+
+        if (currentNumber <= 5 && totalPages > 5) {
+            firstLiRef.current.textContent = '1';
+            secondLiRef.current.textContent = '2';
+            thirdLiRef.current.textContent = '3';
+            fourthLiRef.current.textContent = '4';
+            fifthLiRef.current.textContent = '5';
+
+            if (currentNumber === 1) {
+                setCurrentElem(firstLiRef.current);
+                firstLiRef.current.classList.add(css.current);
+            }
+            else if (currentNumber === 2) {
+                setCurrentElem(secondLiRef.current);
+                secondLiRef.current.classList.add(css.current);
+            }
+            else if (currentNumber === 3) {
+                setCurrentElem(thirdLiRef.current);
+                thirdLiRef.current.classList.add(css.current);
+            }
+            else if (currentNumber === 4) {
+                setCurrentElem(fourthLiRef.current);
+                fourthLiRef.current.classList.add(css.current);
+            }
+            else if (currentNumber === 5) {
+                setCurrentElem(fifthLiRef.current);
+                fifthLiRef.current.classList.add(css.current);
+            }
+        }
+        else {
+            setCurrentElem(e.target);
+            e.target.classList.add(css.current);
+        }   
     };
 
     const switchLeftBtn = (e) => {
         currentElem.classList.remove(css.current);
         const currentNumber = currentPage - 1;
         setCurrentPage(currentNumber);
-        // currentNumber === 1 ? leftBtnRef.current.style.display = "none" : leftBtnRef.current.style.display = "flex";
-        // rightBtnRef.current.style.display = "flex";
 
-        if (Number(firstLiRef.current.textContent) === currentNumber) {
-            setCurrentElem(firstLiRef.current);
-            firstLiRef.current.classList.add(css.current);
+        if (currentNumber >= 5) {
+            setCurrentElem(fifthLiRef.current);
+            fifthLiRef.current.classList.add(css.current);
+
+            firstLiRef.current.textContent = `${currentNumber - 4}`;
+            secondLiRef.current.textContent = `${currentNumber - 3}`;
+            thirdLiRef.current.textContent = `${currentNumber - 2}`;
+            fourthLiRef.current.textContent = `${currentNumber - 1}`;
+            fifthLiRef.current.textContent = `${currentNumber}`;
         }
-        else if (Number(secondLiRef.current.textContent) === currentNumber) {
-            setCurrentElem(secondLiRef.current);
-            secondLiRef.current.classList.add(css.current);
-        }
-        else if (Number(thirdLiRef.current.textContent) === currentNumber) {
-            setCurrentElem(thirdLiRef.current);
-            thirdLiRef.current.classList.add(css.current);
-        }
-        else if (Number(fourthLiRef.current.textContent) === currentNumber) {
-            setCurrentElem(fourthLiRef.current);
-            fourthLiRef.current.classList.add(css.current);
+        else {
+            if (Number(firstLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(firstLiRef.current);
+                firstLiRef.current.classList.add(css.current);
+            }
+            else if (Number(secondLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(secondLiRef.current);
+                secondLiRef.current.classList.add(css.current);
+            }
+            else if (Number(thirdLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(thirdLiRef.current);
+                thirdLiRef.current.classList.add(css.current);
+            }
+            else if (Number(fourthLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(fourthLiRef.current);
+                fourthLiRef.current.classList.add(css.current);
+            }
         }
     };
 
@@ -59,26 +97,32 @@ const Pagination = ({handlePagination, category, search}) => {
         currentElem.classList.remove(css.current);
         const currentNumber = currentPage + 1;
         setCurrentPage(currentNumber);
-        // currentNumber === totalPages ? rightBtnRef.current.style.display = "none" : rightBtnRef.current.style.display = "flex";
-        // leftBtnRef.current.style.display = "flex";
 
-        if (Number(secondLiRef.current.textContent) === currentNumber) {
-            setCurrentElem(secondLiRef.current);
-            secondLiRef.current.classList.add(css.current);
-        }
-        else if (Number(thirdLiRef.current.textContent) === currentNumber) {
-            setCurrentElem(thirdLiRef.current);
-            thirdLiRef.current.classList.add(css.current);
-        }
-        else if (Number(fourthLiRef.current.textContent) === currentNumber) {
-            setCurrentElem(fourthLiRef.current);
-            fourthLiRef.current.classList.add(css.current);
-        }
-        else if (Number(fifthLiRef.current.textContent) === currentNumber) {
+        if (currentNumber >= 5) {
             setCurrentElem(fifthLiRef.current);
             fifthLiRef.current.classList.add(css.current);
+
+            firstLiRef.current.textContent = `${currentNumber - 4}`;
+            secondLiRef.current.textContent = `${currentNumber - 3}`;
+            thirdLiRef.current.textContent = `${currentNumber - 2}`;
+            fourthLiRef.current.textContent = `${currentNumber - 1}`;
+            fifthLiRef.current.textContent = `${currentNumber}`;
         }
-    };
+        else {
+            if (Number(secondLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(secondLiRef.current);
+                secondLiRef.current.classList.add(css.current);
+            }
+            else if (Number(thirdLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(thirdLiRef.current);
+                thirdLiRef.current.classList.add(css.current);
+            }
+            else if (Number(fourthLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(fourthLiRef.current);
+                fourthLiRef.current.classList.add(css.current);
+            }
+        }
+    }; 
 
     useEffect(() => {
         if (totalPages === 2) {
@@ -110,8 +154,8 @@ const Pagination = ({handlePagination, category, search}) => {
             fourthLiRef.current.classList.remove(css.current);
             fifthLiRef.current.classList.remove(css.current);
 
-            firstElem.classList.add(css.current);
             setCurrentElem(firstElem);
+            firstElem.classList.add(css.current);
         }
     }, [firstElem, category, search]);
 
