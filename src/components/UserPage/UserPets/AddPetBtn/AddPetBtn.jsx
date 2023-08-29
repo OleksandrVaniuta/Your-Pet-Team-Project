@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ReactComponent as PlusIcon } from '../../../NoticesAddPetBtn/plus.svg';
 // import { useMediaQuery } from '@mui/material';
 import { NavtoAddPetPage } from './AddPetBtn.styled';
