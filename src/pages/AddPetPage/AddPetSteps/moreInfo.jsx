@@ -4,7 +4,7 @@ import { ReactComponent as FemaleIcon } from '../iconAdd/female.svg';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useState } from 'react';
 import * as yup from 'yup';
-import { Photo } from '@mui/icons-material';
+// import { Photo } from '@mui/icons-material';
 
 const schemaPageTwo = yup.object().shape({
   sex: yup.mixed().oneOf(['male', 'female']).required('Required field!'),
@@ -30,6 +30,7 @@ export const MoreInfo = ({
 }) => {
   const [imageURL, setImageURL] = useState('');
   const [petPhoto, setFile] = useState(null);
+  console.log(category);
 
   const hebdleAddPhoto = e => {
     const photo = e.currentTarget.files[0];
@@ -47,7 +48,7 @@ export const MoreInfo = ({
       return;
     }
     setFile(photo);
-    const file = { file: Photo };
+    const file = { file: photo };
     handleFinalState(file);
     setImageURL();
   };
@@ -58,9 +59,11 @@ export const MoreInfo = ({
     if (Object.keys(validationErrors).length === 0) {
       console.log(values);
       console.log(petPhoto);
+
       handleFinalState(values);
+
+      await handlePets();
       console.log(pets);
-      handlePets();
     } else {
       console.log('Форма содержит ошибки', validationErrors);
     }

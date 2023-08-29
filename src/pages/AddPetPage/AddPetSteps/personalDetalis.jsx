@@ -43,16 +43,8 @@ const ValidateSchemaAdd = Yup.object().shape({
       return true;
     })
     .required('Required'),
-  title: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .test('is-capitalized', 'Name must start with a capital letter', value => {
-      if (value) {
-        return /^[A-Z]/.test(value);
-      }
-      return true;
-    })
-    .required('Required'),
+  // title: Yup.string().max(50, 'Too Long!'),
+  // .required('Required'),
 });
 
 export const PersonalDetals = ({
@@ -62,7 +54,7 @@ export const PersonalDetals = ({
   setStep,
   handleNext,
 }) => {
-  const handleSubmit = async (values, action) => {
+  const handleSubmit = async values => {
     handleNext(values);
   };
 

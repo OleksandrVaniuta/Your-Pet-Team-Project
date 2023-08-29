@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ChooseOption } from './/AddPetSteps/chooseOption';
 import { PersonalDetals } from './AddPetSteps/personalDetalis';
 import { MoreInfo } from './AddPetSteps/moreInfo';
+import { useDispatch } from 'react-redux';
+import { addPet } from 'redux/AddPets/AddpetsOperations';
 
 export const AddPetPage = () => {
   const [step, setStep] = useState(0);
@@ -17,7 +19,7 @@ export const AddPetPage = () => {
     city: '',
     comments: '',
   });
-
+  const dispatch = useDispatch();
   //Click для повернення на попередній крок та звідки прийшов
 
   //click  для переходу вперед для 1 та 2 кроку
@@ -80,16 +82,23 @@ export const AddPetPage = () => {
     setPets(prevState => ({ ...prevState, ...values }));
   };
 
-  const handlePets = () => {
+  const handlePets = async () => {
     const formData = new FormData();
 
-    formData.append('avatar', pets.file);
+    formData.append('avatarURL', pets.file);
+    formData.append('category ', category);
+    formData.append('title', pets.title);
     formData.append('name', pets.name);
-    formData.append('city', pets.city);
-    formData.append('date', pets.date);
+    formData.append('type', pets.type);
+    formData.append('location', pets.city);
+    formData.append('birthday', pets.date);
+    formData.append('sex', pets.sex);
+    formData.append('comment', pets.comments);
+    formData.append('price', pets.price);
     for (const pair of formData.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
     }
+    await dispatch(addPet(formData));
   };
 
   return (
