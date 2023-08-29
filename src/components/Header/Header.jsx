@@ -6,13 +6,13 @@ import AuthNav from '../AuthNav/AuthNav';
 import BurgerButton from '../BurgerBtn/BurgerBtn';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { selectAuth } from 'redux/Auth/AuthSelectors';
-// import { selectUser, selectAuth } from 'redux/auth/selectors';
+import { selectAuth, selectUser } from 'redux/Auth/AuthSelectors';
 import { useWindowSize } from 'hooks/useResize';
 import { HeaderWrapper, Wrapper, NavWrapper, Menu } from './Header.styled';
 import { useEffect } from 'react';
 
 export const Header = () => {
+  const { user } = useSelector(selectUser);
   const [isOpen, setIsOpen] = useState(false);
   const [screenWidth] = useWindowSize();
   const { isLoggedIn } = useSelector(selectAuth);
