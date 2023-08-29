@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import { login } from 'redux/Auth/AuthOperations';
+import { login, refresh } from 'redux/Auth/AuthOperations';
 import { selectError } from 'redux/Auth/AuthSelectors';
 import { toast } from 'react-toastify';
 
@@ -75,6 +75,7 @@ const LoginForm = () => {
         if (JSON.parse(firstvisit)) {
           navigate('/user');
         } else {
+          dispatch(refresh());
           navigate('/notices/sell');
         }
       } else {

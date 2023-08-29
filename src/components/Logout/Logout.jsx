@@ -6,10 +6,8 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ModalLogout from 'components/ModalLogout/ModalLogout';
 import ApproveAction from '../ApproveAction/ApproveAction';
 import { LogoutButton } from './Logout.styled';
-// import { useWindowSize } from 'hooks/useResize';
 
-const Logout = () => {
-  // const [screenWidth] = useWindowSize();
+const Logout = ({ setIsOpen }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,41 +18,17 @@ const Logout = () => {
 
   const handlerClick = async () => {
     await dispatch(logout());
+    setIsOpen(false);
+    toggleModal();
     navigate('/');
   };
 
-  // const mobileStyle = {
-  //   position: 'absolute',
-  //   bottom: '30px',
-  //   left: '10%',
-  // };
-
-  // const tabletStyle = {
-  //   position: 'absolute',
-  //   top: '25px',
-  //   right: '27%',
-  // };
-
   return (
     <>
-      {/* {screenWidth <= 768 && (
-        <LogoutButton onClick={toggleModal} type="button" style={mobileStyle}>
-          <LogoutOutlinedIcon />
-          Log out
-        </LogoutButton>
-      )}
-      {screenWidth > 768 && screenWidth < 1279 && (
-        <LogoutButton onClick={toggleModal} type="button" style={tabletStyle}>
-          <LogoutOutlinedIcon />
-          Log out
-        </LogoutButton>
-      )} */}
-      {/* {screenWidth >= 1279 && ( */}
       <LogoutButton onClick={toggleModal} type="button">
         <LogoutOutlinedIcon />
         Log out
       </LogoutButton>
-      {/* )} */}
       {isModalOpen && (
         <ModalLogout toggleModal={toggleModal}>
           <ApproveAction
