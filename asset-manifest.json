@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Your-Pet-Team-Project/static/css/main.8508066a.css",
-    "main.js": "/Your-Pet-Team-Project/static/js/main.a510ed32.js",
+    "main.js": "/Your-Pet-Team-Project/static/js/main.a0fe48d2.js",
     "static/media/mainpagedesktop2.png": "/Your-Pet-Team-Project/static/media/mainpagedesktop2.f76268a381c635a49e94.png",
     "static/media/mainpagetablet2.png": "/Your-Pet-Team-Project/static/media/mainpagetablet2.49e0c5ca251ead8f7b47.png",
     "static/media/mainpagedesktop.png": "/Your-Pet-Team-Project/static/media/mainpagedesktop.effbefed5b2e4574fc60.png",
@@ -20,12 +20,15 @@
     "static/media/pet9.png": "/Your-Pet-Team-Project/static/media/pet9.1ceff583bc6e14734095.png",
     "static/media/pet2.png": "/Your-Pet-Team-Project/static/media/pet2.a2b27c79733d8ce683f6.png",
     "static/media/bg_tablet_2x.png": "/Your-Pet-Team-Project/static/media/bg_tablet_2x.67b668a7489f35b0a3da.png",
+    "static/media/notfound_desktop@2x.jpg": "/Your-Pet-Team-Project/static/media/notfound_desktop@2x.da529dbfaad41877c373.jpg",
     "static/media/bg_desctop_2x.png": "/Your-Pet-Team-Project/static/media/bg_desctop_2x.a96eddddeed269beeb44.png",
     "static/media/bg_tablet_1x.png": "/Your-Pet-Team-Project/static/media/bg_tablet_1x.b7eb05ffad718448eedb.png",
     "static/media/logo-mobile.svg": "/Your-Pet-Team-Project/static/media/logo-mobile.baf94e4ce1e8af9e0a837c4eceef3908.svg",
     "static/media/bg_mobile_2x.png": "/Your-Pet-Team-Project/static/media/bg_mobile_2x.3718878183569fc70412.png",
     "static/media/logo.svg": "/Your-Pet-Team-Project/static/media/logo.6e2f51eeb062dc6472f5e4aa1de019f4.svg",
     "static/media/bg_desctop_1x.png": "/Your-Pet-Team-Project/static/media/bg_desctop_1x.d651fce43ed415dd2e75.png",
+    "static/media/notfound_tablet.jpg": "/Your-Pet-Team-Project/static/media/notfound_tablet.57859d31444b8bbe9311.jpg",
+    "static/media/notfound_mobile@2x.jpg": "/Your-Pet-Team-Project/static/media/notfound_mobile@2x.ab83ba94df9db9749d38.jpg",
     "static/media/bg_mobile_1x.png": "/Your-Pet-Team-Project/static/media/bg_mobile_1x.0cd02ce1d43a46754e63.png",
     "static/media/User_photo_plug.jpg": "/Your-Pet-Team-Project/static/media/User_photo_plug.1f5f01ed6c627d4d4e3e.jpg",
     "static/media/pawprint.svg": "/Your-Pet-Team-Project/static/media/pawprint.40fc71ab5208189ed298a744b6f6d6d6.svg",
@@ -39,10 +42,10 @@
     "static/media/searchCross.svg": "/Your-Pet-Team-Project/static/media/searchCross.718c74c86bc4fe9cb5f9b45e722b4b55.svg",
     "static/media/plus.svg": "/Your-Pet-Team-Project/static/media/plus.18dde0ab6d2ab0cd36f9fdac9bc7c4b1.svg",
     "main.8508066a.css.map": "/Your-Pet-Team-Project/static/css/main.8508066a.css.map",
-    "main.a510ed32.js.map": "/Your-Pet-Team-Project/static/js/main.a510ed32.js.map"
+    "main.a0fe48d2.js.map": "/Your-Pet-Team-Project/static/js/main.a0fe48d2.js.map"
   },
   "entrypoints": [
     "static/css/main.8508066a.css",
-    "static/js/main.a510ed32.js"
+    "static/js/main.a0fe48d2.js"
   ]
 }
