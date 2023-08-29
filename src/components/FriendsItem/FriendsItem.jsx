@@ -1,11 +1,10 @@
 import React from "react";
-import Modal from 'components/Modal/Modal';
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState,useCallback, useEffect, useRef } from "react";
 import css from './Friends.module.css';
 
 const FriendsItem = ({ item }) => {
    const [modalOpen, setModalOpen] = useState(false);
-   const [modalSize, setModalSize] = useState({width: '', height: ''});
+  //  const [modalSize, setModalSize] = useState({width: '', height: ''});
    const contentRef = useRef(null);
 
    const openModal = (evn) => {
@@ -13,20 +12,39 @@ const FriendsItem = ({ item }) => {
     setModalOpen(true);
    }
 
-   const closeModal = () => {
-    if(modalOpen){
-      setModalOpen(false);
+   const closeModal = useCallback(() => {
+    setModalOpen(false);
+   }, []);
+
+   useEffect(() => {
+    const onKeyDown = event => {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
     };
-   };
 
-   useLayoutEffect(() => {
-    if (modalOpen && contentRef.current) {
-        const contentWidth = contentRef.current.offsetWidth;
-        const contentHeight = contentRef.current.offsetHeight;
+    document.addEventListener('keydown', onKeyDown);
 
-        setModalSize({ width: `${contentWidth}px`, height: `${contentHeight}px` });
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [closeModal]);
+
+  const onModalOpen = event => {
+    if (event.target === event.currentTarget) {
+      closeModal();
     }
-}, [modalOpen]);
+  };
+
+
+//    useLayoutEffect(() => {
+//     if (modalOpen && contentRef.current) {
+//         const contentWidth = contentRef.current.offsetWidth;
+//         const contentHeight = contentRef.current.offsetHeight;
+
+//         setModalSize({ width: `${contentWidth}px`, height: `${contentHeight}px` });
+//     }
+// }, [modalOpen]);
 
 
    const renderWorkHoursModal = () => {
@@ -80,17 +98,17 @@ const FriendsItem = ({ item }) => {
               
               {item.workDays !== null  && (
               <li className={css.info_list_item}> Time:
-            <a href="#" className={css.info_main} onClick={openModal}>{renderWorkHours()}</a>
+            <a href="./#" className={css.info_main} onClick={openModal}>{renderWorkHours()}</a>
             </li>
             )}
              {modalOpen && (
-              <Modal isActive={modalOpen} closeModal={closeModal}>
-                <div className={css.modal} style={{width: modalSize.width, height: modalSize.height}}>
+              <div className={css.backdrop} onClick={onModalOpen}>
+                 <div className={css.modal}>
                     <ul className={css.modal_content} ref={contentRef}>{renderWorkHoursModal()}
                 </ul>
                 </div>
+              </div>
                
-              </Modal>
              )}
 
               {item.addressUrl && (
