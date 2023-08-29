@@ -38,7 +38,9 @@ export const Header = () => {
               <BurgerButton isOpen={isOpen} setIsOpen={setIsOpen} />
             )}
             <Menu isOpen={isOpen} screenWidth={screenWidth}>
-              {screenWidth <= 1279 && <Logout />}
+              {isLoggedIn && screenWidth <= 1279 && (
+                <Logout setIsOpen={setIsOpen} />
+              )}
               {screenWidth <= 767 && isLoggedIn && (
                 <UserMenu userName={user.name} showName setIsOpen={setIsOpen} />
               )}
