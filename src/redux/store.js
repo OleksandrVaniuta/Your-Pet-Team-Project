@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './Auth/AuthSlicer';
 import { noticesSlice } from './notices/noticesSlice';
+import { newsSlice } from './News/newsSlice';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     notices: noticesSlice.reducer,
+    news: newsSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
