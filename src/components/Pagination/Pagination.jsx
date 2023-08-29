@@ -11,18 +11,73 @@ const Pagination = ({handlePagination, category, search}) => {
     const thirdLiRef = useRef();
     const fourthLiRef = useRef();
     const fifthLiRef = useRef();
+    const leftBtnRef = useRef();
+    const rightBtnRef = useRef();
 
     const firstElem = firstLiRef.current;
     const[currentElem, setCurrentElem] = useState(firstElem);
+    const[currentPage, setCurrentPage] = useState(1);
     const totalPages = useSelector(selectTotalPages);
 
     const handleCurrentPage = (e) => {
         currentElem.classList.remove(css.current);
         setCurrentElem(e.target);
         e.target.classList.add(css.current);
+        
+        const currentNumber = Number(e.target.textContent);
+        setCurrentPage(currentNumber);
+        // currentNumber === 1 ? leftBtnRef.current.style.display = "none" : leftBtnRef.current.style.display = "flex";
+        // currentNumber === totalPages ? rightBtnRef.current.style.display = "none" : rightBtnRef.current.style.display = "flex";  
+    };
 
-        const currentPage = Number(e.target.textContent);
-        handlePagination(currentPage);
+    const switchLeftBtn = (e) => {
+        currentElem.classList.remove(css.current);
+        const currentNumber = currentPage - 1;
+        setCurrentPage(currentNumber);
+        // currentNumber === 1 ? leftBtnRef.current.style.display = "none" : leftBtnRef.current.style.display = "flex";
+        // rightBtnRef.current.style.display = "flex";
+
+        if (Number(firstLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(firstLiRef.current);
+            firstLiRef.current.classList.add(css.current);
+        }
+        else if (Number(secondLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(secondLiRef.current);
+            secondLiRef.current.classList.add(css.current);
+        }
+        else if (Number(thirdLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(thirdLiRef.current);
+            thirdLiRef.current.classList.add(css.current);
+        }
+        else if (Number(fourthLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(fourthLiRef.current);
+            fourthLiRef.current.classList.add(css.current);
+        }
+    };
+
+    const switchRightBtn = (e) => {
+        currentElem.classList.remove(css.current);
+        const currentNumber = currentPage + 1;
+        setCurrentPage(currentNumber);
+        // currentNumber === totalPages ? rightBtnRef.current.style.display = "none" : rightBtnRef.current.style.display = "flex";
+        // leftBtnRef.current.style.display = "flex";
+
+        if (Number(secondLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(secondLiRef.current);
+            secondLiRef.current.classList.add(css.current);
+        }
+        else if (Number(thirdLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(thirdLiRef.current);
+            thirdLiRef.current.classList.add(css.current);
+        }
+        else if (Number(fourthLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(fourthLiRef.current);
+            fourthLiRef.current.classList.add(css.current);
+        }
+        else if (Number(fifthLiRef.current.textContent) === currentNumber) {
+            setCurrentElem(fifthLiRef.current);
+            fifthLiRef.current.classList.add(css.current);
+        }
     };
 
     useEffect(() => {
@@ -59,12 +114,18 @@ const Pagination = ({handlePagination, category, search}) => {
             setCurrentElem(firstElem);
         }
     }, [firstElem, category, search]);
+
+    useEffect(() => {
+        handlePagination(currentPage);
+    }, [currentPage, handlePagination]);
     
     return (
         <>
             {(totalPages > 1) && (
                 <div className={css.pagination}>
-                    <div className={css.btn}>
+                    <div ref={leftBtnRef} 
+                    className={`${css.btn} ${currentPage === 1 && css.disableEffects}`}
+                    onClick={switchLeftBtn}>
                         <VectorLeft/> 
                     </div>
                     <ul className={css.paginationList}>
@@ -84,7 +145,9 @@ const Pagination = ({handlePagination, category, search}) => {
                         className={css.paginationNumber}
                         onClick={handleCurrentPage} >5</li>
                     </ul>
-                    <div className={css.btn}>
+                    <div ref={rightBtnRef} 
+                    className={`${css.btn} ${currentPage === totalPages && css.disableEffects}`}
+                    onClick={switchRightBtn}>
                         <VectorRight/> 
                     </div>          
                 </div>
