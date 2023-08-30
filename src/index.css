@@ -15,6 +15,7 @@ body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  background-color: #fef9f9;
 }
 
 * {
@@ -84,6 +85,7 @@ button {
 }
 
 div#root {
+  /* margin: 0 auto;
   text-align: center;
   align-items: center;
   background-image: url('./images/background/bg_mobile_1x.png');
@@ -98,6 +100,7 @@ div#root {
   }
 
   @media screen and (min-width: 768px) {
+   
     background-image: url('images/background/bg_tablet_1x.png');
 
     @media (min-device-pixel-ratio: 2),
@@ -115,7 +118,7 @@ div#root {
       (min-resolution: 2dppx) {
       background-image: url('images/background/bg_desctop_2x.png');
     }
-  }
+  } */
 }
 
 .no-scroll {
