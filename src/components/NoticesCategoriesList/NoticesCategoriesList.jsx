@@ -33,7 +33,7 @@ export default function NoticesCategoriesList({ notices }) {
           {notices.map(notice => (
             <NoticeCategoryItem
               notice={notice}
-              key = {notice._id}
+              key={notice._id}
             />
           ))}
         </ul>

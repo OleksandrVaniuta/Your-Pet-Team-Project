@@ -1,11 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchNoticesByCategory, addToFavorite } from './operations';
+import { fetchNoticesByCategory, addToFavorite  } from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
   isFavorite: false,
-  // itemId : null,
 };
 
 export const noticesSlice = createSlice({
@@ -21,21 +20,15 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
-      // .addCase(addToFavorite.fulfilled, state => {
-      //   state.isFavorite = true;
-      // })
+      .addCase(addToFavorite.fulfilled, state => {
+        state.isFavorite = true;
+      })      
       .addMatcher(isAnyOf(fetchNoticesByCategory.pending), state => {
         state.isLoading = true;
       })
       .addMatcher(isAnyOf(fetchNoticesByCategory.rejected), state => {
-        return { ...state, items: [], totalPages: null, isLoading: false };
+        return { ...state, items: [], isLoading: false };
       })
-      // .addMatcher(isAnyOf(addToFavorite.pending, state => { state.isLoading = true;
-      // }))
-      // .addMatcher(isAnyOf(addToFavorite.rejected, state => { 
-      //   state.isLoading = false;
-      //   state.isFavorite = false;
-      // }))
-  },
-  reducers: {},
+       
+    reducers: {}
 });

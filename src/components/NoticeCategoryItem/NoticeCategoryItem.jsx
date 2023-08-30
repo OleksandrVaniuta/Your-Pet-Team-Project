@@ -35,9 +35,13 @@ function NoticeCategoryItem({notice}) {
   const isFavorite = useSelector(selectIsFavorite);
 
   const openInfoModal = () => {
-    dispatch(fetchDataAndOpenModal(notice._id))
-    console.log(notice);
-    setIsActiveInfoModal(true);
+    try {
+      dispatch(fetchDataAndOpenModal(notice._id));
+      setIsActiveInfoModal(true);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+
+    }
   };
 
   const openNologModal = () => {
@@ -52,27 +56,7 @@ function NoticeCategoryItem({notice}) {
       setIsActiveNologModal(false);
     }
   };
-// заптин на додавання --->>>>>>>
-  // const addToFavorit = async (id) => {
-  // try {
-  //  const response = await axios.patch(
-  //     `https://your-pet-backend-cmwy.onrender.com/api/notices/${id}/favorite`,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     }
-  //   );
-  //   setIsFavorited(prevState => !prevState);
-  //   return response.data;
-  // } catch (error) {
-  //   console.error(error);
-  // }
-  // };
-// ---------------------------->
-  
-
-  const onClickIconFavorit = () => {
+  const onClickIconFavorite = () => {
     if (isLoggedIn) {
       dispatch(addToFavorite(notice._id));
     }
@@ -121,14 +105,16 @@ function NoticeCategoryItem({notice}) {
   const splitWord = word => {
        return word.split('-').join(' ');   
   };
+
+
   return (
-    <li key={notice.id} className={css.category_item}>
+    <li key={notice._id} className={css.category_item}>
       <div className={css.category_item__content}>
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
             <p className={css.category_text}>{splitWord(notice.category)}</p>
-            <div className={css.icon_box} onClick={onClickIconFavorit}>
-              {isFavorite ? (
+            <div className={css.icon_box} onClick={() =>  onClickIconFavorite(notice._id)}>
+              {!isFavorite ? (
                 <FavoriteRoundedIcon className={css.icon_favorite} />
               ) : (
                 <>
@@ -241,7 +227,7 @@ function NoticeCategoryItem({notice}) {
                {notice.comment ? notice.comment : <>no comment</>}
              </p>
              <div className={css.buttons_container}>
-               <button className={css.button_add} onClick={onClickIconFavorit}>
+               <button className={css.button_add} onClick={onClickIconFavorite}>
                 {isFavorite ? (<>Add to
                  <FavoriteBorderIcon className={css.icon} /></>
                 ) : (<>Remove from <FavoriteBorderIcon className={css.icon_remove} />
