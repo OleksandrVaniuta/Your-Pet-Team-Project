@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NewsWrapper } from './NewsPage.styled';
 
 import NoticesSearch from 'components/NoticesSearch';
 import { PageTitle } from 'components/NoticesSearch/PageTitle.styled';
@@ -37,13 +38,13 @@ const NewsPage = () => {
   }, [dispatch, search, page]);
 
   return (
-    <div>
+    <NewsWrapper>
       <PageTitle>News</PageTitle>
       <NoticesSearch handleSearch={handleNewsSearch} />
       <NewsList news={news} />
       {/* <Pagination /> */}
-    </div>
+    </NewsWrapper>
   );
 };
 
-export  default NewsPage
+export default NewsPage;
