@@ -49,7 +49,7 @@ function App() {
         />
         <Route
           path="/friends"
-          element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
+          element={<FriendsPage />}
         />
         <Route
           path="/add-pet"

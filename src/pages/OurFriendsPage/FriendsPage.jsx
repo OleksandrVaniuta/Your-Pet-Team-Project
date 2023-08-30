@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllFriends } from "redux/friends/operation";
 import { allFriends} from "redux/friends/selectors";
 import FriendsList from "components/FriendsList.jsx/FriendsList";
-import { TitlePage } from "./FriendsPage.styled";
+import { TitlePage, Container } from "./FriendsPage.styled";
 
 
 export const FriendsPage = () => {
@@ -12,14 +12,13 @@ export const FriendsPage = () => {
     
     useEffect(() => {
        dispatch(getAllFriends())
-       console.log(dispatch(getAllFriends()))
     }, [dispatch]);
 
     return (
-       <div>
-        <TitlePage>OurFriends</TitlePage>
+       <Container>
+        <TitlePage>Our friends</TitlePage>
         <FriendsList friend ={friends}/>
-       </div>
+       </Container>
     )
 };
 

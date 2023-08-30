@@ -126,7 +126,7 @@ const FriendsItem = ({ item }) => {
 
             {item.phone && (
             <li className={css.info_list_item}>Phone:
-              <a href={`tel:${item.phone}`} className={css.info_main} target="blank">{item.phone}</a>
+              <a href={`tel:${item.phone}`} className={css.info_main}>{item.phone}</a>
             </li>
             )}
             </ul> 

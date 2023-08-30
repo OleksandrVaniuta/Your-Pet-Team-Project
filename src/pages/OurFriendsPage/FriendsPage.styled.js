@@ -15,3 +15,15 @@ text-align: center;
   margin-top: 80px;
 }
 `;
+
+export const Container = styled.div`
+margin-bottom: 75px;
+
+@media screen and (min-width: 748px) {
+  margin-bottom: 170px;
+}
+
+@media screen and (min-width: 1280px) {
+  margin-bottom: 69px;
+}
+`
