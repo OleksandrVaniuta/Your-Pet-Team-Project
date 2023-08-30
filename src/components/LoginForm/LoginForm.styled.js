@@ -124,24 +124,25 @@ export const LogInBtn = styled.button`
   margin-top: 13px;
   margin-bottom: 20px;
   width: 100%;
-
   padding: 10px 0 10px 0;
-
-  background: ${({ theme }) => theme.colors.blue};
-  border: none;
   border-radius: 40px;
-
   font-weight: 600;
   font-size: 20px;
   line-height: 1.35;
-
   letter-spacing: 0.04em;
-
-  color: #ffffff;
-
+  transition: all 350ms ease-in;
+  color: ${({ theme }) => theme.colors.blue};
+  background: #fff;
+  border: 1px solid #54adff;
   @media screen and (max-width: 767px) {
     margin-top: 41px;
     margin-bottom: 24px;
+  }
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    background: ${({ theme }) => theme.colors.blue};
+    border: 1px solid transparent;
   }
 `;
 
