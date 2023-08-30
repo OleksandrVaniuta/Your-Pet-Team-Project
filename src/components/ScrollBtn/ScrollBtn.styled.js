@@ -14,6 +14,7 @@ const ScrollToTop = styled.button`
   border-radius: 50%;
   cursor: pointer;
   stroke: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.blue};
 
   background-color: transparent;
 
@@ -33,6 +34,7 @@ const ScrollToTop = styled.button`
     background-color: ${({ theme }) => theme.colors.blue};
     svg {
       stroke: ${({ theme }) => theme.colors.white};
+      color: ${({ theme }) => theme.colors.white};
     }
   }
 `;

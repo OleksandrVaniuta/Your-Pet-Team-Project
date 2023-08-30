@@ -6,7 +6,7 @@ const Wrapper = styled.section`
   align-items: flex-start;
 
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 `;
 
 export { Wrapper };
