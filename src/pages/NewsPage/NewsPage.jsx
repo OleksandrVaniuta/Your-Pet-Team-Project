@@ -10,7 +10,7 @@ import { NewsList } from '../../components/NewsPage/NewsList/NewsList';
 import { fetchNews } from 'redux/News/operations';
 import { selectNews } from '../../redux/News/selectors';
 
-export const NewsPage = () => {
+const NewsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
   const page = searchParams.get('page');
@@ -45,3 +45,5 @@ export const NewsPage = () => {
     </div>
   );
 };
+
+export  default NewsPage

@@ -6,7 +6,7 @@ import FriendsList from "components/FriendsList.jsx/FriendsList";
 import { TitlePage } from "./FriendsPage.styled";
 
 
-export const FriendsPage = () => {
+ const FriendsPage = () => {
     const dispatch = useDispatch();
     const friends = useSelector(allFriends);
     
@@ -23,3 +23,4 @@ export const FriendsPage = () => {
     )
 };
 
+export default FriendsPage;

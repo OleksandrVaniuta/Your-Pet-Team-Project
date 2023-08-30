@@ -7,7 +7,7 @@ import UserPets from 'components/UserPage/UserPets/UserPets';
 import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
 import ModalLogout from 'components/ModalLogout/ModalLogout';
 
-export const UserPage = () => {
+const UserPage = () => {
   const dispatch = useDispatch();
 
   const [congradModal, setCongradModal] = useState(false);
@@ -53,3 +53,5 @@ export const UserPage = () => {
     </>
   );
 };
+
+export default UserPage;

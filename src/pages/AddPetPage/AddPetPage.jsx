@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export const AddPetPage = () => {
+const AddPetPage = () => {
   const [step, setStep] = useState(0);
   const [category, setCategory] = useState('your pet');
   const [pets, setPets] = useState({
@@ -114,3 +114,5 @@ export const AddPetPage = () => {
     </div>
   );
 };
+
+export default AddPetPage;

@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 import { fetchNoticesByCategory } from 'redux/notices/operations';
 import { selectNotices } from 'redux/notices/selectors';
 
-export const NoticesPage = () => {
+const NoticesPage = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
@@ -65,3 +65,5 @@ export const NoticesPage = () => {
     </div>
   );
 };
+
+export default NoticesPage;
