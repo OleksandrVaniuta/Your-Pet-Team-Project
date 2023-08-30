@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { ScrollToTop } from './ScrollBtn.styled';
 
-import AddIcon from '@mui/icons-material/Add';
+import NorthIcon from '@mui/icons-material/North';
 
 const BtnScrollToTop = () => {
   const buttonScrollToTop = useRef();
@@ -29,7 +29,7 @@ const BtnScrollToTop = () => {
       onClick={onClickBtn}
       type="button"
     >
-      <AddIcon />
+      <NorthIcon color="#54ADFF" />
     </ScrollToTop>
   );
 };

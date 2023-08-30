@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchNoticesByCategory } from 'redux/notices/operations';
 import { selectNotices } from 'redux/notices/selectors';
+import { NoticesWrapper } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   const [page, setPage] = useState(1);
@@ -44,7 +45,7 @@ const NoticesPage = () => {
   }, [dispatch, queryParams]);
 
   return (
-    <div>
+    <NoticesWrapper>
       <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch handleSearch={handleNoticeSearch} />
       <Box
@@ -62,7 +63,7 @@ const NoticesPage = () => {
         handlePagination={handlePagination}
         key={`${category}-${search}`}
       />
-    </div>
+    </NoticesWrapper>
   );
 };
 
