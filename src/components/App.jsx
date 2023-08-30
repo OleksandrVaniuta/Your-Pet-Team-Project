@@ -35,12 +35,14 @@ function App() {
           <Route
             path="/register"
             element={
-              <PublicRoute redirectTo="/" component={<RegisterPage />} />
+              <PublicRoute redirectTo="/user" component={<RegisterPage />} />
             }
           />
           <Route
             path="/login"
-            element={<PublicRoute redirectTo="/" component={<LoginPage />} />}
+            element={
+              <PublicRoute redirectTo="/user" component={<LoginPage />} />
+            }
           />
           <Route
             path="notices/"
