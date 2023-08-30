@@ -3,6 +3,7 @@ import { authReducer } from './Auth/AuthSlicer';
 import { noticesSlice } from './notices/noticesSlice';
 import { newsSlice } from './News/newsSlice';
 import { profileReducer } from './Profile/ProfileSlicer';
+import { petsReducer } from './AddPets/AddPetsSlice';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -31,6 +32,7 @@ export const store = configureStore({
     news: newsSlice.reducer,
     profile: profileReducer,
     friends: friendsSlice.reducer,
+    add: petsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

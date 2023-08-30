@@ -7,7 +7,7 @@ import ModalLogout from 'components/ModalLogout/ModalLogout';
 import ApproveAction from '../ApproveAction/ApproveAction';
 import { LogoutButton } from './Logout.styled';
 
-const Logout = () => {
+const Logout = ({ setIsOpen }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,6 +18,8 @@ const Logout = () => {
 
   const handlerClick = async () => {
     await dispatch(logout());
+    setIsOpen(false);
+    toggleModal();
     navigate('/');
   };
 

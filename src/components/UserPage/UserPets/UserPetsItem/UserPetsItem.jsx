@@ -18,7 +18,7 @@ export default function PetsItem({
   return (
     <PetItemCintainer id={`${id}`}>
       <PhotoContainer>
-        <img src={`${avatarPet}`} alt="UserPhoto" />
+        <img src={`${avatarPet}`} alt="Pet_Photo" />
       </PhotoContainer>
       <PetInfo>
         <PetDescr>

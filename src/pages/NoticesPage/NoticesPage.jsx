@@ -5,7 +5,7 @@ import NotiesCategoriesNav from 'components/NoticesCategoriesNav/NotiesCategorie
 import NoticesSearch from 'components/NoticesSearch';
 import Pagination from 'components/Pagination/Pagination';
 import { PageTitle } from 'components/NoticesSearch/PageTitle.styled';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchNoticesByCategory } from 'redux/notices/operations';
@@ -21,26 +21,26 @@ export const NoticesPage = () => {
   const params = useParams();
   const category = params.category;
 
-  const handleNoticeSearch = search => {
-    setSearch(search);
-  };
-
-  const handlePagination = page => setPage(page);
-
   useEffect(() => {
     setPage(1);
   }, [category, search]);
+  
+  const queryParams = useMemo(() => ({
+    category: category,
+    search: search,
+    page: page,
+    limit: 2,
+  }), [category, search, page]);
+
+  const handleNoticeSearch = newSearch => setSearch(newSearch);
+
+  const handlePagination = currentPage => setPage(currentPage);
 
   useEffect(() => {
     dispatch(
-      fetchNoticesByCategory({
-        category,
-        search,
-        page,
-        limit: 8,
-      })
+      fetchNoticesByCategory(queryParams)
     );
-  }, [dispatch, page, category, search]);
+  }, [dispatch, queryParams]);
 
   return (
     <div>
@@ -59,8 +59,7 @@ export const NoticesPage = () => {
       <NoticesCategoriesList notice={notices}></NoticesCategoriesList>
       <Pagination 
       handlePagination={handlePagination}
-      category={category}
-      search={search}
+      key={`${category}-${search}`}
       />
     </div>
   );

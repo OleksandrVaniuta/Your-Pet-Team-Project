@@ -22,6 +22,7 @@ const AuthInitialState = {
   isLoggedIn: false,
   isRefreshing: true,
   isVisitFirst: true,
+  error: null,
 };
 
 export const authSlice = createSlice({
@@ -35,11 +36,19 @@ export const authSlice = createSlice({
       // state.isLoggedIn = true;
       // state.isRefreshing = false;
     },
+    [register.rejected](state, action) {
+      state.isLoggedIn = false;
+    },
     [login.fulfilled](state, action) {
       state.user.email = action.payload.email;
+      state.user.user = action.payload.user;
       state.token = action.payload.accessToken;
       state.isLoggedIn = true;
       state.isRefreshing = false;
+    },
+    [login.rejected](state, action) {
+      state.isLoggedIn = false;
+      state.error = action.payload.message;
     },
     [logout.fulfilled](state) {
       state.user = { name: null, email: null };

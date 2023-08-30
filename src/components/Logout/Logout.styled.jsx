@@ -28,4 +28,18 @@ export const LogoutButton = styled.button`
     color: ${({ theme }) => theme.colors.blue};
     background-color: ${({ theme }) => theme.colors.white};
   }
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    bottom: 30px;
+    left: 10%;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    position: absolute;
+    top: 25px;
+    right: 27%;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    position: static;
+  }
 `;

@@ -38,6 +38,10 @@ const Wrapper = styled(Link)`
   &:focus svg {
     stroke: ${({ theme }) => theme.colors.blue};
   }
+
+  @media screen and (max-width: 768px) {
+    margin: 0 auto;
+  }
 `;
 
 export { Wrapper, UserBox };

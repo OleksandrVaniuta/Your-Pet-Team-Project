@@ -16,51 +16,58 @@ import { UserPage } from 'pages/UserPage/UserPage';
 import { NewsPage } from 'pages/NewsPage/NewsPage';
 import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
 import { AddPetPage } from 'pages/AddPetPage/AddPetPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 function App() {
   const dispatch = useDispatch();
-  // const refteshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route exact index element={<MainPage />} />
-        <Route
-          path="/register"
-          element={<PublicRoute redirectTo="/" component={<RegisterPage />} />}
-        />
-        <Route
-          path="/login"
-          element={<PublicRoute redirectTo="/" component={<LoginPage />} />}
-        />
-        <Route
-          path="notices/"
-          element={<PublicRoute redirectTo="sell" element={<NoticesPage />} />}
-        />
-        <Route path="notices/:category" element={<NoticesPage />} />
-        <Route
-          path="/user"
-          element={
-            <PrivateRoute redirectTo="/login" component={<UserPage />} />
-          }
-        />
-        <Route
-          path="/friends"
-          element={<PublicRoute redirectTo="/" component={<FriendsPage />} />}
-        />
-        <Route
-          path="/add-pet"
-          element={
-            <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
-          }
-        />
-        <Route path="/news" element={<NewsPage />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route exact index element={<MainPage />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute redirectTo="/" component={<RegisterPage />} />
+            }
+          />
+          <Route
+            path="/login"
+            element={<PublicRoute redirectTo="/" component={<LoginPage />} />}
+          />
+          <Route
+            path="notices/"
+            element={
+              <PublicRoute redirectTo="sell" element={<NoticesPage />} />
+            }
+          />
+          <Route path="notices/:category" element={<NoticesPage />} />
+          <Route
+            path="/user"
+            element={
+              <PrivateRoute redirectTo="/login" component={<UserPage />} />
+            }
+          />
+          <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route
+            path="/add-pet"
+            element={
+              <PrivateRoute redirectTo="/login" component={<AddPetPage />} />
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+      <ToastContainer />
+    </>
   );
 }
 

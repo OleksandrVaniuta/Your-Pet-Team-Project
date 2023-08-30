@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
-import { login } from 'redux/Auth/AuthOperations';
-// import { selectError } from 'redux/Auth/AuthSelectors';
+import { login, refresh } from 'redux/Auth/AuthOperations';
+import { selectError } from 'redux/Auth/AuthSelectors';
+import { toast } from 'react-toastify';
 
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -21,7 +22,6 @@ import {
   ErrorMessage,
   PasswordIcon,
   EyeIcon,
-  //   LoginErrorMessage,
   LogInBtn,
   RegisterText,
   RegisterLink,
@@ -54,7 +54,7 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  //   const loginError = useSelector(selectError);
+  const loginError = useSelector(selectError);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -69,14 +69,20 @@ const LoginForm = () => {
 
     try {
       await dispatch(login(values));
-      const firstvisit = localStorage.getItem('isNewRegistration');
-      if (JSON.parse(firstvisit)) {
-        navigate('/user');
+
+      if (!loginError) {
+        const firstvisit = localStorage.getItem('isNewRegistration');
+        if (JSON.parse(firstvisit)) {
+          navigate('/user');
+        } else {
+          dispatch(refresh());
+          navigate('/notices/sell');
+        }
       } else {
-        navigate('/');
+        toast.error(loginError);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     } finally {
       setLoading(false);
       setSubmitting(false);
@@ -177,10 +183,6 @@ const LoginForm = () => {
                 <ErrorMessage name="password">{errors.password}</ErrorMessage>
               )}
             </LogInFormPasswordContainer>
-
-            {/* {loginError && (
-              <LoginErrorMessage>{loginError.message}</LoginErrorMessage>
-            )} */}
 
             <LogInBtn type="submit" disabled={isSubmitting || loading}>
               Log In
