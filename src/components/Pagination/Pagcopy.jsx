@@ -5,7 +5,7 @@ import css from './Pagination.module.css';
 import { ReactComponent as VectorLeft } from './icons/vector-left.svg';
 import { ReactComponent as VectorRight } from './icons/vector-right.svg';
 
-const Pagination = ({handlePagination, key}) => {
+const Pagination = ({handlePagination, category, search}) => {
     const firstLiRef = useRef();
     const secondLiRef = useRef();
     const thirdLiRef = useRef();
@@ -14,16 +14,13 @@ const Pagination = ({handlePagination, key}) => {
     const leftBtnRef = useRef();
     const rightBtnRef = useRef();
 
+    const firstElem = firstLiRef.current;
+    const[currentElem, setCurrentElem] = useState(firstElem);
     const[currentPage, setCurrentPage] = useState(1);
     const totalPages = useSelector(selectTotalPages);
 
     const handleCurrentPage = (e) => {
-        firstLiRef.current.classList.remove(css.current);
-        secondLiRef.current.classList.remove(css.current);
-        thirdLiRef.current.classList.remove(css.current);
-        fourthLiRef.current.classList.remove(css.current);
-        fifthLiRef.current.classList.remove(css.current);
-
+        currentElem.classList.remove(css.current);
         const currentNumber = Number(e.target.textContent);
         setCurrentPage(currentNumber);
 
@@ -35,37 +32,39 @@ const Pagination = ({handlePagination, key}) => {
             fifthLiRef.current.textContent = '5';
 
             if (currentNumber === 1) {
+                setCurrentElem(firstLiRef.current);
                 firstLiRef.current.classList.add(css.current);
             }
             else if (currentNumber === 2) {
+                setCurrentElem(secondLiRef.current);
                 secondLiRef.current.classList.add(css.current);
             }
             else if (currentNumber === 3) {
+                setCurrentElem(thirdLiRef.current);
                 thirdLiRef.current.classList.add(css.current);
             }
             else if (currentNumber === 4) {
+                setCurrentElem(fourthLiRef.current);
                 fourthLiRef.current.classList.add(css.current);
             }
             else if (currentNumber === 5) {
+                setCurrentElem(fifthLiRef.current);
                 fifthLiRef.current.classList.add(css.current);
             }
         }
         else {
+            setCurrentElem(e.target);
             e.target.classList.add(css.current);
         }   
     };
 
     const switchLeftBtn = (e) => {
-        firstLiRef.current.classList.remove(css.current);
-        secondLiRef.current.classList.remove(css.current);
-        thirdLiRef.current.classList.remove(css.current);
-        fourthLiRef.current.classList.remove(css.current);
-        fifthLiRef.current.classList.remove(css.current);
-
+        currentElem.classList.remove(css.current);
         const currentNumber = currentPage - 1;
         setCurrentPage(currentNumber);
 
         if (currentNumber >= 5) {
+            setCurrentElem(fifthLiRef.current);
             fifthLiRef.current.classList.add(css.current);
 
             firstLiRef.current.textContent = `${currentNumber - 4}`;
@@ -76,31 +75,31 @@ const Pagination = ({handlePagination, key}) => {
         }
         else {
             if (Number(firstLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(firstLiRef.current);
                 firstLiRef.current.classList.add(css.current);
             }
             else if (Number(secondLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(secondLiRef.current);
                 secondLiRef.current.classList.add(css.current);
             }
             else if (Number(thirdLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(thirdLiRef.current);
                 thirdLiRef.current.classList.add(css.current);
             }
             else if (Number(fourthLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(fourthLiRef.current);
                 fourthLiRef.current.classList.add(css.current);
             }
         }
     };
 
     const switchRightBtn = (e) => {
-        firstLiRef.current.classList.remove(css.current);
-        secondLiRef.current.classList.remove(css.current);
-        thirdLiRef.current.classList.remove(css.current);
-        fourthLiRef.current.classList.remove(css.current);
-        fifthLiRef.current.classList.remove(css.current);
-
+        currentElem.classList.remove(css.current);
         const currentNumber = currentPage + 1;
         setCurrentPage(currentNumber);
 
         if (currentNumber >= 5) {
+            setCurrentElem(fifthLiRef.current);
             fifthLiRef.current.classList.add(css.current);
 
             firstLiRef.current.textContent = `${currentNumber - 4}`;
@@ -111,12 +110,15 @@ const Pagination = ({handlePagination, key}) => {
         }
         else {
             if (Number(secondLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(secondLiRef.current);
                 secondLiRef.current.classList.add(css.current);
             }
             else if (Number(thirdLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(thirdLiRef.current);
                 thirdLiRef.current.classList.add(css.current);
             }
             else if (Number(fourthLiRef.current.textContent) === currentNumber) {
+                setCurrentElem(fourthLiRef.current);
                 fourthLiRef.current.classList.add(css.current);
             }
         }
@@ -146,8 +148,16 @@ const Pagination = ({handlePagination, key}) => {
     }, [totalPages]);
 
     useEffect(() => {
-        setCurrentPage(1);
-    }, [key]);
+        if (firstElem) {
+            secondLiRef.current.classList.remove(css.current);
+            thirdLiRef.current.classList.remove(css.current);
+            fourthLiRef.current.classList.remove(css.current);
+            fifthLiRef.current.classList.remove(css.current);
+
+            setCurrentElem(firstElem);
+            firstElem.classList.add(css.current);
+        }
+    }, [firstElem, category, search]);
 
     useEffect(() => {
         handlePagination(currentPage);
@@ -164,7 +174,7 @@ const Pagination = ({handlePagination, key}) => {
                     </div>
                     <ul className={css.paginationList}>
                         <li ref={firstLiRef} 
-                        className={`${css.paginationNumber} ${css.current}`}
+                        className={css.paginationNumber}
                         onClick={handleCurrentPage} >1</li>
                         <li ref={secondLiRef}
                         className={css.paginationNumber} 
@@ -190,4 +200,4 @@ const Pagination = ({handlePagination, key}) => {
     )     
 };
 
-export default Pagination;
+// export default Pagination;
