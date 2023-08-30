@@ -5,7 +5,7 @@ import css from './Pagination.module.css';
 import { ReactComponent as VectorLeft } from './icons/vector-left.svg';
 import { ReactComponent as VectorRight } from './icons/vector-right.svg';
 
-const Pagination = ({handlePagination, key}) => {
+const Pagination = ({handlePagination}) => {
     const firstLiRef = useRef();
     const secondLiRef = useRef();
     const thirdLiRef = useRef();
@@ -147,7 +147,7 @@ const Pagination = ({handlePagination, key}) => {
 
     useEffect(() => {
         setCurrentPage(1);
-    }, [key]);
+    }, []);
 
     useEffect(() => {
         handlePagination(currentPage);

@@ -8,7 +8,7 @@ import { PageTitle } from 'components/NoticesSearch/PageTitle.styled';
 import { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchNoticesByCategory } from 'redux/notices/operations';
+import { fetchNoticesByCategory, fetchNoticesFavorite, fetchNoticesMyAds } from 'redux/notices/operations';
 import { selectNotices } from 'redux/notices/selectors';
 
 export const NoticesPage = () => {
@@ -20,7 +20,7 @@ export const NoticesPage = () => {
 
   const params = useParams();
   const category = params.category;
-
+  
   useEffect(() => {
     setPage(1);
   }, [category, search]);
@@ -32,15 +32,33 @@ export const NoticesPage = () => {
     limit: 2,
   }), [category, search, page]);
 
+  const queryParamsPrivat = useMemo(() => ({
+    search: search,
+    page: page,
+    limit: 2,
+  }), [search, page]);
+
   const handleNoticeSearch = newSearch => setSearch(newSearch);
 
   const handlePagination = currentPage => setPage(currentPage);
 
   useEffect(() => {
-    dispatch(
-      fetchNoticesByCategory(queryParams)
-    );
-  }, [dispatch, queryParams]);
+    if (['sell', 'lost-found', 'in-good-hands'].includes(category)) {
+      dispatch(
+        fetchNoticesByCategory(queryParams)
+      );        
+    }
+    else if (category === 'favorite-ads') {
+      dispatch(
+        fetchNoticesFavorite(queryParamsPrivat)
+      );
+    }
+    else if (category === 'my-ads') {
+      dispatch(
+        fetchNoticesMyAds(queryParamsPrivat)
+      );
+    }
+  }, [dispatch, queryParams, queryParamsPrivat, category]);
 
   return (
     <div>

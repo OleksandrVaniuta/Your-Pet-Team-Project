@@ -1,8 +1,9 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchNoticesByCategory } from './operations';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchNoticesByCategory, fetchNoticesFavorite, fetchNoticesMyAds } from './operations';
 
 const initialState = {
   items: [],
+  totalPages: null,
   isLoading: false,
 };
 
@@ -19,10 +20,38 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
-      .addMatcher(isAnyOf(fetchNoticesByCategory.pending), state => {
+      .addCase(fetchNoticesByCategory.pending, state => {
         state.isLoading = true;
       })
-      .addMatcher(isAnyOf(fetchNoticesByCategory.rejected), state => {
+      .addCase(fetchNoticesByCategory.rejected, state => {
+        return { ...state, items: [], totalPages: null, isLoading: false };
+      })
+      .addCase(fetchNoticesFavorite.fulfilled, (state, action) => {
+        return {
+          ...state,
+          items: [...action.payload.notices],
+          totalPages: action.payload.totalPages,
+          isLoading: false,
+        };
+      })
+      .addCase(fetchNoticesFavorite.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchNoticesFavorite.rejected, state => {
+        return { ...state, items: [], totalPages: null, isLoading: false };
+      })
+      .addCase(fetchNoticesMyAds.fulfilled, (state, action) => {
+        return {
+          ...state,
+          items: [...action.payload.notices],
+          totalPages: action.payload.totalPages,
+          isLoading: false,
+        };
+      })
+      .addCase(fetchNoticesMyAds.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchNoticesMyAds.rejected, state => {
         return { ...state, items: [], totalPages: null, isLoading: false };
       });
   },
