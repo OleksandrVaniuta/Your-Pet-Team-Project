@@ -5,3 +5,4 @@ export const selectTotalPages = state => state.notices.totalPages;
 // бере зі стейту чи завантажується
 export const selectIsNoticeLoading = state => state.notices.isLoading;
 // export const selectCategory = state => state.notices.category;
+export const selectIsFavorite = state => state.notices.isFavorite;

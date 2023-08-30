@@ -6,45 +6,75 @@ import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
 import FemaleIcon from '@mui/icons-material/Female';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import { Link } from 'react-router-dom';
+import { selectIsFavorite } from 'redux/notices/selectors';
+
+import CloseIcon from '@mui/icons-material/Close';
+// import { Link } from 'react-router-dom';
 import {
   differenceInYears,
   differenceInMonths,
   differenceInDays,
 } from 'date-fns';
+import Modal from 'components/Modal/Modal';
 import MaleIcon from '@mui/icons-material/Male';
-import { selectIsLoggedIn, selectToken } from 'redux/Auth/AuthSelectors';
+import { selectIsLoggedIn, 
+  // selectToken
+ } from 'redux/Auth/AuthSelectors';
 import { useState } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
-
-function NoticeCategoryItem({ elem, openInfoModal, openNologModal }) {
-  const [isFavorited, setIsFavorited] = useState(false);
+// import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchDataAndOpenModal } from 'redux/notices/operations';
+import { addToFavorite } from 'redux/notices/operations';
+function NoticeCategoryItem({notice}) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const accessToken = useSelector(selectToken); 
+  // const accessToken = useSelector(selectToken); 
+  const [isActiveInfoModal, setIsActiveInfoModal] = useState(false);
+  const [isActiveNologModal, setIsActiveNologModal] = useState(false);
+  const dispatch = useDispatch();
+  const isFavorite = useSelector(selectIsFavorite);
 
-// заптин на додавання --->>>>>>>
-  const addToFavorit = async (id) => {
-  try {
-   const response = await axios.patch(
-      `https://your-pet-backend-cmwy.onrender.com/api/notices/${id}/favorite`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    setIsFavorited(prevState => !prevState);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const openInfoModal = () => {
+    dispatch(fetchDataAndOpenModal(notice._id))
+    console.log(notice);
+    setIsActiveInfoModal(true);
   };
+
+  const openNologModal = () => {
+    setIsActiveNologModal(true);
+  };
+
+  const closeModal = () => {
+    if (isActiveInfoModal) {
+      setIsActiveInfoModal(false);
+    } 
+    else {
+      setIsActiveNologModal(false);
+    }
+  };
+// заптин на додавання --->>>>>>>
+  // const addToFavorit = async (id) => {
+  // try {
+  //  const response = await axios.patch(
+  //     `https://your-pet-backend-cmwy.onrender.com/api/notices/${id}/favorite`,
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     }
+  //   );
+  //   setIsFavorited(prevState => !prevState);
+  //   return response.data;
+  // } catch (error) {
+  //   console.error(error);
+  // }
+  // };
 // ---------------------------->
   
 
-  const onClickIconFavorit = (id) => {
+  const onClickIconFavorit = () => {
     if (isLoggedIn) {
-        addToFavorit(id);
+      dispatch(addToFavorite(notice._id));
     }
     else {
         openNologModal();
@@ -92,13 +122,13 @@ function NoticeCategoryItem({ elem, openInfoModal, openNologModal }) {
        return word.split('-').join(' ');   
   };
   return (
-    <li key={elem.id} className={css.category_item}>
+    <li key={notice.id} className={css.category_item}>
       <div className={css.category_item__content}>
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
-            <p className={css.category_text}>{splitWord(elem.category)}</p>
-            <div className={css.icon_box} onClick={() => onClickIconFavorit(elem._id)}>
-              {isFavorited ? (
+            <p className={css.category_text}>{splitWord(notice.category)}</p>
+            <div className={css.icon_box} onClick={onClickIconFavorit}>
+              {isFavorite ? (
                 <FavoriteRoundedIcon className={css.icon_favorite} />
               ) : (
                 <>
@@ -113,33 +143,150 @@ function NoticeCategoryItem({ elem, openInfoModal, openNologModal }) {
           <ul className={css.info_pet__list}>
             <li key="1" className={css.info_pet__item}>
               <FmdGoodOutlinedIcon className={css.icon} />
-              {catWord(elem.location)}
+              {catWord(notice.location)}
             </li>
             <li key="2" className={css.info_pet__item}>
               <QueryBuilderIcon className={css.icon} />
-              {catWord(age(elem.birthday))}
+              {catWord(age(notice.birthday))}
             </li>
             <li key="3" className={css.info_pet__item}>
-              {elem.sex === 'male' ? (
+              {notice.sex === 'male' ? (
                 <MaleIcon className={css.icon} />
               ) : (
                 <FemaleIcon className={css.icon} />
               )}
-              {elem.sex}
+              {notice.sex}
             </li>
           </ul>
         </div>
         <div className={css.img_container}>
-          <img src={elem.avatarURL} alt="pet_img" className={css.img_pet} />
+          <img src={notice.avatarURL} alt="pet_img" className={css.img_pet} />
         </div>
       </div>
       <div className={css.text_container}>
-        <p className={css.title}>{elem.title}</p>
-        <button className={css.button_more} onClick={() => openInfoModal(elem)}>
+        <p className={css.title}>{notice.title}</p>
+        <button className={css.button_more} onClick={openInfoModal}>
           Learn more
           <img src={pawprint} alt="icon_pet" className={css.icon_button} />
         </button>
-      </div>
+        </div>
+        {isActiveInfoModal &&  (
+           <Modal isActive={isActiveInfoModal} closeModal={closeModal}>
+           <div className={css.modal_container}>
+             <div className={css.content_container}>
+               <div className={css.positional_container}>
+                 <div className={css.category_container}>
+                   <p className={css.category_text}>
+                     {splitWord(notice.category)}
+                   </p>
+                 </div>
+                 <div className={css.img_container}>
+                   <img
+                     src={notice.avatarURL}
+                     alt="img_pet"
+                     className={css.img}
+                   />
+                 </div>
+               </div>
+ 
+               <div className={css.info_container}>
+                 <h1 className={css.title}>{notice.title}</h1>
+ 
+                 <ul className={css.list_info}>
+                   <li className={css.list_info__item}>
+                     <span className={css.characteristics}>Name:</span>
+                     <span className={css.value}>{notice.name}</span>
+                   </li>
+                   <li className={css.list_info__item}>
+                     <span className={css.characteristics}>Birthday:</span>
+                     <span className={css.value}>{notice.birthday}</span>
+                   </li>
+                   <li className={css.list_info__item}>
+                     <span className={css.characteristics}>Type:</span>
+                     <span className={css.value}>{notice.type}</span>
+                   </li>
+                   <li className={css.list_info__item}>
+                     <span className={css.characteristics}>Place:</span>
+                     <span className={css.value}>{notice.location}</span>
+                   </li>
+                   <li className={css.list_info__item}>
+                     <span className={css.characteristics}>The sex:</span>
+                     <span className={css.value}>{notice.sex}</span>
+                   </li>
+                   {notice.price && (
+                     <li className={css.list_info__item}>
+                     <span className={css.characteristics}> Price:</span>
+                     <span className={css.value}>{notice.price}</span>
+                   </li>
+                   )}
+                   <li className={css.list_info__item}>
+                     <span className={css.characteristics}>Email:</span>
+                     <a href="mailto:user@email.com" className={css.link}>
+                       {notice.owner.email}
+                     </a>
+                   </li>
+                   {notice.owner.phone && (
+                     <li className={css.list_info__item}>
+                       <span className={css.characteristics}>Phone:</span>
+                       <a href="tel:+380970632424" className={css.link}>123456
+                         {notice.owner.phone}
+                       </a>
+                     </li>
+                    )}
+                 </ul>
+               </div>
+             </div>
+             <p className={css.comments}>
+               <b>Comments:</b>{' '}
+               {notice.comment ? notice.comment : <>no comment</>}
+             </p>
+             <div className={css.buttons_container}>
+               <button className={css.button_add} onClick={onClickIconFavorit}>
+                {isFavorite ? (<>Add to
+                 <FavoriteBorderIcon className={css.icon} /></>
+                ) : (<>Remove from <FavoriteBorderIcon className={css.icon_remove} />
+                </>
+                )}
+                 
+               </button>
+               <button className={css.button_contact}>Contact</button>
+             </div>
+             <button
+               type="button"
+               className={css.close_modal_button}
+               onClick={closeModal}
+             >
+               <CloseIcon className={css.icon_close} />
+             </button>
+           </div>
+         </Modal>
+       )} 
+        <Modal isActive={isActiveNologModal} closeModal={closeModal}>
+        <div className={css.modal_container_log_reg}>
+          <h1 className={css.title_modal}>Attention</h1>
+          <p className={css.text_modal}>
+            We would like to remind you that certain functionality is available
+            only to authorized users. If you have an account, please log in with
+            your credentials. If you do not already have an account, you must
+            register to access these features.
+          </p>
+          <div className={css.buttons__container}>
+            <Link to="/login" className={css.button_reg_log}>
+              Log IN
+              <img src={pawprint} alt="img" className={css.icon_modal} />
+            </Link>
+            <Link
+              to="/register"
+              className={`${css.button_white} ${css.button_reg_log}`}
+            >
+              Registration
+            </Link>
+          </div>
+          <button className={css.button_close_modal} onClick={closeModal}>
+            <CloseIcon className={css.icon_close} />
+          </button>
+        </div>
+      </Modal>
     </li>
   );
 }
