@@ -15,7 +15,7 @@ import { toast } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 
 const NoticesSearch = ({ handleSearch }) => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('search');
 
   const formik = useFormik({
@@ -34,6 +34,8 @@ const NoticesSearch = ({ handleSearch }) => {
 
   const handleReset = () => {
     handleSearch('');
+    setSearchParams();
+    formik.initialValues.search = '';
     formik.resetForm();
   };
 
