@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ChooseOption } from './/AddPetSteps/chooseOption';
-import { PersonalDetals } from './AddPetSteps/personalDetalis';
-import { MoreInfo } from './AddPetSteps/moreInfo';
-import { useDispatch } from 'react-redux';
-import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
+import { ChooseOption } from './AddPetSteps/ChooseOption/chooseOption';
+import { PersonalDetals } from './AddPetSteps/PersonalDetalis/personalDetalis';
+import { MoreInfo } from './AddPetSteps/MoreInfo/moreInfo';
+// import { useDispatch } from 'react-redux';
+// import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export const AddPetPage = () => {
@@ -20,7 +20,7 @@ export const AddPetPage = () => {
     city: '',
     comments: '',
   });
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -71,11 +71,11 @@ export const AddPetPage = () => {
       formData.append('avatarPet', pets.file);
       formData.append('dateOfBirth', pets.date);
       formData.append('comments', comments);
-      await dispatch(addMyPet(formData));
+      // await dispatch(addMyPet(formData));
       return;
     }
 
-    await dispatch(addPet(formData));
+    // await dispatch(addPet(formData));
 
     navigate(location.state?.from);
   };
@@ -114,3 +114,4 @@ export const AddPetPage = () => {
     </div>
   );
 };
+
