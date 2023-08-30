@@ -21,7 +21,7 @@ export default function NoticesCategoriesList({ notices }) {
       setIsActiveNologModal(false);
     }
   };
-
+console.log(notices)
   return (
     <>
       {notices.length === 0 ? (

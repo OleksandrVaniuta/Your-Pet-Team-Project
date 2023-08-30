@@ -26,7 +26,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDataAndOpenModal } from 'redux/notices/operations';
 import { addToFavorite } from 'redux/notices/operations';
-function NoticeCategoryItem({notice}) {
+import { selectNotice } from 'redux/notices/selectors';
+function NoticeCategoryItem( {notice}) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   // const accessToken = useSelector(selectToken); 
   const [isActiveInfoModal, setIsActiveInfoModal] = useState(false);
@@ -34,13 +35,15 @@ function NoticeCategoryItem({notice}) {
   const dispatch = useDispatch();
   const isFavorite = useSelector(selectIsFavorite);
 
-  const openInfoModal = () => {
+  const noticeItem = useSelector(selectNotice)
+
+  const openInfoModal = async () => {
     try {
-      dispatch(fetchDataAndOpenModal(notice._id));
+      await dispatch(fetchDataAndOpenModal(notice._id));
+      // console.log(notice.owner)
       setIsActiveInfoModal(true);
     } catch (error) {
       console.error('Error fetching data:', error);
-
     }
   };
 
@@ -103,16 +106,17 @@ function NoticeCategoryItem({notice}) {
   };
 
   const splitWord = word => {
-       return word.split('-').join(' ');   
+    if(noticeItem) {
+       return word.split('-').join(' '); 
+    }  
   };
-
 
   return (
     <li key={notice._id} className={css.category_item}>
       <div className={css.category_item__content}>
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
-            <p className={css.category_text}>{splitWord(notice.category)}</p>
+            {noticeItem && (<p className={css.category_text}>{splitWord(notice.category)}</p>)}
             <div className={css.icon_box} onClick={() =>  onClickIconFavorite(notice._id)}>
               {!isFavorite ? (
                 <FavoriteRoundedIcon className={css.icon_favorite} />
@@ -136,12 +140,12 @@ function NoticeCategoryItem({notice}) {
               {catWord(age(notice.birthday))}
             </li>
             <li key="3" className={css.info_pet__item}>
-              {notice.sex === 'male' ? (
+              {noticeItem.sex === 'male' ? (
                 <MaleIcon className={css.icon} />
               ) : (
                 <FemaleIcon className={css.icon} />
               )}
-              {notice.sex}
+              {noticeItem.sex}
             </li>
           </ul>
         </div>
@@ -150,13 +154,13 @@ function NoticeCategoryItem({notice}) {
         </div>
       </div>
       <div className={css.text_container}>
-        <p className={css.title}>{notice.title}</p>
-        <button className={css.button_more} onClick={openInfoModal}>
+        <p className={css.title}>{noticeItem.title}</p>
+        <button className={css.button_more} onClick={()=> openInfoModal(notice._id)}>
           Learn more
           <img src={pawprint} alt="icon_pet" className={css.icon_button} />
         </button>
         </div>
-        {isActiveInfoModal &&  (
+        {isActiveInfoModal && noticeItem  && (
            <Modal isActive={isActiveInfoModal} closeModal={closeModal}>
            <div className={css.modal_container}>
              <div className={css.content_container}>
@@ -168,7 +172,7 @@ function NoticeCategoryItem({notice}) {
                  </div>
                  <div className={css.img_container}>
                    <img
-                     src={notice.avatarURL}
+                     src={noticeItem.avatarURL}
                      alt="img_pet"
                      className={css.img}
                    />
@@ -176,46 +180,46 @@ function NoticeCategoryItem({notice}) {
                </div>
  
                <div className={css.info_container}>
-                 <h1 className={css.title}>{notice.title}</h1>
+                 <h1 className={css.title}>{noticeItem.title}</h1>
  
                  <ul className={css.list_info}>
                    <li className={css.list_info__item}>
                      <span className={css.characteristics}>Name:</span>
-                     <span className={css.value}>{notice.name}</span>
+                     <span className={css.value}>{noticeItem.name}</span>
                    </li>
                    <li className={css.list_info__item}>
                      <span className={css.characteristics}>Birthday:</span>
-                     <span className={css.value}>{notice.birthday}</span>
+                     <span className={css.value}>{noticeItem.birthday}</span>
                    </li>
                    <li className={css.list_info__item}>
                      <span className={css.characteristics}>Type:</span>
-                     <span className={css.value}>{notice.type}</span>
+                     <span className={css.value}>{noticeItem.type}</span>
                    </li>
                    <li className={css.list_info__item}>
                      <span className={css.characteristics}>Place:</span>
-                     <span className={css.value}>{notice.location}</span>
+                     <span className={css.value}>{noticeItem.location}</span>
                    </li>
                    <li className={css.list_info__item}>
                      <span className={css.characteristics}>The sex:</span>
-                     <span className={css.value}>{notice.sex}</span>
+                     <span className={css.value}>{noticeItem.sex}</span>
                    </li>
-                   {notice.price && (
+                   {noticeItem.price && (
                      <li className={css.list_info__item}>
                      <span className={css.characteristics}> Price:</span>
-                     <span className={css.value}>{notice.price}</span>
+                     <span className={css.value}>{noticeItem.price}</span>
                    </li>
                    )}
                    <li className={css.list_info__item}>
                      <span className={css.characteristics}>Email:</span>
                      <a href="mailto:user@email.com" className={css.link}>
-                       {notice.owner.email}
+                       {noticeItem.owner.email}
                      </a>
                    </li>
-                   {notice.owner.phone && (
+                   {noticeItem.owner.phone && (
                      <li className={css.list_info__item}>
                        <span className={css.characteristics}>Phone:</span>
-                       <a href="tel:+380970632424" className={css.link}>123456
-                         {notice.owner.phone}
+                       <a href="tel:+380970632424" className={css.link}>
+                         {noticeItem.owner.phone}
                        </a>
                      </li>
                     )}
@@ -224,10 +228,10 @@ function NoticeCategoryItem({notice}) {
              </div>
              <p className={css.comments}>
                <b>Comments:</b>{' '}
-               {notice.comment ? notice.comment : <>no comment</>}
+               {noticeItem.comment ? noticeItem.comment : <>no comment</>}
              </p>
              <div className={css.buttons_container}>
-               <button className={css.button_add} onClick={onClickIconFavorite}>
+               <button className={css.button_add} onClick={()=> onClickIconFavorite(notice._id)}>
                 {isFavorite ? (<>Add to
                  <FavoriteBorderIcon className={css.icon} /></>
                 ) : (<>Remove from <FavoriteBorderIcon className={css.icon_remove} />
