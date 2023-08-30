@@ -6,8 +6,9 @@ import { UserPageContainer } from './UserPage..styled';
 import UserPets from 'components/UserPage/UserPets/UserPets';
 import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
 import ModalLogout from 'components/ModalLogout/ModalLogout';
+import { UserWrapper } from './UserPage..styled';
 
-export const UserPage = () => {
+const UserPage = () => {
   const dispatch = useDispatch();
 
   const [congradModal, setCongradModal] = useState(false);
@@ -40,7 +41,7 @@ export const UserPage = () => {
   };
 
   return (
-    <>
+    <UserWrapper>
       {isModalOpen && congradModal && (
         <ModalLogout toggleModal={toggleModal}>
           <ModalCongrats toggleModal={toggleModal} />
@@ -50,6 +51,8 @@ export const UserPage = () => {
         <UserForm />
         <UserPets />
       </UserPageContainer>
-    </>
+    </UserWrapper>
   );
 };
+
+export default UserPage;

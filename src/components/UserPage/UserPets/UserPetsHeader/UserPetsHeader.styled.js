@@ -17,4 +17,7 @@ export const UserPetsTitle = styled.h3`
     margin-bottom: 24px;
     margin-top: 40px;
   }
+  @media screen and (min-width: 1270px) {
+    margin-top: 0;
+  }
 `;

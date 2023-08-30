@@ -26,6 +26,35 @@ export const fetchNoticesByCategory = createAsyncThunk(
   }
 );
 
+export const fetchDataAndOpenModal = createAsyncThunk(
+  'notices/fetchByNoticeId',
+  async (noticeId, thunkApi) => {
+    console.log(noticeId);
+    try {
+      const response = await axios.get(`/api/notices/notice/${noticeId}`);
+      const data = response.data;
+      console.log(data.owner.email);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addToFavorite = createAsyncThunk(
+  '/notices/favorite',
+  async (noticeId, thunkApi) => {
+    console.log(noticeId);
+    try {
+      const response = await axios.patch(`/api/notices/${noticeId}/favorite`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchNoticesFavorite = createAsyncThunk(
   'notices/fetchNoticesFavorite',
   async (params, thunkAPI) => {

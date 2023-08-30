@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import { login, refresh } from 'redux/Auth/AuthOperations';
@@ -52,8 +51,6 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-
   const loginError = useSelector(selectError);
 
   const togglePasswordVisibility = () => {
@@ -70,19 +67,10 @@ const LoginForm = () => {
     try {
       await dispatch(login(values));
 
-      if (!loginError) {
-        const firstvisit = localStorage.getItem('isNewRegistration');
-        if (JSON.parse(firstvisit)) {
-          navigate('/user');
-        } else {
-          dispatch(refresh());
-          navigate('/notices/sell');
-        }
-      } else {
-        toast.error(loginError);
-      }
+      dispatch(refresh());
     } catch (error) {
       console.log(error.message);
+      toast.error(loginError);
     } finally {
       setLoading(false);
       setSubmitting(false);

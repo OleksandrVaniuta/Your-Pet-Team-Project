@@ -5,6 +5,9 @@ const initialState = {
   items: [],
   totalPages: null,
   isLoading: false,
+  isFavorite: false,
+  notice: {},
+  noticeFavorite: [],
 };
 
 export const noticesSlice = createSlice({
