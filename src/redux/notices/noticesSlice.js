@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNoticesByCategory, fetchNoticesFavorite, fetchNoticesMyAds } from './operations';
+import { 
+  fetchNoticesByCategory, 
+  fetchDataAndOpenModal, 
+  addToFavorite,
+  fetchNoticesFavorite, 
+  fetchNoticesMyAds 
+} from './operations';
 
 const initialState = {
   items: [],
@@ -29,6 +35,16 @@ export const noticesSlice = createSlice({
       .addCase(fetchNoticesByCategory.rejected, state => {
         return { ...state, items: [], totalPages: null, isLoading: false };
       })
+      .addCase(fetchDataAndOpenModal.fulfilled, (state, action) => {
+        return {
+          ...state,
+          notice: {...action.payload},
+        };
+      })
+      .addCase(addToFavorite.fulfilled, (state, action) => {
+        state.isFavorite = action.payload;
+        state.noticeFavorite = [...action.payload];
+      })      
       .addCase(fetchNoticesFavorite.fulfilled, (state, action) => {
         return {
           ...state,
