@@ -48,7 +48,7 @@ export const addToFavorite = createAsyncThunk(
     try {
       const response = await axios.patch(`/api/notices/${noticeId}/favorite`);
       console.log(response.data);
-      return response.data;
+      return { data: response.data, id: noticeId};
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

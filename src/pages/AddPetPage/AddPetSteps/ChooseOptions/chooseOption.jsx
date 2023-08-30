@@ -1,13 +1,9 @@
 import React from 'react';
-import {
-  Container,
-  CategoryForm,
-  CheckedLabel,
-} from '../Styles/chooseOption.styled';
+import { Container, CategoryForm, CheckedLabel } from './ChoosOptions.styled';
 import { useLocation, useNavigate } from 'react-router-dom';
 // location.state?.from
 
-import { AddHeader } from './addHeader';
+import { AddHeader } from '../addHeader';
 
 import {
   // BtnBox,
@@ -15,7 +11,7 @@ import {
   BtnCancelBack,
   BtnTitle,
   LinkTitle,
-} from '../Styles/button.styled';
+} from '../../Styles/button.styled';
 
 export const ChooseOption = ({ category, setCategory, setStep }) => {
   const location = useLocation();

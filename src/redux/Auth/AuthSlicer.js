@@ -17,6 +17,7 @@ const AuthInitialState = {
     birthday: null,
     city: null,
     avatarURL: null,
+    id: null,
   },
   token: null,
   isLoggedIn: false,
@@ -70,6 +71,7 @@ export const authSlice = createSlice({
       state.user.birthday = action.payload.birthday;
       state.user.city = action.payload.city;
       state.user.avatarURL = action.payload.avatarURL;
+      state.user.id = action.payload._id;
     },
     [refresh.rejected](state) {
       state.isRefreshing = false;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChooseOption } from './/AddPetSteps/chooseOption';
+import { ChooseOption } from './AddPetSteps/ChooseOptions/chooseOption';
 import { PersonalDetals } from './AddPetSteps/personalDetalis';
 import { MoreInfo } from './AddPetSteps/moreInfo';
 import { useDispatch } from 'react-redux';
