@@ -13,13 +13,21 @@ export const NewsItem = ({ element }) => {
 
   const formattedDate = `${formattedDay}/${formattedMonth}/${year}`;
 
+  const croppedText = (text, amount) => {
+    if (text.length < amount) {
+      return text;
+    } else {
+      return text.slice(0, amount) + '...';
+    }
+  };
+
   return (
     <li key={id} className={css.news_item}>
       <article>
-        <img src={imgUrl} alt={title} className={css.news_img} />
+        <img src={imgUrl} alt={title} loading="lazy" className={css.news_img} />
         <div className={css.news_info}>
-          <p className={css.news_title}>{title}</p>
-          <p className={css.news_text}>{text}</p>
+          <h3 className={css.news_title}>{croppedText(title, 50)}</h3>
+          <p className={css.news_text}>{croppedText(text, 270)}</p>
           <div className={css.news_more}>
             <p className={css.news_date}>{formattedDate}</p>
             <a

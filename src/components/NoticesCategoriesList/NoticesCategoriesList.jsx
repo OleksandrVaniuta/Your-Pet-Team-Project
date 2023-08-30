@@ -59,6 +59,7 @@ export default function NoticesCategoriesList({ notice }) {
         <ul className={css.categories_list}>
           {notice.map(elem => (
             <NoticeCategoryItem
+              key={elem._id}
               elem={elem}
               openInfoModal={openInfoModal}
               openNologModal={openNologModal}
