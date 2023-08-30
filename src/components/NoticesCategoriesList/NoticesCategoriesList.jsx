@@ -21,7 +21,7 @@ export default function NoticesCategoriesList({ notices }) {
       setIsActiveNologModal(false);
     }
   };
-console.log(notices)
+
   return (
     <>
       {notices.length === 0 ? (
@@ -31,10 +31,7 @@ console.log(notices)
       ) : (
         <ul className={css.categories_list}>
           {notices.map(notice => (
-            <NoticeCategoryItem
-              notice={notice}
-              key={notice._id}
-            />
+            <NoticeCategoryItem key={notice._id} notice={notice} />
           ))}
         </ul>
       )}

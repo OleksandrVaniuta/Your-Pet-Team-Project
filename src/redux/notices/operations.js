@@ -18,7 +18,6 @@ export const fetchNoticesByCategory = createAsyncThunk(
       const response = await axios.get(
         `/api/notices/category/${params.category}?${searchParams.toString()}`
       );
-      console.log(response.data)
       return response.data;
     } catch (error) {
       toast.error(errorMsg);
@@ -27,30 +26,31 @@ export const fetchNoticesByCategory = createAsyncThunk(
   }
 );
 
-
 export const fetchDataAndOpenModal = createAsyncThunk(
   'notices/fetchByNoticeId',
-   async (noticeId, thunkApi)=> {
-    console.log(noticeId)
-   try{
-    const response = await axios.get(`/api/notices/notice/${noticeId}`)
-    const data = response.data;
-    console.log(data.owner.email)
-    return data;
-   } catch(error){
-    return thunkApi.rejectWithValue(error.message)
-   }
-}) 
+  async (noticeId, thunkApi) => {
+    console.log(noticeId);
+    try {
+      const response = await axios.get(`/api/notices/notice/${noticeId}`);
+      const data = response.data;
+      console.log(data.owner.email);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const addToFavorite = createAsyncThunk(
-  '/notices/favorite', 
+  '/notices/favorite',
   async (noticeId, thunkApi) => {
-    console.log(noticeId)
+    console.log(noticeId);
     try {
-      const response = await axios.patch(`/api/notices/${noticeId}/favorite`)
-      console.log(response.data)
+      const response = await axios.patch(`/api/notices/${noticeId}/favorite`);
+      console.log(response.data);
       return response.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message)
+      return thunkApi.rejectWithValue(error.message);
     }
-  });
+  }
+);

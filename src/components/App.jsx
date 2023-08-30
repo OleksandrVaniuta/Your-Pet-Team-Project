@@ -14,6 +14,7 @@ import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
 import { PrivateRoute } from 'PriviteRoute';
 import { UserPage } from 'pages/UserPage/UserPage';
 import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
+import { NewsPage } from '../pages/NewsPage/NewsPage';
 import { AddPetPage } from 'pages/AddPetPage/AddPetPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -55,6 +56,7 @@ function App() {
             }
           />
           <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/news" element={<NewsPage />} />
           <Route
             path="/add-pet"
             element={

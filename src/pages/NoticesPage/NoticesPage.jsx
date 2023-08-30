@@ -24,22 +24,23 @@ export const NoticesPage = () => {
   useEffect(() => {
     setPage(1);
   }, [category, search]);
-  
-  const queryParams = useMemo(() => ({
-    category: category,
-    search: search,
-    page: page,
-    limit: 2,
-  }), [category, search, page]);
+
+  const queryParams = useMemo(
+    () => ({
+      category: category,
+      search: search,
+      page: page,
+      limit: 8,
+    }),
+    [category, search, page]
+  );
 
   const handleNoticeSearch = newSearch => setSearch(newSearch);
 
   const handlePagination = currentPage => setPage(currentPage);
 
   useEffect(() => {
-    dispatch(
-      fetchNoticesByCategory(queryParams)
-    );
+    dispatch(fetchNoticesByCategory(queryParams));
   }, [dispatch, queryParams]);
 
   return (
@@ -57,9 +58,9 @@ export const NoticesPage = () => {
         <NoticesAddPetBtn />
       </Box>
       <NoticesCategoriesList notices={notices}></NoticesCategoriesList>
-      <Pagination 
-      handlePagination={handlePagination}
-      key={`${category}-${search}`}
+      <Pagination
+        handlePagination={handlePagination}
+        key={`${category}-${search}`}
       />
     </div>
   );
