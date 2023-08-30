@@ -1,18 +1,21 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { CategoryForm, CheckedLabel } from '../ChooseOption/chooseOption.styled';
-
-import { AddPetHeader } from '../AddHeader/addHeader';
-import { Dog, Back } from '../AddIcons/addIcon';
 import {
+  Container,
+  CategoryForm,
+  CheckedLabel,
+} from '../Styles/chooseOption.styled';
+import { useLocation, useNavigate } from 'react-router-dom';
+// location.state?.from
+
+import { AddHeader } from './addHeader';
+
+import {
+  // BtnBox,
   BtnNextDone,
   BtnCancelBack,
   BtnTitle,
   LinkTitle,
-  BtnBox,
-} from '../../Styles/button.styled';
-
-import { Container } from '../../Styles/addPetPage.styled';
+} from '../Styles/button.styled';
 
 export const ChooseOption = ({ category, setCategory, setStep }) => {
   const location = useLocation();
@@ -29,7 +32,7 @@ export const ChooseOption = ({ category, setCategory, setStep }) => {
 
   return (
     <Container>
-      <AddPetHeader step={0} />
+      <AddHeader />
       <CategoryForm role="group">
         <CheckedLabel checked={category === 'your pet'}>
           <input
@@ -72,26 +75,62 @@ export const ChooseOption = ({ category, setCategory, setStep }) => {
           in good hands
         </CheckedLabel>
       </CategoryForm>
-      <BtnBox>
-        <BtnNextDone
-          type="button"
-          onClick={() => {
-            setCategory(category);
-            console.log(category);
-            setStep(state => {
-              return state + 1;
-            });
-          }}
-        >
-          <BtnTitle>Next</BtnTitle>
-          <Dog />
-        </BtnNextDone>
-
-        <BtnCancelBack type="button" onClick={goBack}>
-          <Back />
-          <LinkTitle>Back</LinkTitle>
-        </BtnCancelBack>
-      </BtnBox>
+      <BtnNextDone
+        type="button"
+        onClick={() => {
+          setCategory(category);
+          console.log(category);
+          setStep(state => {
+            return state + 1;
+          });
+        }}
+      >
+        <BtnTitle>Next</BtnTitle>
+        {/* <DogIcon
+          sx={[
+            {
+              width: 24,
+              height: 24,
+              color: 'fff',
+            },
+          ]}
+        /> */}
+      </BtnNextDone>
+      <BtnCancelBack type="button" onClick={goBack}>
+        {/* <BackIcon
+                    sx={[
+                      {
+                        width: 24,
+                        height: 24,
+                        color: '#54adff',
+                      },
+                    ]}
+                  /> */}
+        <LinkTitle>Back</LinkTitle>
+      </BtnCancelBack>
     </Container>
   );
 };
+
+//   return (
+//     <Container>
+//       <AddHeader />
+//       <CategoryForm role='group' >
+//         {categoryItem.map(({ item, id }) => (
+//           <CheckedLabel id={id} >
+//             <Field
+//               type="radio"
+//               name="category"
+//               value={item}
+//               id={id}
+//               // checked= {()=> handleChange}
+//               // onClick={() => handleChange}
+//               checked={(pets.category = { item })}
+//             />
+//             {item}
+//           </CheckedLabel>
+//         ))}
+//       </CategoryForm>
+//     </Container>
+//   );
+// };

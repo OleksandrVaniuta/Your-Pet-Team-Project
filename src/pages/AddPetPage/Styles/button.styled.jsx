@@ -21,12 +21,7 @@ export const BtnCancelBack = styled.button`
   align-items: center;
   border: none;
   background: #ffffff;
-  text-decoration: none;
-
-  :hover {
-    transition: all 0.2s ease-in-out;
-    transform: scale(1.05);
-  }
+  text-decoration-line: underline;
 `;
 
 export const BtnNextDone = styled.button`
@@ -39,12 +34,7 @@ export const BtnNextDone = styled.button`
   gap: 12px;
   border-radius: 40px;
   background: #54adff;
-  text-decoration: none;
-
-  :hover {
-    transition: all 0.2s ease-in-out;
-    transform: scale(1.05);
-  }
+  text-decoration-line: underline;
 `;
 export const BtnTitle = styled.p`
   color: #fef9f9;
@@ -53,7 +43,7 @@ export const BtnTitle = styled.p`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
-  text-decoration: none;
+  text-decoration-line: underline;
 `;
 export const LinkTitle = styled.p`
   color: #54adff;
@@ -63,5 +53,5 @@ export const LinkTitle = styled.p`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
-  text-decoration: none;
+  text-decoration-line: underline;
 `;
