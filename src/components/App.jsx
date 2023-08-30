@@ -24,7 +24,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refresh());
+    const LocalStoreToken = localStorage.getItem('persist:auth');
+    if (JSON.parse(LocalStoreToken)) {
+      dispatch(refresh());
+    }
   }, [dispatch]);
 
   return (
