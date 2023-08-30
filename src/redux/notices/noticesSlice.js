@@ -38,13 +38,23 @@ export const noticesSlice = createSlice({
       .addCase(fetchDataAndOpenModal.fulfilled, (state, action) => {
         return {
           ...state,
-          notice: {...action.payload},
+          notice: { ...action.payload },
         };
       })
       .addCase(addToFavorite.fulfilled, (state, action) => {
-        state.isFavorite = action.payload;
-        state.noticeFavorite = [...action.payload];
-      })      
+        state.items.forEach(item => {
+          if (item._id === action.payload.id) {
+            if (item.usersAddToFavorite.includes(action.payload.data.userId)) {
+              const index = item.usersAddToFavorite.indexOf(
+                action.payload.data.userId
+              );
+              item.usersAddToFavorite.splice(index, 1);
+            } else {
+              item.usersAddToFavorite.push(action.payload.data.userId);
+            }
+          }
+        });
+      })
       .addCase(fetchNoticesFavorite.fulfilled, (state, action) => {
         return {
           ...state,

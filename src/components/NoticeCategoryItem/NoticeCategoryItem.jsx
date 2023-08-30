@@ -7,7 +7,8 @@ import FemaleIcon from '@mui/icons-material/Female';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import { Link } from 'react-router-dom';
-import { selectIsFavorite } from 'redux/notices/selectors';
+// import { selectIsFavorite } from 'redux/notices/selectors';
+import { selectUserId } from 'redux/Auth/AuthSelectors';
 
 import CloseIcon from '@mui/icons-material/Close';
 // import { Link } from 'react-router-dom';
@@ -18,24 +19,27 @@ import {
 } from 'date-fns';
 import Modal from 'components/Modal/Modal';
 import MaleIcon from '@mui/icons-material/Male';
-import { selectIsLoggedIn, 
+import {
+  selectIsLoggedIn,
   // selectToken
- } from 'redux/Auth/AuthSelectors';
+} from 'redux/Auth/AuthSelectors';
 import { useState } from 'react';
 // import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDataAndOpenModal } from 'redux/notices/operations';
 import { addToFavorite } from 'redux/notices/operations';
 import { selectNotice } from 'redux/notices/selectors';
-function NoticeCategoryItem( {notice}) {
+
+function NoticeCategoryItem({ notice }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const accessToken = useSelector(selectToken); 
+  const userId = useSelector(selectUserId);
+  // const accessToken = useSelector(selectToken);
   const [isActiveInfoModal, setIsActiveInfoModal] = useState(false);
   const [isActiveNologModal, setIsActiveNologModal] = useState(false);
   const dispatch = useDispatch();
-  const isFavorite = useSelector(selectIsFavorite);
+  // const isFavorite = useSelector(selectIsFavorite);
 
-  const noticeItem = useSelector(selectNotice)
+  const noticeItem = useSelector(selectNotice);
 
   const openInfoModal = async () => {
     try {
@@ -54,17 +58,16 @@ function NoticeCategoryItem( {notice}) {
   const closeModal = () => {
     if (isActiveInfoModal) {
       setIsActiveInfoModal(false);
-    } 
-    else {
+    } else {
       setIsActiveNologModal(false);
     }
   };
+
   const onClickIconFavorite = () => {
     if (isLoggedIn) {
       dispatch(addToFavorite(notice._id));
-    }
-    else {
-        openNologModal();
+    } else {
+      openNologModal();
     }
   };
 
@@ -79,13 +82,11 @@ function NoticeCategoryItem( {notice}) {
     const daysDifference = differenceInDays(currentDate, parsedInputDate);
 
     if (yearsDifference === 0) {
-    
       if (monthsDifference === 0) {
-      
         if (daysDifference === 1) {
-         return daysDifference + "day";
+          return daysDifference + 'day';
         }
-        return daysDifference + "days";
+        return daysDifference + 'days';
       }
       if (monthsDifference === 1) {
         return monthsDifference + 'mo.';
@@ -98,7 +99,7 @@ function NoticeCategoryItem( {notice}) {
     return yearsDifference + 'yrs.';
   };
 
-  const catWord = (word) => {
+  const catWord = word => {
     if (word.length > 6) {
       return word.slice(0, 5) + '...';
     }
@@ -106,9 +107,9 @@ function NoticeCategoryItem( {notice}) {
   };
 
   const splitWord = word => {
-    if(noticeItem) {
-       return word.split('-').join(' '); 
-    }  
+    if (noticeItem) {
+      return word.split('-').join(' ');
+    }
   };
 
   return (
@@ -116,9 +117,14 @@ function NoticeCategoryItem( {notice}) {
       <div className={css.category_item__content}>
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
-            {noticeItem && (<p className={css.category_text}>{splitWord(notice.category)}</p>)}
-            <div className={css.icon_box} onClick={() =>  onClickIconFavorite(notice._id)}>
-              {!isFavorite ? (
+            {noticeItem && (
+              <p className={css.category_text}>{splitWord(notice.category)}</p>
+            )}
+            <div
+              className={css.icon_box}
+              onClick={() => onClickIconFavorite(notice._id)}
+            >
+              {notice.usersAddToFavorite.includes(userId) ? (
                 <FavoriteRoundedIcon className={css.icon_favorite} />
               ) : (
                 <>
@@ -155,103 +161,114 @@ function NoticeCategoryItem( {notice}) {
       </div>
       <div className={css.text_container}>
         <p className={css.title}>{noticeItem.title}</p>
-        <button className={css.button_more} onClick={()=> openInfoModal(notice._id)}>
+        <button
+          className={css.button_more}
+          onClick={() => openInfoModal(notice._id)}
+        >
           Learn more
           <img src={pawprint} alt="icon_pet" className={css.icon_button} />
         </button>
-        </div>
-        {isActiveInfoModal && noticeItem  && (
-           <Modal isActive={isActiveInfoModal} closeModal={closeModal}>
-           <div className={css.modal_container}>
-             <div className={css.content_container}>
-               <div className={css.positional_container}>
-                 <div className={css.category_container}>
-                   <p className={css.category_text}>
-                     {splitWord(notice.category)}
-                   </p>
-                 </div>
-                 <div className={css.img_container}>
-                   <img
-                     src={noticeItem.avatarURL}
-                     alt="img_pet"
-                     className={css.img}
-                   />
-                 </div>
-               </div>
- 
-               <div className={css.info_container}>
-                 <h1 className={css.title}>{noticeItem.title}</h1>
- 
-                 <ul className={css.list_info}>
-                   <li className={css.list_info__item}>
-                     <span className={css.characteristics}>Name:</span>
-                     <span className={css.value}>{noticeItem.name}</span>
-                   </li>
-                   <li className={css.list_info__item}>
-                     <span className={css.characteristics}>Birthday:</span>
-                     <span className={css.value}>{noticeItem.birthday}</span>
-                   </li>
-                   <li className={css.list_info__item}>
-                     <span className={css.characteristics}>Type:</span>
-                     <span className={css.value}>{noticeItem.type}</span>
-                   </li>
-                   <li className={css.list_info__item}>
-                     <span className={css.characteristics}>Place:</span>
-                     <span className={css.value}>{noticeItem.location}</span>
-                   </li>
-                   <li className={css.list_info__item}>
-                     <span className={css.characteristics}>The sex:</span>
-                     <span className={css.value}>{noticeItem.sex}</span>
-                   </li>
-                   {noticeItem.price && (
-                     <li className={css.list_info__item}>
-                     <span className={css.characteristics}> Price:</span>
-                     <span className={css.value}>{noticeItem.price}</span>
-                   </li>
-                   )}
-                   <li className={css.list_info__item}>
-                     <span className={css.characteristics}>Email:</span>
-                     <a href="mailto:user@email.com" className={css.link}>
-                       {noticeItem.owner.email}
-                     </a>
-                   </li>
-                   {noticeItem.owner.phone && (
-                     <li className={css.list_info__item}>
-                       <span className={css.characteristics}>Phone:</span>
-                       <a href="tel:+380970632424" className={css.link}>
-                         {noticeItem.owner.phone}
-                       </a>
-                     </li>
-                    )}
-                 </ul>
-               </div>
-             </div>
-             <p className={css.comments}>
-               <b>Comments:</b>{' '}
-               {noticeItem.comment ? noticeItem.comment : <>no comment</>}
-             </p>
-             <div className={css.buttons_container}>
-               <button className={css.button_add} onClick={()=> onClickIconFavorite(notice._id)}>
-                {isFavorite ? (<>Add to
-                 <FavoriteBorderIcon className={css.icon} /></>
-                ) : (<>Remove from <FavoriteBorderIcon className={css.icon_remove} />
-                </>
+      </div>
+      {isActiveInfoModal && noticeItem && (
+        <Modal isActive={isActiveInfoModal} closeModal={closeModal}>
+          <div className={css.modal_container}>
+            <div className={css.content_container}>
+              <div className={css.positional_container}>
+                <div className={css.category_container}>
+                  <p className={css.category_text}>
+                    {splitWord(notice.category)}
+                  </p>
+                </div>
+                <div className={css.img_container}>
+                  <img
+                    src={noticeItem.avatarURL}
+                    alt="img_pet"
+                    className={css.img}
+                  />
+                </div>
+              </div>
+
+              <div className={css.info_container}>
+                <h1 className={css.title}>{noticeItem.title}</h1>
+
+                <ul className={css.list_info}>
+                  <li className={css.list_info__item}>
+                    <span className={css.characteristics}>Name:</span>
+                    <span className={css.value}>{noticeItem.name}</span>
+                  </li>
+                  <li className={css.list_info__item}>
+                    <span className={css.characteristics}>Birthday:</span>
+                    <span className={css.value}>{noticeItem.birthday}</span>
+                  </li>
+                  <li className={css.list_info__item}>
+                    <span className={css.characteristics}>Type:</span>
+                    <span className={css.value}>{noticeItem.type}</span>
+                  </li>
+                  <li className={css.list_info__item}>
+                    <span className={css.characteristics}>Place:</span>
+                    <span className={css.value}>{noticeItem.location}</span>
+                  </li>
+                  <li className={css.list_info__item}>
+                    <span className={css.characteristics}>The sex:</span>
+                    <span className={css.value}>{noticeItem.sex}</span>
+                  </li>
+                  {noticeItem.price && (
+                    <li className={css.list_info__item}>
+                      <span className={css.characteristics}> Price:</span>
+                      <span className={css.value}>{noticeItem.price}</span>
+                    </li>
+                  )}
+                  <li className={css.list_info__item}>
+                    <span className={css.characteristics}>Email:</span>
+                    <a href="mailto:user@email.com" className={css.link}>
+                      {noticeItem.owner.email}
+                    </a>
+                  </li>
+                  {noticeItem.owner.phone && (
+                    <li className={css.list_info__item}>
+                      <span className={css.characteristics}>Phone:</span>
+                      <a href="tel:+380970632424" className={css.link}>
+                        {noticeItem.owner.phone}
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+            <p className={css.comments}>
+              <b>Comments:</b>{' '}
+              {noticeItem.comment ? noticeItem.comment : <>no comment</>}
+            </p>
+            <div className={css.buttons_container}>
+              <button
+                className={css.button_add}
+                onClick={() => onClickIconFavorite(notice._id)}
+              >
+                {!notice.usersAddToFavorite.includes(userId) ? (
+                  <>
+                    Add to
+                    <FavoriteBorderIcon className={css.icon} />
+                  </>
+                ) : (
+                  <>
+                    Remove from{' '}
+                    <FavoriteBorderIcon className={css.icon_remove} />
+                  </>
                 )}
-                 
-               </button>
-               <button className={css.button_contact}>Contact</button>
-             </div>
-             <button
-               type="button"
-               className={css.close_modal_button}
-               onClick={closeModal}
-             >
-               <CloseIcon className={css.icon_close} />
-             </button>
-           </div>
-         </Modal>
-       )} 
-        <Modal isActive={isActiveNologModal} closeModal={closeModal}>
+              </button>
+              <button className={css.button_contact}>Contact</button>
+            </div>
+            <button
+              type="button"
+              className={css.close_modal_button}
+              onClick={closeModal}
+            >
+              <CloseIcon className={css.icon_close} />
+            </button>
+          </div>
+        </Modal>
+      )}
+      <Modal isActive={isActiveNologModal} closeModal={closeModal}>
         <div className={css.modal_container_log_reg}>
           <h1 className={css.title_modal}>Attention</h1>
           <p className={css.text_modal}>
