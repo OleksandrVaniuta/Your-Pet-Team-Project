@@ -56,7 +56,7 @@ export const NoticesPage = () => {
         <NotiesCategoriesNav />
         <NoticesAddPetBtn />
       </Box>
-      <NoticesCategoriesList notice={notices}></NoticesCategoriesList>
+      <NoticesCategoriesList notices={notices}></NoticesCategoriesList>
       <Pagination 
       handlePagination={handlePagination}
       key={`${category}-${search}`}
