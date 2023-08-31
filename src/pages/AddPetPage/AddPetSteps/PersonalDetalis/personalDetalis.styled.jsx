@@ -9,7 +9,7 @@ export const InputBox = styled.div`
   margin-top: 16px;
   margin-left: 8px;
   margin-reiht: 8px;
-  margin-bottom: ${props => (props.category === 'your pet' ?44 : 24)}px;
+  margin-bottom: ${props => (props.category === 'your pet' ? 44 : 24)}px;
   @media screen and (min-width: 767px) {
     max-width: 395px;
   }

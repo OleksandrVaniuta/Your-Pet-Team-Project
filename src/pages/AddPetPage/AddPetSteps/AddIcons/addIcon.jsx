@@ -1,9 +1,9 @@
 import { ReactComponent as DogIcon } from '../AddIcons/dog.svg';
-import { ReactComponent as MaleIcon } from '../AddIcons/male.svg';
-import { ReactComponent as FemaleIcon } from '../AddIcons/female.svg';
 import { ReactComponent as Photo } from '../AddIcons/photo.svg';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import SwipeUpAltOutlinedIcon from '@mui/icons-material/SwipeUpAltOutlined';
+import FemaleIcon from '@mui/icons-material/Female';
+// import MaleIcon from '@mui/icons-material/Male';
 export const Dog = () => {
   return (
     <DogIcon
@@ -33,12 +33,12 @@ export const Back = () => {
 
 export const Male = () => {
   return (
-    <MaleIcon
+    <SwipeUpAltOutlinedIcon
       sx={[
         {
           width: 24,
           height: 24,
-          color: '#00C3AD',
+          // color: '#00C3AD',
         },
       ]}
     />
@@ -52,7 +52,7 @@ export const Female = () => {
         {
           width: 24,
           height: 24,
-          color: '#F43F5E',
+          // color: '#F43F5E',
         },
       ]}
     />

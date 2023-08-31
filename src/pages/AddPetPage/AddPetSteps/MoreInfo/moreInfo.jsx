@@ -1,8 +1,10 @@
+
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useState } from 'react';
 import { ValidatePageTwo } from '../../ValidateAddPetPage/ValidateSchemaAdd';
 import { AddPetHeader } from '../AddHeader/addHeader';
 import { Dog, Back, PhotoIcon, Female, Male } from '../AddIcons/addIcon';
+
 import {
   ContainerMore,
   ImgSexBox,
@@ -40,39 +42,42 @@ export const MoreInfo = ({
   const [imageURL, setImageURL] = useState('');
   const [petPhoto, setFile] = useState(null);
   const [sex, setSex] = useState();
+
   const hebdleAddPhoto = e => {
     const photo = e.currentTarget.files[0];
-
+    console.log(photo);
     if (photo.size > 375000) {
       console.log('to large');
       return;
     }
-
+   
     const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
     const fileType = photo.type;
     if (!supportedFormats.includes(fileType)) {
       console.log('Unsupported File Format');
-
       return;
     }
     setFile(photo);
     const file = { file: photo };
+    setImageURL(URL.createObjectURL(photo));
     handleFinalState(file);
-    setImageURL();
+    // setImageURL()
+    console.log(imageURL);
   };
-
+    
+    
   const handleSubmit = async (values, { validateForm }) => {
     const validationErrors = await validateForm(values);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log(values);
+      // console.log(values);
       console.log(petPhoto);
 
-      // handleFinalState(values);
+      handleFinalState(values);
 
       const { sex, comments, city, price } = values;
       await handlePets(sex, comments, city, price);
-      console.log(pets);
+      // console.log(pets);
     } else {
       console.log('Форма содержит ошибки', validationErrors);
     }
@@ -103,6 +108,7 @@ export const MoreInfo = ({
                 {category !== 'your pet' && (
                   <SexBox>
                     <SexTitle>The Sex</SexTitle>
+                    
                     <SexFlex>
                       <SexLabel checked={sex === 'female'}>
                         <Field
@@ -115,7 +121,6 @@ export const MoreInfo = ({
                         <Female />
                         Female
                       </SexLabel>
-
                       <SexLabel checked={sex === 'male'}>
                         <Field
                           type="radio"
@@ -136,24 +141,20 @@ export const MoreInfo = ({
                     {pets.file ? 'Add photo' : 'Load the pet’s image: '}
                   </ImageTitle>
                   <Img category={category}>
-                    {(imageURL && (
-                      <img src={imageURL} alt="Pet" height={112} width={112} />
-                    )) || (
-                      <PhotoIcon
-                      // fontSize: 50, color: '#54ADFF'
-                      />
-                    )}
-
                     <InputImage
                       id="photo"
                       type="file"
                       name="photo"
                       accept="image/*,.png,.jpg,.gif,.web,"
                       hidden
+                      multiple={false}
                       onChange={e => {
                         hebdleAddPhoto(e);
                       }}
                     />
+                    {(imageURL && <img src={imageURL} alt="Pet" />) || (
+                      <PhotoIcon />
+                    )}
                   </Img>
                 </ImageBox>
               </ImgSexBox>
@@ -169,8 +170,7 @@ export const MoreInfo = ({
                       required
                       errors={touched.city && errors.city}
                     />
-
-                    {touched.city && errors.name && <div>{errors.price}</div>}
+                    {touched.city && errors.name && <div>{errors.city}</div>}
                   </Label>
                 )}
                 {category === 'sell' && (
@@ -183,7 +183,6 @@ export const MoreInfo = ({
                       placeholder="00$"
                       errors={touched.price && errors.price}
                     />
-
                     {touched.price && errors.price && <div>{errors.price}</div>}
                   </Label>
                 )}
@@ -197,7 +196,6 @@ export const MoreInfo = ({
                     name="comments"
                     rows="1"
                     placeholder="Some comments"
-                    required
                     errors={touched.comments && errors.comments}
                   />
                   {touched.comments && errors.comments && (
@@ -224,5 +222,5 @@ export const MoreInfo = ({
         )}
       </Formik>
     </Container>
-  );
-};
+  )
+}

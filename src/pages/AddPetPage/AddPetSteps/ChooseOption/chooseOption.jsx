@@ -1,6 +1,9 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CategoryForm, CheckedLabel } from '../ChooseOption/chooseOption.styled';
+import {
+  CategoryForm,
+  CheckedLabel,
+} from '../ChooseOption/chooseOption.styled';
 
 import { AddPetHeader } from '../AddHeader/addHeader';
 import { Dog, Back } from '../AddIcons/addIcon';

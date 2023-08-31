@@ -13,7 +13,10 @@ export const ValidateSchemaAdd = Yup.object().shape({
     .required('Required'),
   date: Yup.string()
     .matches(
-      /^(0[1-9]|1[0-9]|2[0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$/,
+      // /^\d{2}-\d{2}-\d{4}$/,
+      /^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-\d{4}$/,
+
+      // /^(0[1-9]|1[0-9]|2[0-9]|3[01]).\(0[1-9]|1[012])\.\d{4}$/,
       'Invalid date format'
     )
     .required('Required'),
@@ -47,9 +50,11 @@ export const ValidatePageTwo = Yup.object().shape({
     .required('Required field!'),
   comments: Yup.string()
     .min(8, 'Minimum 8 characters!')
-    .max(120, 'Maximum 120 characters!')
+    .max(120, 'Maximum 120 characters!'),
+  price: Yup.string()
+    .matches(/^[1-9]\d*([,.]\d+)?$/, 'Price must be a number')
     .required('Required field!'),
-  price: Yup.string().matches(/^[1-9]\d*([,.]\d+)?$/, 'Price must be a number'),
+  file: Yup.mixed().required('This field is required'),
 });
 
 // export const ValidSchema = (step) => {
@@ -87,4 +92,3 @@ export const ValidatePageTwo = Yup.object().shape({
 //     });
 
 //   }
-// }

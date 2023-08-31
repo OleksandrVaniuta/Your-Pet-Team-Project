@@ -32,11 +32,9 @@ export const LabelBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 16px;
   margin-bottom: 20px;
   @media (min-width: 768px) {
-    gap: 24px;
-    margin-bottom: 20px;
+    margin-top: 20px;
     width: ${props =>
       props.category !== 'your pet' && props.step === 2 ? '395px' : '100%'};
   }
@@ -80,17 +78,17 @@ export const ImageBox = styled.div`
   display: flex;
  left: 0;
   gap: 27px;
+  margin-top: 16px;
   align-items: center;
-
+  text-align: start;
    @media (min-width: 768px) {
-   margin-top: 0px;
-     margin-bottom: 0px;
-   gap: 8px;
+  margin-top: 0;
    flex-direction: ${props =>
      props.category !== 'your pet' ? 'column' : 'row'};
+     gap: ${props => (props.category !== 'your pet' ? '4px' : '27px')};
 `;
 
-export const Img = styled.div`
+export const Img = styled.label`
   position: relative;
   display: flex;
   justify-content: center;
@@ -100,7 +98,10 @@ export const Img = styled.div`
   background-color: #cce4fb;
   border-radius: 20px;
   cursor: pointer;
-
+  transition: all 0.2s ease-in-out;
+  :hover {
+    transform: scale(1.05);
+  }
   @media (min-width: 768px) {
     width: 182px;
     height: 182px;
@@ -142,13 +143,14 @@ export const FieldInputComments = styled(Field)`
   box-sizing: border-box;
   width: 100%;
   padding: 9px 15px;
+  margin-top: 4px;
   font-weight: 400;
   font-size: 14px;
   line-hieght: normal;
   text-align: start;
   height: 92px;
   border-radius: 20px;
-  color: #888888;
+  color: #1111111;
   border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
   @media (min-width: 768px) {
     height: ${props =>
@@ -162,36 +164,32 @@ export const SexBox = styled.div`
   position: relative;
   text-align: left;
   margin-top: 16px;
-  // @media (min-width: 768px) {
-  //   margin-bottom: 50px;
-  // }
 `;
 export const SexFlex = styled.div`
   display: flex;
-  align-items: center;
-  text-align: left;
   gap: 16px;
   margin-top: 8px;
-  margin-left: 0px;
-  color: ${props => (props.checked ? '#00C3AD' : '#888888')};
-  background-color: ${props => (props.checked ? '#54adff' : '#FFFFFF')};
+  jastify-content: center;
 `;
-export const SexInput = styled(Field)`
-  color: ${props => (props.checked ? '#00C3AD' : '#888888')};
-  background-color: ${props => (props.checked ? '#54adff' : '#FFFFFF')};
-`;
+export const SexInput = styled(Field)``;
 export const SexLabel = styled.label`
-  display: flex;
-  gap: 12px;
+  display: inline-flex;
+  height: 35px;
+  padding: 4px 8px;
+  justify-content: center;
   align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-hieght: 24px;
 
   border: 0 solid;
   border-radius: 40px;
   cursor: pointer;
-  color: ${props => (props.checked ? '#00C3AD' : '#888888')};
+  color: ${props => (props.checked ? '#FFFFFF' : '#888888')};
+
   background-color: ${props => (props.checked ? '#54adff' : '#FFFFFF')};
   > input[type='radio'] {
     // visibility: hidden;

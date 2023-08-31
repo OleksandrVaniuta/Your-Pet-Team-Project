@@ -29,7 +29,7 @@ export const Options = styled.ul`
   }
 `;
 
-export const OptionBox = styled.li`
+export const OptionBox = styled.div`
   position: relative;
   width: 80px;
   text-align: start;

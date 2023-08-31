@@ -8,7 +8,8 @@ export const Container = styled.div`
   max-width: 280px;
   border-radius: 40px;
   background-color: #fff;
-  boxshadows: '3px 8px 14px rgba(136, 198, 253, 0.19)';
+  box-shadows: ${({ theme }) => theme.boxShadows.main};
+  //  '3px 8px 14px rgba(136, 198, 253, 0.19)';
 
   @media screen and (min-width: 767px) {
     margin: auto;
@@ -25,4 +26,3 @@ export const Container = styled.div`
         : '20px 32px'};
   }
 `;
-

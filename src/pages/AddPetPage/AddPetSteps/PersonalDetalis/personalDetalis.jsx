@@ -33,7 +33,7 @@ export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
         type: pets.type,
         title: pets.title,
       }}
-      // validationSchema={ValidateSchemaAdd}
+      validationSchema={ValidateSchemaAdd}
       onSubmit={handleSubmit}
     >
       {({ touched, errors }) => (
