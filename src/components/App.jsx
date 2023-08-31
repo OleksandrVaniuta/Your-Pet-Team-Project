@@ -1,29 +1,31 @@
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PublicRoute } from 'PublicRoute';
 import { Layout } from './Layout/Layout';
-import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import { useDispatch } from 'react-redux';
 import { refresh } from '../redux/Auth/AuthOperations';
-// import { selectIsRefreshing } from '../redux/Auth/AuthSelectors';
-import LoginPage from 'pages/LoginPage/LoginPage';
-// import NotiesCategoriesNav from './NoticesCategoriesNav/NotiesCategoriesNav';
-import MainPage from 'pages/Mainpage/MainPage';
-// import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
-import { NoticesPage } from 'pages/NoticesPage/NoticesPage';
 import { PrivateRoute } from 'PriviteRoute';
-import { UserPage } from 'pages/UserPage/UserPage';
-import { FriendsPage } from '../pages/OurFriendsPage/FriendsPage';
-import { AddPetPage } from 'pages/AddPetPage/AddPetPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+
+const MainPage = lazy(() => import('../pages/Mainpage/MainPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
+const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
+const FriendsPage = lazy(() => import('../pages/OurFriendsPage/FriendsPage'));
+const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
+const AddPetPage = lazy(() => import('../pages/AddPetPage/AddPetPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refresh());
+    const LocalStoreToken = localStorage.getItem('persist:auth');
+    if (JSON.parse(LocalStoreToken)) {
+      dispatch(refresh());
+    }
   }, [dispatch]);
 
   return (
@@ -34,12 +36,14 @@ function App() {
           <Route
             path="/register"
             element={
-              <PublicRoute redirectTo="/" component={<RegisterPage />} />
+              <PublicRoute redirectTo="/user" component={<RegisterPage />} />
             }
           />
           <Route
             path="/login"
-            element={<PublicRoute redirectTo="/" component={<LoginPage />} />}
+            element={
+              <PublicRoute redirectTo="/user" component={<LoginPage />} />
+            }
           />
           <Route
             path="notices/"
@@ -55,6 +59,7 @@ function App() {
             }
           />
           <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/news" element={<NewsPage />} />
           <Route
             path="/add-pet"
             element={

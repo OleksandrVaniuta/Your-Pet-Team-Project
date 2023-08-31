@@ -1,9 +1,16 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchNoticesByCategory } from './operations';
+import {
+  fetchNoticesByCategory,
+  fetchDataAndOpenModal,
+  addToFavorite,
+} from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
+  isFavorite: false,
+  notice: {},
+  noticeFavorite: [],
 };
 
 export const noticesSlice = createSlice({
@@ -19,12 +26,32 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
+      .addCase(fetchDataAndOpenModal.fulfilled, (state, action) => {
+        return {
+          ...state,
+          notice: { ...action.payload },
+        };
+      })
+      .addCase(addToFavorite.fulfilled, (state, action) => {
+        state.items.forEach(item => {
+          if (item._id === action.payload.id) {
+            if (item.usersAddToFavorite.includes(action.payload.data.userId)) {
+              const index = item.usersAddToFavorite.indexOf(
+                action.payload.data.userId
+              );
+              item.usersAddToFavorite.splice(index, 1);
+            } else {
+              item.usersAddToFavorite.push(action.payload.data.userId);
+            }
+          }
+        });
+      })
       .addMatcher(isAnyOf(fetchNoticesByCategory.pending), state => {
         state.isLoading = true;
       })
       .addMatcher(isAnyOf(fetchNoticesByCategory.rejected), state => {
-        return { ...state, items: [], totalPages: null, isLoading: false };
+        return { ...state, items: [], isLoading: false };
       });
+    // reducers: {}
   },
-  reducers: {},
 });

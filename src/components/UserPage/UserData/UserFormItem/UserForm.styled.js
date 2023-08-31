@@ -74,6 +74,10 @@ export const UserInputBtn = styled.button`
   width: 100%;
   height: 31px;
 
+  &:hover {
+    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  }
+
   @media screen and (min-width: 320px) {
     width: 248px;
   }

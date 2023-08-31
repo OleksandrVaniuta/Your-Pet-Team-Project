@@ -12,11 +12,15 @@ import {
 } from './NoticesSearch.styled';
 import { useMediaQuery } from '@mui/material';
 import { toast } from 'react-hot-toast';
+import { useSearchParams } from 'react-router-dom';
 
 const NoticesSearch = ({ handleSearch }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('search');
+
   const formik = useFormik({
     initialValues: {
-      search: '',
+      search: search || '',
     },
     onSubmit: (values, actions) => {
       const { search } = values;
@@ -30,6 +34,8 @@ const NoticesSearch = ({ handleSearch }) => {
 
   const handleReset = () => {
     handleSearch('');
+    setSearchParams();
+    formik.initialValues.search = '';
     formik.resetForm();
   };
 
