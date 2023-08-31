@@ -18,4 +18,5 @@ export const TitlePage = styled.h2`
 
 export const FriendsWrapper = styled.div`
   background-color: #fef9f9;
+  margin-bottom: 
 `;
