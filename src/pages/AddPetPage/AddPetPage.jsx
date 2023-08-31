@@ -4,7 +4,7 @@ import { PersonalDetals } from './AddPetSteps/personalDetalis';
 import { MoreInfo } from './AddPetSteps/moreInfo';
 import { useDispatch } from 'react-redux';
 import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AddPetPage = () => {
   const [step, setStep] = useState(0);
@@ -20,9 +20,9 @@ const AddPetPage = () => {
     city: '',
     comments: '',
   });
+
   const dispatch = useDispatch();
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleNext = values => {
@@ -39,8 +39,6 @@ const AddPetPage = () => {
   };
 
   const handlePets = async (sex, comments, city, price) => {
-    // handleFinalState(values);
-
     const formData = new FormData();
 
     formData.append('type', pets.type);
@@ -77,7 +75,7 @@ const AddPetPage = () => {
         console.log(`${key}: ${value}`);
       }
       await dispatch(addMyPet(formData));
-      navigate(location.state?.from);
+      navigate('/user');
       return;
     }
     for (const [key, value] of formData.entries()) {
@@ -85,7 +83,7 @@ const AddPetPage = () => {
     }
     await dispatch(addPet(formData));
 
-    navigate(location.state?.from);
+    navigate('/notices/my-ads');
   };
 
   return (
@@ -106,6 +104,7 @@ const AddPetPage = () => {
           category={category}
           step={step}
           handleNext={handleNext}
+          handleFinalState={handleFinalState}
         />
       )}
 
