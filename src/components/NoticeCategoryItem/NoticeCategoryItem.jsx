@@ -112,13 +112,20 @@ function NoticeCategoryItem({ notice }) {
     }
   };
 
+  const splitWordCategory = word => {
+    if (noticeItem) {
+      return word.split('-').join('/');
+    }
+  };
+
   return (
     <li key={notice._id} className={css.category_item}>
       <div className={css.category_item__content}>
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
             {noticeItem && (
-              <p className={css.category_text}>{splitWord(notice.category)}</p>
+              <p className={css.category_text}>{notice.category === 'lost-found' ? (splitWordCategory(notice.category)) : (splitWord(notice.category))
+              }</p>
             )}
             <div
               className={css.icon_box}
