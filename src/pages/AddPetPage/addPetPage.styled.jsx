@@ -30,5 +30,3 @@ export const Container = styled.div`
         : '20px 32px'};
   }
 `;
-export const Dog = styled.svg``;
-export const Back = styled.svg``;

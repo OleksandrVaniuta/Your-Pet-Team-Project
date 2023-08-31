@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ChooseOption } from './AddPetSteps/ChooseOptions/chooseOption';
-import { PersonalDetals } from './AddPetSteps/personalDetalis';
-import { MoreInfo } from './AddPetSteps/moreInfo';
+import { ChooseOption } from './AddPetSteps/ChooseOption/chooseOption';
+import { PersonalDetals } from './AddPetSteps/PersonalDetalis/personalDetalis';
+import { MoreInfo } from './AddPetSteps/MoreInfo/moreInfo';
 import { useDispatch } from 'react-redux';
 import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -21,6 +21,7 @@ const AddPetPage = () => {
     comments: '',
   });
   const dispatch = useDispatch();
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,6 +47,8 @@ const AddPetPage = () => {
     formData.append('type', pets.type);
     formData.append('name', pets.name);
 
+    console.log(Object.entries(formData));
+
     if (category === 'sell') {
       formData.append('category', category);
       formData.append('avatarURL', pets.file);
@@ -57,7 +60,7 @@ const AddPetPage = () => {
       formData.append('price', price);
     }
 
-    if (category === 'lost/found' || category === 'lost/found') {
+    if (category === 'lost/found' || category === 'in good hands') {
       formData.append('category', category);
       formData.append('avatarURL', pets.file);
       formData.append('title', pets.title);
@@ -71,10 +74,17 @@ const AddPetPage = () => {
       formData.append('avatarPet', pets.file);
       formData.append('dateOfBirth', pets.date);
       formData.append('comments', comments);
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+      await dispatch(addMyPet(formData));
       await dispatch(addMyPet(formData));
       return;
     }
-
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+    await dispatch(addPet(formData));
     await dispatch(addPet(formData));
 
     navigate(location.state?.from);
@@ -114,5 +124,4 @@ const AddPetPage = () => {
     </div>
   );
 };
-
 export default AddPetPage;

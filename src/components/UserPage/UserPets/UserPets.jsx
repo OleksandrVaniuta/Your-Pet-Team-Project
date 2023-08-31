@@ -15,7 +15,6 @@ export default function UserPets() {
 
   return (
     <UserPetsCOntainer>
-      {pets && <PetsList pets={pets} />}
       <UserPetsHeader />
       {!pets.length && (
         <NoPetsMessageWrapper>
