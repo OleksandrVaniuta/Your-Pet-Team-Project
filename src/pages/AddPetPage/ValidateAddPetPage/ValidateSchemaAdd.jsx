@@ -79,7 +79,8 @@ export const ValidatePageSell = Yup.object().shape({
 export const ValidatePageTwoMyPet = Yup.object().shape({
   comments: Yup.string()
     .min(3, 'Minimum 8 characters!')
-    .max(120, 'Maximum 120 characters!'),
+    .max(120, 'Maximum 120 characters!')
+    .required('Required field!'),
 });
 
 export const ValidatePageTwo = Yup.object().shape({
