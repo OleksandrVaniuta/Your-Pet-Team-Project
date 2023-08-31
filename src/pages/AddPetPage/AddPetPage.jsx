@@ -119,3 +119,4 @@ const AddPetPage = () => {
     </div>
   );
 };
+export default AddPetPage;
