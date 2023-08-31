@@ -1,36 +1,41 @@
 import React from 'react';
-import Modal from 'components/Modal/Modal';
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import css from './Friends.module.css';
+
 
 const FriendsItem = ({ item }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalSize, setModalSize] = useState({ width: '', height: '' });
-  const contentRef = useRef(null);
 
   const openModal = evn => {
     evn.preventDefault();
     setModalOpen(true);
   };
 
-  const closeModal = () => {
-    if (modalOpen) {
-      setModalOpen(false);
+
+  const closeModal = useCallback(() => {
+    setModalOpen(false);
+   }, []);
+
+   useEffect(() => {
+    const onKeyDown = event => {
+      if (event.code === 'Escape') {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [closeModal]);
+
+
+  const onModalOpen = event => {
+    if (event.target === event.currentTarget) {
+      closeModal();
     }
   };
-
-  useLayoutEffect(() => {
-    if (modalOpen && contentRef.current) {
-      const contentWidth = contentRef.current.offsetWidth;
-      const contentHeight = contentRef.current.offsetHeight;
-
-      setModalSize({
-        width: `${contentWidth}px`,
-        height: `${contentHeight}px`,
-      });
-    }
-  }, [modalOpen]);
-
   const renderWorkHoursModal = () => {
     const weekDays = ['MU', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
@@ -98,16 +103,15 @@ const FriendsItem = ({ item }) => {
                 </li>
               )}
               {modalOpen && (
-                <Modal isActive={modalOpen} closeModal={closeModal}>
+                <div className={css.backdrop} onClick={onModalOpen}>
                   <div
                     className={css.modal}
-                    style={{ width: modalSize.width, height: modalSize.height }}
                   >
-                    <ul className={css.modal_content} ref={contentRef}>
+                    <ul className={css.modal_content}>
                       {renderWorkHoursModal()}
                     </ul>
                   </div>
-                </Modal>
+                </div>
               )}
 
               {item.addressUrl && (
@@ -142,7 +146,6 @@ const FriendsItem = ({ item }) => {
                   <a
                     href={`tel:${item.phone}`}
                     className={css.info_main}
-                    target="blank"
                   >
                     {item.phone}
                   </a>
