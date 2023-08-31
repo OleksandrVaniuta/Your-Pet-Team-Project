@@ -15,7 +15,7 @@ import {
   BtnBox,
 } from '../../Styles/button.styled';
 
-import { Container } from '../../Styles/addPetPage.styled';
+import { Container } from '../../addPetPage.styled';
 
 export const ChooseOption = ({ category, setCategory, setStep }) => {
   const location = useLocation();
