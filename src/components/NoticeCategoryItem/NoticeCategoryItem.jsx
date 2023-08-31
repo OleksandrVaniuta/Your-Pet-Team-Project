@@ -7,10 +7,11 @@ import FemaleIcon from '@mui/icons-material/Female';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import { Link } from 'react-router-dom';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+// import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 // import { selectIsFavorite } from 'redux/notices/selectors';
 import { selectUserId } from 'redux/Auth/AuthSelectors';
-import { deleteNotice } from 'redux/notices/operations';
+// import { deleteNotice } from 'redux/notices/operations';
+import DltUserAddBtn from 'components/DeleteMyAdd/DeleteMyAdd';
 
 import CloseIcon from '@mui/icons-material/Close';
 // import { Link } from 'react-router-dom';
@@ -35,11 +36,9 @@ import { selectNotice } from 'redux/notices/selectors';
 function NoticeCategoryItem({ notice }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const userId = useSelector(selectUserId);
-  // const accessToken = useSelector(selectToken);
   const [isActiveInfoModal, setIsActiveInfoModal] = useState(false);
   const [isActiveNologModal, setIsActiveNologModal] = useState(false);
   const dispatch = useDispatch();
-  // const isFavorite = useSelector(selectIsFavorite);
   const [togle, setTogle] = useState(
     notice.usersAddToFavorite.includes(userId)
   );
@@ -75,10 +74,6 @@ function NoticeCategoryItem({ notice }) {
     } else {
       openNologModal();
     }
-  };
-
-  const onClickDelete = () => {
-    dispatch(deleteNotice(notice._id));
   };
 
   const age = inputDate => {
@@ -132,29 +127,7 @@ function NoticeCategoryItem({ notice }) {
     <li key={notice._id} className={css.category_item}>
       <div className={css.category_item__content}>
         {notice.owner === userId && (
-          <div
-            className={css.icon_box}
-            style={{
-              position: 'absolute',
-              top: '64px',
-              right: '0',
-              color: 'black',
-              zIndex: 90,
-            }}
-            onClick={onClickDelete}
-          >
-            <DeleteOutlineIcon
-              sx={[
-                {
-                  fontSize: 24,
-                  color: '#54ADFF',
-                  verticalAlign: 'middle',
-                  transition: 'color 1s ease',
-                },
-                { '&:hover': { color: '#85080a' } },
-              ]}
-            />
-          </div>
+          <DltUserAddBtn id={notice._id} title={noticeItem.title} />
         )}
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
