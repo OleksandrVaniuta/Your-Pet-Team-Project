@@ -38,6 +38,9 @@ function NoticeCategoryItem({ notice }) {
   const [isActiveNologModal, setIsActiveNologModal] = useState(false);
   const dispatch = useDispatch();
   // const isFavorite = useSelector(selectIsFavorite);
+  const [togle, setTogle] = useState(notice.usersAddToFavorite.includes(userId))
+
+
 
   const noticeItem = useSelector(selectNotice);
 
@@ -66,6 +69,7 @@ function NoticeCategoryItem({ notice }) {
   const onClickIconFavorite = () => {
     if (isLoggedIn) {
       dispatch(addToFavorite(notice._id));
+      setTogle(!togle)
     } else {
       openNologModal();
     }
@@ -124,7 +128,7 @@ function NoticeCategoryItem({ notice }) {
               className={css.icon_box}
               onClick={() => onClickIconFavorite(notice._id)}
             >
-              {notice.usersAddToFavorite.includes(userId) ? (
+              {togle ? (
                 <FavoriteRoundedIcon className={css.icon_favorite} />
               ) : (
                 <>
@@ -244,7 +248,7 @@ function NoticeCategoryItem({ notice }) {
                 className={css.button_add}
                 onClick={() => onClickIconFavorite(notice._id)}
               >
-                {!notice.usersAddToFavorite.includes(userId) ? (
+                {!togle ? (
                   <>
                     Add to
                     <FavoriteBorderIcon className={css.icon} />
