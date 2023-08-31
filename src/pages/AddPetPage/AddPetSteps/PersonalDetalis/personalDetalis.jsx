@@ -16,7 +16,10 @@ import {
   BtnBox,
 } from '../../Styles/button.styled';
 import { Container } from '../../Styles/addPetPage.styled';
-import { ValidateSchemaAdd } from '../../ValidateAddPetPage/ValidateSchemaAdd';
+import {
+  ValidateSchemaAdd,
+  ValidateSchemaMyPet,
+} from '../../ValidateAddPetPage/ValidateSchemaAdd';
 
 import { Dog, Back } from '../AddIcons/addIcon';
 
@@ -24,6 +27,25 @@ export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
   const handleSubmit = async values => {
     handleNext(values);
   };
+  console.log(pets);
+
+  // const handleSubmit = async (values, { validateForm }) => {
+  //   // handleNext(values);
+  //   const validationErrors = await validateForm(values);
+
+  //   if (Object.keys(validationErrors).length === 0) {
+  //     if (category !== 'your pet') {
+  //       values.title = 'your pet';
+  //     }
+  //     handleNext(values);
+
+  //     console.log(values);
+  //   } else {
+  //     console.log('Форма содержит ошибки', validationErrors);
+  //   }
+  // };
+  const validate =
+    category !== 'your pet' ? ValidateSchemaAdd : ValidateSchemaMyPet;
 
   return (
     <Formik
@@ -33,7 +55,9 @@ export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
         type: pets.type,
         title: pets.title,
       }}
-      validationSchema={ValidateSchemaAdd}
+      // validateOnChange={false}
+      // validateOnBlur={false}
+      validationSchema={validate}
       onSubmit={handleSubmit}
     >
       {({ touched, errors }) => (

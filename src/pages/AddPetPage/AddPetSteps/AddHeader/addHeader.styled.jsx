@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const TitlePage = styled.h1`
-
   margin-top: 20px;
   padding-left: 12px;
   padding-reiht: auto;
@@ -25,7 +24,7 @@ export const Options = styled.ul`
     gap: 16px;
     justify-content: ${props =>
       props.category !== 'your pet' && props.step === 2 ? 'center' : 'left'};
-       margin-bottom: ${props => (props.step === 0 ? '24px' : '0px')};
+    margin-bottom: ${props => (props.step === 0 ? '24px' : '0px')};
   }
 `;
 
@@ -59,7 +58,7 @@ export const OptionBox = styled.div`
 `;
 
 export const OptionDecor = styled.div`
-   border-radius: 8px;
+  border-radius: 8px;
   width: 80px;
   text-align: start;
   height: 8px;

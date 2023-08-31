@@ -1,7 +1,10 @@
-
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useState } from 'react';
-import { ValidatePageTwo } from '../../ValidateAddPetPage/ValidateSchemaAdd';
+import {
+  ValidatePageTwo,
+  ValidatePageTwoMyPet,
+  ValidatePageSell,
+} from '../../ValidateAddPetPage/ValidateSchemaAdd';
 import { AddPetHeader } from '../AddHeader/addHeader';
 import { Dog, Back, PhotoIcon, Female, Male } from '../AddIcons/addIcon';
 
@@ -31,6 +34,21 @@ import {
 } from '../../Styles/button.styled';
 import { Container } from '../../Styles/addPetPage.styled';
 
+const validateForm = category => {
+  switch (category) {
+    case 'your pet':
+      return ValidatePageTwoMyPet;
+    case 'sell':
+      return ValidatePageSell;
+    case 'lost/found':
+      return ValidatePageTwo;
+    case 'in good hands':
+      return ValidatePageTwo;
+    default:
+      return ValidatePageTwo;
+  }
+};
+
 export const MoreInfo = ({
   category,
   pets,
@@ -50,7 +68,7 @@ export const MoreInfo = ({
       console.log('to large');
       return;
     }
-   
+
     const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
     const fileType = photo.type;
     if (!supportedFormats.includes(fileType)) {
@@ -64,9 +82,9 @@ export const MoreInfo = ({
     // setImageURL()
     console.log(imageURL);
   };
-    
-    
+
   const handleSubmit = async (values, { validateForm }) => {
+    console.log(values);
     const validationErrors = await validateForm(values);
 
     if (Object.keys(validationErrors).length === 0) {
@@ -84,21 +102,23 @@ export const MoreInfo = ({
   };
 
   const handleChange = evt => {
-    console.log(evt.target.value);
     setSex(evt.target.value);
+    console.log();
   };
+
+  const validate = validateForm(category);
 
   return (
     <Container category={category} step={step}>
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
-          sex: pets.sex,
+          sex: pets.sex || 'female',
           price: pets.price,
           city: pets.city,
           comments: pets.comments,
         }}
-        validationSchema={ValidatePageTwo}
+        validationSchema={validate}
       >
         {({ touched, errors }) => (
           <Form autoComplete="off">
@@ -108,15 +128,15 @@ export const MoreInfo = ({
                 {category !== 'your pet' && (
                   <SexBox>
                     <SexTitle>The Sex</SexTitle>
-                    
+
                     <SexFlex>
                       <SexLabel checked={sex === 'female'}>
                         <Field
                           type="radio"
                           name="sex"
                           value="female"
-                          checked={sex === 'female'}
-                          onChange={handleChange}
+                          // checked={sex === 'female'}
+                          // onChange={handleChange}
                         />
                         <Female />
                         Female
@@ -126,8 +146,8 @@ export const MoreInfo = ({
                           type="radio"
                           name="sex"
                           value="male"
-                          checked={sex === 'male'}
-                          onChange={handleChange}
+                          // checked={sex === 'male'}
+                          // onChange={handleChange}
                         />
                         <Male />
                         Male
@@ -222,5 +242,5 @@ export const MoreInfo = ({
         )}
       </Formik>
     </Container>
-  )
-}
+  );
+};

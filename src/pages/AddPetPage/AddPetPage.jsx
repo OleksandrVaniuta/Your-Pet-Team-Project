@@ -73,10 +73,15 @@ export const AddPetPage = () => {
       formData.append('avatarPet', pets.file);
       formData.append('dateOfBirth', pets.date);
       formData.append('comments', comments);
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
       await dispatch(addMyPet(formData));
       return;
     }
-
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
     await dispatch(addPet(formData));
 
     navigate(location.state?.from);
