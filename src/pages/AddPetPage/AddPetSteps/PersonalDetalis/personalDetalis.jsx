@@ -7,7 +7,7 @@ import {
   TitleLabel,
   FieldInput,
   Label,
-} from '../../Styles/personalDetalis.styled';
+} from './personalDetalis.styled';
 import {
   BtnNextDone,
   BtnCancelBack,
