@@ -39,8 +39,11 @@ export const PersonalDetals = ({
     handleNext(values);
   };
 
+
   const validate =
     category !== 'your pet' ? ValidateSchemaAdd : ValidateSchemaMyPet;
+
+
 
   return (
     <Formik
