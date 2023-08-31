@@ -8,3 +8,7 @@ export const selectIsNoticeLoading = state => state.notices.isLoading;
 export const selectIsFavorite = state => state.notices.isFavorite;
 
 export const selectNotice = state => state.notices.notice;
+
+export const selectNoticesFavorite = state => state.notices.noticesFavorite;
+
+export const selectNoticesMyAds = state => state.notices.noticesMyAds;
