@@ -28,7 +28,7 @@ const NoticesPage = () => {
   const noticesFavorite = useSelector(selectNoticesFavorite);
   const noticesMyAds = useSelector(selectNoticesMyAds);
   const totalPages = useSelector(selectTotalPages);
-  const limit = 2;
+  const limit = 12;
 
   const dispatch = useDispatch();
 
