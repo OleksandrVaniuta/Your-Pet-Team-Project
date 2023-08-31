@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChooseOption } from './AddPetSteps/ChooseOptions/chooseOption';
+import { ChooseOption } from './AddPetSteps/chooseOption';
 import { PersonalDetals } from './AddPetSteps/personalDetalis';
 import { MoreInfo } from './AddPetSteps/moreInfo';
 import { useDispatch } from 'react-redux';
@@ -46,6 +46,8 @@ const AddPetPage = () => {
     formData.append('type', pets.type);
     formData.append('name', pets.name);
 
+    console.log(Object.entries(formData));
+
     if (category === 'sell') {
       formData.append('category', category);
       formData.append('avatarURL', pets.file);
@@ -57,7 +59,7 @@ const AddPetPage = () => {
       formData.append('price', price);
     }
 
-    if (category === 'lost/found' || category === 'lost/found') {
+    if (category === 'lost-found' || category === 'in-good-hands') {
       formData.append('category', category);
       formData.append('avatarURL', pets.file);
       formData.append('title', pets.title);
@@ -71,10 +73,16 @@ const AddPetPage = () => {
       formData.append('avatarPet', pets.file);
       formData.append('dateOfBirth', pets.date);
       formData.append('comments', comments);
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
       await dispatch(addMyPet(formData));
+      navigate(location.state?.from);
       return;
     }
-
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
     await dispatch(addPet(formData));
 
     navigate(location.state?.from);
@@ -114,5 +122,4 @@ const AddPetPage = () => {
     </div>
   );
 };
-
 export default AddPetPage;

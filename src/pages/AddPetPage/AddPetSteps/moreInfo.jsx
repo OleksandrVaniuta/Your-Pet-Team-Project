@@ -1,25 +1,53 @@
-import { ReactComponent as MaleIcon } from '../iconAdd/male.svg';
-import { ReactComponent as FemaleIcon } from '../iconAdd/female.svg';
-
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { useState } from 'react';
-import * as yup from 'yup';
-// import { Photo } from '@mui/icons-material';
+import {
+  ValidatePageTwo,
+  ValidatePageTwoMyPet,
+  ValidatePageSell,
+} from '../ValidateAddPetPage/ValidateSchemaAdd';
+import { AddPetHeader } from './addHeader';
+import { Dog, Back, PhotoIcon, Female, Male } from './addIcon';
 
-const schemaPageTwo = yup.object().shape({
-  sex: yup.mixed().oneOf(['male', 'female']).required('Required field!'),
-  city: yup
-    .string()
-    .min(5, 'Minimum 5 characters!')
-    .max(60, 'Maximum 60 characters!')
-    .required('Required field!'),
-  comments: yup
-    .string()
-    .min(8, 'Minimum 8 characters!')
-    .max(120, 'Maximum 120 characters!')
-    .required('Required field!'),
-  price: yup.string().matches(/^[1-9]\d*([,.]\d+)?$/, 'Price must be a number'),
-});
+import {
+  ContainerMore,
+  ImgSexBox,
+  LabelBox,
+  TitleLabel,
+  FieldInput,
+  ImageBox,
+  InputImage,
+  Img,
+  ImageTitle,
+  SexLabel,
+  FieldInputComments,
+  SexBox,
+  Label,
+  SexTitle,
+  SexFlex,
+} from '../Styles/moreInfo.styled';
+import {
+  BtnBox,
+  BtnNextDone,
+  BtnCancelBack,
+  BtnTitle,
+  LinkTitle,
+} from '../Styles/button.styled';
+import { Container } from '../addPetPage.styled';
+
+const validateForm = category => {
+  switch (category) {
+    case 'your pet':
+      return ValidatePageTwoMyPet;
+    case 'sell':
+      return ValidatePageSell;
+    case 'lost-found':
+      return ValidatePageTwo;
+    case 'in-good-hands':
+      return ValidatePageTwo;
+    default:
+      return ValidatePageTwo;
+  }
+};
 
 export const MoreInfo = ({
   category,
@@ -27,10 +55,11 @@ export const MoreInfo = ({
   handleFinalState,
   handleBack,
   handlePets,
+  step,
 }) => {
   const [imageURL, setImageURL] = useState('');
   const [petPhoto, setFile] = useState(null);
-  console.log(category);
+  const [sex, setSex] = useState();
 
   const hebdleAddPhoto = e => {
     const photo = e.currentTarget.files[0];
@@ -44,124 +73,174 @@ export const MoreInfo = ({
     const fileType = photo.type;
     if (!supportedFormats.includes(fileType)) {
       console.log('Unsupported File Format');
-
       return;
     }
     setFile(photo);
     const file = { file: photo };
+    setImageURL(URL.createObjectURL(photo));
     handleFinalState(file);
-    setImageURL();
+    // setImageURL()
+    console.log(imageURL);
   };
 
   const handleSubmit = async (values, { validateForm }) => {
+    console.log(values);
     const validationErrors = await validateForm(values);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log(values);
+      // console.log(values);
       console.log(petPhoto);
 
-      // handleFinalState(values);
+      handleFinalState(values);
+      setSex(values.sex);
       const { sex, comments, city, price } = values;
       await handlePets(sex, comments, city, price);
-      console.log(pets);
+      // console.log(pets);
     } else {
       console.log('Форма содержит ошибки', validationErrors);
     }
   };
 
+  const handleChange = evt => {
+    setSex(evt.target.value);
+    console.log();
+  };
+
+  const validate = validateForm(category);
+
   return (
-    <div>
+    <Container category={category} step={step}>
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
-          sex: pets.sex,
+          sex: pets.sex || 'female',
           price: pets.price,
           city: pets.city,
           comments: pets.comments,
         }}
-        validationSchema={schemaPageTwo}
+        validationSchema={validate}
       >
-        <Form autoComplete="off">
-          <label> The sex: </label>
-          <div>
-            <label>
-              <span>
-                <MaleIcon />
-              </span>
-              <Field type="radio" name="sex" value="male" />
-              Male
-            </label>
-            <label>
-              <span>
-                <FemaleIcon />
-              </span>
-              <Field type="radio" name="sex" value="female" />
-              Female
-            </label>
-            <ErrorMessage name="sex" component="div" />
-          </div>
+        {({ touched, errors }) => (
+          <Form autoComplete="off">
+            <AddPetHeader category={category} step={2} />
+            <ContainerMore category={category}>
+              <ImgSexBox>
+                {category !== 'your pet' && (
+                  <SexBox>
+                    <SexTitle>The Sex</SexTitle>
 
-          <label htmlFor="city">
-            Location:
-            <Field
-              id="city"
-              type="text"
-              name="city"
-              placeholder="New York"
-              required
-            />
-            <ErrorMessage name="city" component="div" />
-          </label>
-
-          {category === 'sell' && (
-            <label htmlFor="price">
-              Price:
-              <Field id="price" type="text" name="price" placeholder="00$" />
-              <ErrorMessage name="price" component="div" />
-            </label>
-          )}
-
-          <label htmlFor="photo">Load the pet’s image</label>
-          <label htmlFor="photo">
-            <Field
-              id="photo"
-              type="file"
-              name="photo"
-              accept="image/*,.png,.jpg,.gif,.web,"
-              onChange={e => {
-                hebdleAddPhoto(e);
-              }}
-            />
-            {imageURL && (
-              <img src={imageURL} alt="Pet" height={116} width={116} />
-            )}
-          </label>
-
-          <label htmlFor="comments">
-            Comments
-            <Field
-              as="textarea"
-              id="comments"
-              type="text"
-              name="comments"
-              rows="1"
-              placeholder="Some comments"
-              required
-            />
-            <ErrorMessage name="comments" component="div" />
-          </label>
-
-          <div>
-            <button type="submit" aria-label="add">
-              Done
-            </button>
-
-            <button type="button" aria-label="back" onClick={handleBack}>
-              Back
-            </button>
-          </div>
-        </Form>
+                    <SexFlex>
+                      <SexLabel checked={sex === 'female'}>
+                        <Field
+                          type="radio"
+                          name="sex"
+                          value="female"
+                          checked={sex === 'female'}
+                          onChange={handleChange}
+                        />
+                        <Female />
+                        Female
+                      </SexLabel>
+                      <SexLabel checked={sex === 'male'}>
+                        <Field
+                          type="radio"
+                          name="sex"
+                          value="male"
+                          checked={sex === 'male'}
+                          onChange={handleChange}
+                        />
+                        <Male />
+                        Male
+                      </SexLabel>
+                      <ErrorMessage name="sex" component="div" />
+                    </SexFlex>
+                  </SexBox>
+                )}
+                <ImageBox category={category}>
+                  <ImageTitle category={category} step={step}>
+                    {pets.file ? 'Add photo' : 'Load the pet’s image: '}
+                  </ImageTitle>
+                  <Img category={category}>
+                    <InputImage
+                      id="photo"
+                      type="file"
+                      name="photo"
+                      accept="image/*,.png,.jpg,.gif,.web,"
+                      hidden
+                      multiple={false}
+                      onChange={e => {
+                        hebdleAddPhoto(e);
+                      }}
+                    />
+                    {(imageURL && <img src={imageURL} alt="Pet" />) || (
+                      <PhotoIcon />
+                    )}
+                  </Img>
+                </ImageBox>
+              </ImgSexBox>
+              <LabelBox category={category} step={step}>
+                {category !== 'your pet' && (
+                  <Label>
+                    <TitleLabel>Location</TitleLabel>
+                    <FieldInput
+                      id="city"
+                      type="text"
+                      name="city"
+                      placeholder="New York"
+                      required
+                      errors={touched.city && errors.city}
+                    />
+                    {touched.city && errors.name && <div>{errors.city}</div>}
+                  </Label>
+                )}
+                {category === 'sell' && (
+                  <Label>
+                    <TitleLabel>Price</TitleLabel>
+                    <FieldInput
+                      id="price"
+                      type="text"
+                      name="price"
+                      placeholder="00$"
+                      errors={touched.price && errors.price}
+                    />
+                    {touched.price && errors.price && <div>{errors.price}</div>}
+                  </Label>
+                )}
+                <Label category={category}>
+                  <TitleLabel>Comments</TitleLabel>
+                  <FieldInputComments
+                    category={category}
+                    as="textarea"
+                    id="comments"
+                    type="text"
+                    name="comments"
+                    rows="1"
+                    placeholder="Some comments"
+                    errors={touched.comments && errors.comments}
+                  />
+                  {touched.comments && errors.comments && (
+                    <div>{errors.price}</div>
+                  )}
+                </Label>
+              </LabelBox>
+            </ContainerMore>
+            <BtnBox>
+              <BtnNextDone type="submit" aria-label="add">
+                <BtnTitle>Done</BtnTitle>
+                <Dog />
+              </BtnNextDone>
+              <BtnCancelBack
+                type="button"
+                aria-label="back"
+                onClick={handleBack}
+              >
+                <Back />
+                <LinkTitle>Back</LinkTitle>
+              </BtnCancelBack>
+            </BtnBox>
+          </Form>
+        )}
       </Formik>
-    </div>
+    </Container>
   );
 };

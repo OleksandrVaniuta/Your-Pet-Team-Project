@@ -38,6 +38,9 @@ function NoticeCategoryItem({ notice }) {
   const [isActiveNologModal, setIsActiveNologModal] = useState(false);
   const dispatch = useDispatch();
   // const isFavorite = useSelector(selectIsFavorite);
+  const [togle, setTogle] = useState(notice.usersAddToFavorite.includes(userId))
+
+
 
   const noticeItem = useSelector(selectNotice);
 
@@ -66,6 +69,7 @@ function NoticeCategoryItem({ notice }) {
   const onClickIconFavorite = () => {
     if (isLoggedIn) {
       dispatch(addToFavorite(notice._id));
+      setTogle(!togle)
     } else {
       openNologModal();
     }
@@ -112,19 +116,26 @@ function NoticeCategoryItem({ notice }) {
     }
   };
 
+  const splitWordCategory = word => {
+    if (noticeItem) {
+      return word.split('-').join('/');
+    }
+  };
+
   return (
     <li key={notice._id} className={css.category_item}>
       <div className={css.category_item__content}>
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
             {noticeItem && (
-              <p className={css.category_text}>{splitWord(notice.category)}</p>
+             <p className={css.category_text}>{notice.category === 'lost-found' ? (splitWordCategory(notice.category)) : (splitWord(notice.category))
+            }</p>
             )}
             <div
               className={css.icon_box}
               onClick={() => onClickIconFavorite(notice._id)}
             >
-              {notice.usersAddToFavorite.includes(userId) ? (
+              {togle ? (
                 <FavoriteRoundedIcon className={css.icon_favorite} />
               ) : (
                 <>
@@ -244,7 +255,7 @@ function NoticeCategoryItem({ notice }) {
                 className={css.button_add}
                 onClick={() => onClickIconFavorite(notice._id)}
               >
-                {!notice.usersAddToFavorite.includes(userId) ? (
+                {!togle ? (
                   <>
                     Add to
                     <FavoriteBorderIcon className={css.icon} />
