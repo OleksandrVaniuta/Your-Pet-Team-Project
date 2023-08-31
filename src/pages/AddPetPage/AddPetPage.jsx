@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChooseOption } from './AddPetSteps/ChooseOption/chooseOption';
+import { ChooseOption } from './AddPetSteps/ChooseOptions/chooseOption';
 import { PersonalDetals } from './AddPetSteps/PersonalDetalis/personalDetalis';
 import { MoreInfo } from './AddPetSteps/MoreInfo/moreInfo';
 import { useDispatch } from 'react-redux';
@@ -21,7 +21,6 @@ const AddPetPage = () => {
     comments: '',
   });
   const dispatch = useDispatch();
-
 
   const location = useLocation();
   const navigate = useNavigate();
