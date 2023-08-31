@@ -5,6 +5,7 @@ import {
   addToFavorite,
   fetchNoticesFavorite,
   fetchNoticesMyAds,
+  deleteNotice,
 } from './operations';
 
 const initialState = {
@@ -85,6 +86,12 @@ export const noticesSlice = createSlice({
           totalPages: null,
           isLoading: false,
         };
+      })
+      .addCase(deleteNotice.fulfilled, (state, action) => {
+        const index = state.noticesMyAds.findIndex(
+          item => item._id === action.payload.id
+        );
+        state.noticesMyAds.splice(index, 1);
       })
       .addMatcher(
         isAnyOf(
