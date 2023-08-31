@@ -54,3 +54,45 @@ export const addToFavorite = createAsyncThunk(
     }
   }
 );
+
+export const fetchNoticesFavorite = createAsyncThunk(
+  'notices/fetchNoticesFavorite',
+  async (params, thunkAPI) => {
+    const searchParams = new URLSearchParams(params);
+    searchParams.forEach((value, key) => {
+      if (value === '') {
+        searchParams.delete(key);
+      }
+    });
+    try {
+      const response = await axios.get(
+        `/api/notices/favorite?${searchParams.toString()}`
+      );
+      return response.data;
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);
+
+export const fetchNoticesMyAds = createAsyncThunk(
+  'notices/fetchNoticesMyAds',
+  async (params, thunkAPI) => {
+    const searchParams = new URLSearchParams(params);
+    searchParams.forEach((value, key) => {
+      if (value === '') {
+        searchParams.delete(key);
+      }
+    });
+    try {
+      const response = await axios.get(
+        `/api/notices/own?${searchParams.toString()}`
+      );
+      return response.data;
+    } catch (error) {
+      toast.error(errorMsg);
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);

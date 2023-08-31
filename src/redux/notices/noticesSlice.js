@@ -1,12 +1,15 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import {
-  fetchNoticesByCategory,
-  fetchDataAndOpenModal,
+import { 
+  fetchNoticesByCategory, 
+  fetchDataAndOpenModal, 
   addToFavorite,
+  fetchNoticesFavorite, 
+  fetchNoticesMyAds 
 } from './operations';
 
 const initialState = {
   items: [],
+  totalPages: null,
   isLoading: false,
   isFavorite: false,
   notice: {},
@@ -46,12 +49,40 @@ export const noticesSlice = createSlice({
           }
         });
       })
-      .addMatcher(isAnyOf(fetchNoticesByCategory.pending), state => {
+      .addCase(fetchNoticesFavorite.fulfilled, (state, action) => {
+        return {
+          ...state,
+          items: [...action.payload.notices],
+          totalPages: action.payload.totalPages,
+          isLoading: false,
+        };
+      })
+      .addCase(fetchNoticesMyAds.fulfilled, (state, action) => {
+        return {
+          ...state,
+          items: [...action.payload.notices],
+          totalPages: action.payload.totalPages,
+          isLoading: false,
+        };
+      })
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesByCategory.pending,
+          fetchNoticesFavorite.pending,
+          fetchNoticesMyAds.pending
+        ), 
+        state => {
         state.isLoading = true;
       })
-      .addMatcher(isAnyOf(fetchNoticesByCategory.rejected), state => {
-        return { ...state, items: [], isLoading: false };
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesByCategory.rejected,
+          fetchNoticesFavorite.rejected,
+          fetchNoticesMyAds.rejected
+        ), 
+        state => {
+        return { ...state, items: [], totalPages: null, isLoading: false };
       });
-    // reducers: {}
   },
+  reducers: {},
 });
