@@ -20,8 +20,11 @@ import {
   ValidateSchemaAdd,
   ValidateSchemaMyPet,
 } from '../ValidateAddPetPage/ValidateSchemaAdd';
-
 import { Dog, Back } from './addIcon';
+
+const validate = category => {
+ return category !== 'your pet' ? ValidateSchemaAdd : ValidateSchemaMyPet;
+};
 
 export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
   const handleSubmit = async values => {
@@ -44,9 +47,8 @@ export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
   //     console.log('Форма содержит ошибки', validationErrors);
   //   }
   // };
-  const validate =
-    category !== 'your pet' ? ValidateSchemaAdd : ValidateSchemaMyPet;
 
+  const validateForm = validate(category);
   return (
     <Formik
       initialValues={{
@@ -55,9 +57,7 @@ export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
         type: pets.type,
         title: pets.title,
       }}
-      // validateOnChange={false}
-      // validateOnBlur={false}
-      validationSchema={validate}
+      validationSchema={validateForm}
       onSubmit={handleSubmit}
     >
       {({ touched, errors }) => (
@@ -82,7 +82,7 @@ export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
                 <TitleLabel>Pet`s name</TitleLabel>
                 <FieldInput
                   type="text"
-                  placeholder="Type name pet"
+                  placeholder="Name pet"
                   name="name"
                   errors={touched.name && errors.name}
                 />

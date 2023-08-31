@@ -8,8 +8,7 @@ export const Container = styled.div`
   max-width: 280px;
   border-radius: 40px;
   background-color: #fff;
-  box-shadows: ${({ theme }) => theme.boxShadows.main};
-  //  '3px 8px 14px rgba(136, 198, 253, 0.19)';
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
   @media screen and (min-width: 767px) {
     margin: auto;

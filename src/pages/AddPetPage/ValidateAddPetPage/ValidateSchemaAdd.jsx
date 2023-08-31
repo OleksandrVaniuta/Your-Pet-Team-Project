@@ -73,31 +73,52 @@ export const ValidateSchemaMyPet = Yup.object().shape({
 export const ValidatePageSell = Yup.object().shape({
   sex: Yup.mixed().oneOf(['male', 'female']).required('Required field!'),
   city: Yup.string()
-    .min(5, 'Minimum 5 characters!')
+    .min(4, 'Minimum 5 characters!')
     .max(60, 'Maximum 60 characters!')
     .required('Required field!'),
   comments: Yup.string()
     .min(8, 'Minimum 8 characters!')
     .max(120, 'Maximum 120 characters!')
-    .required('Required field!'),
+    .optional(),
   price: Yup.string().matches(/^[1-9]\d*([,.]\d+)?$/, 'Price must be a number'),
+  // file: Yup.mixed()
+  //   .required('Image is required')
+  //   .test(
+  //     'photo',
+  //     'photo size must be less then 3mb',
+  //     file => file && file.size <= 375000
+  //   ),
 });
 
 export const ValidatePageTwoMyPet = Yup.object().shape({
   comments: Yup.string()
     .min(8, 'Minimum 8 characters!')
     .max(120, 'Maximum 120 characters!')
-    .required('Required field!'),
+    .optional(),
+  // file: Yup.mixed()
+  //   .required('Image is required')
+  //   .test(
+  //     'photo',
+  //     'photo size must be less then 3mb',
+  //     file => file && file.size <= 375000
+  //   ),
 });
 
 export const ValidatePageTwo = Yup.object().shape({
   sex: Yup.mixed().oneOf(['male', 'female']).required('Required field!'),
   city: Yup.string()
-    .min(5, 'Minimum 5 characters!')
+    .min(4, 'Minimum 5 characters!')
     .max(60, 'Maximum 60 characters!')
     .required('Required field!'),
   comments: Yup.string()
     .min(8, 'Minimum 8 characters!')
     .max(120, 'Maximum 120 characters!')
-    .required('Required field!'),
+    .optional(),
+  // file: Yup.mixed()
+  //   .required('Image is required')
+  //   .test(
+  //     'photo',
+  //     'photo size must be less then 3mb',
+  //     file => file && file.size <= 375000
+  //   ),
 });

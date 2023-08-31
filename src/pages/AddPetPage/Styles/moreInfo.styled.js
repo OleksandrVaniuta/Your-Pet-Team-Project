@@ -22,7 +22,7 @@ export const ImgSexBox = styled.div`
   flex-direction: column;
   gap: 16px;
   @media (min-width: 768px) {
-    gap: 32px;
+    gap: 30px;
   }
   @media (min-width: 768px) {
     gap: 38x;
@@ -134,8 +134,6 @@ export const ImageTitle = styled.p`
     line-height: 28px;
     width: ${props =>
       props.category !== 'your pet' && props.step === 2 ? '200px' : '114px'};
-    margin-bottom: ${props =>
-      props.category !== 'your pet' && props.step === 2 ? '8px' : '0'};
   }
 `;
 
@@ -149,12 +147,13 @@ export const FieldInputComments = styled(Field)`
   line-hieght: normal;
   text-align: start;
   height: 92px;
+  outline: none;
   border-radius: 20px;
   color: #1111111;
   border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
   @media (min-width: 768px) {
     height: ${props =>
-      props.category === 'lost/found' || props.category === 'in good hands'
+      props.category === 'lost-found' || props.category === 'in/-good-hands'
         ? '182px'
         : '79px'};
   }
