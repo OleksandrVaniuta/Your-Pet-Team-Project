@@ -21,7 +21,6 @@ import {
   ValidateSchemaAdd,
   ValidateSchemaMyPet,
 } from '../ValidateAddPetPage/ValidateSchemaAdd';
-
 import { Dog, Back } from './addIcon';
 
 export const PersonalDetals = ({
@@ -40,8 +39,11 @@ export const PersonalDetals = ({
     handleNext(values);
   };
 
+
   const validate =
     category !== 'your pet' ? ValidateSchemaAdd : ValidateSchemaMyPet;
+
+
 
   return (
     <Formik
@@ -83,7 +85,7 @@ export const PersonalDetals = ({
                 <TitleLabel>Pet`s name</TitleLabel>
                 <FieldInput
                   type="text"
-                  placeholder="Type name pet"
+                  placeholder="Name pet"
                   name="name"
                   onChange={e => {
                     setName(e.target.value);

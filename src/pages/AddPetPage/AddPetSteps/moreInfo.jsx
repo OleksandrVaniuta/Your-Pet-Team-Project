@@ -232,7 +232,7 @@ export const MoreInfo = ({
                     id="comments"
                     type="text"
                     name="comments"
-                    rows="1"
+                    rows="2"
                     placeholder="Some comments"
                     onChange={e => {
                       setComments(e.target.value);
