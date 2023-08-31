@@ -1,9 +1,9 @@
-import { ReactComponent as DogIcon } from '../AddIcons/dog.svg';
-import { ReactComponent as Photo } from '../AddIcons/photo.svg';
+import { ReactComponent as DogIcon } from '../iconAdd/dog.svg';
+import { ReactComponent as Photo } from '../iconAdd/back.svg';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SwipeUpAltOutlinedIcon from '@mui/icons-material/SwipeUpAltOutlined';
 import FemaleIcon from '@mui/icons-material/Female';
-// import MaleIcon from '@mui/icons-material/Male';
+
 export const Dog = () => {
   return (
     <DogIcon

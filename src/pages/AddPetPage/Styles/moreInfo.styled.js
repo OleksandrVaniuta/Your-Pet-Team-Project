@@ -1,133 +1,220 @@
 import styled from '@emotion/styled';
 import { Field } from 'formik';
-export const Container = styled.div``;
-export const Form = styled.form`
-  width: 394px;
-`;
-export const Forma = styled.div`
+
+export const ContainerMore = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: start;
-  margin-top: 16px;
+  gap: 24px;
+  @media (min-width: 768px) {
+    flex-direction: ${props =>
+      props.category !== 'your pet' ? 'row' : 'column'};
+    gap: ${props => (props.category !== 'your pet' ? '63px' : '24px')};
+
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 1280px) {
+    margin-bottom: 16px;
+  }
 `;
+export const ImgSexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media (min-width: 768px) {
+    gap: 32px;
+  }
+  @media (min-width: 768px) {
+    gap: 38x;
+  }
+`;
+export const LabelBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+  @media (min-width: 768px) {
+    margin-top: 20px;
+    width: ${props =>
+      props.category !== 'your pet' && props.step === 2 ? '395px' : '100%'};
+  }
+`;
+
 export const TitleLabel = styled.p`
-  // color: ${({ theme }) => theme.colors.black};
+  color: #111111;
   font-weight: 500;
   font-size: 14px;
   line-hieght: normal;
   text-align: start;
+  @media screen and (min-width: 767px) {
+    font-size: 20px;
+  }
 `;
 export const Label = styled.label`
-  display: flex;
-  gap: 4px;
-  flex-direction: column;
-  text-align: start;
-  margin-bottom: 20px;
-  width: 264px;
+  position: relative;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: calc(19 / 14);
+  color: #111111;
 `;
 export const FieldInput = styled(Field)`
-  // color: ${({ theme }) => theme.colors.black};
-  border-color: #54adff;
-  box-sizing: border-box;
+  width: 100%;
+  padding: 9px 15px;
+  hiegth: 40px;
+  margin-top: 4px;
   font-weight: 400;
   font-size: 14px;
-  line-hieght: normal;
-  text-align: start;
-  padding-left: 16px;
-  height: 40px;
-  width: 264px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  outline: none;
   border-radius: 40px;
-  flex-shrink: 0;
+  border: 1px solid;
+  border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
   @media screen and (min-width: 767px) {
-    width: 395px;
-    height: 48px;
-    margin-top: 8px;
-    padding-left: 16px;
+    hiegth: 48px;
   }
 `;
-
 export const ImageBox = styled.div`
   display: flex;
-  gap: 12px;
-  height: 112px;
-  width: 207px;
+ left: 0;
+  gap: 27px;
+  margin-top: 16px;
   align-items: center;
-
-  margin-bottom: 24px;
+  text-align: start;
+   @media (min-width: 768px) {
+  margin-top: 0;
+   flex-direction: ${props =>
+     props.category !== 'your pet' ? 'column' : 'row'};
+     gap: ${props => (props.category !== 'your pet' ? '4px' : '27px')};
 `;
-export const InputImage = styled.input`
+
+export const Img = styled.label`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 112px;
   height: 112px;
-  flex-shrink: 0;
+  background-color: #cce4fb;
   border-radius: 20px;
-  // background-color: ${({ theme }) => theme.colors.lightBlue};
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  :hover {
+    transform: scale(1.05);
+  }
+  @media (min-width: 768px) {
+    width: 182px;
+    height: 182px;
+    border-radius: 40px;
+  }
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+
+    @media (min-width: 768px) {
+      border-radius: 40px;
+    }
+  }
 `;
-export const Icon = styled.image`
-  fontSize: 50, color: '#54ADFF' 
+export const InputImage = styled(Field)`
+hidden;
+`;
+export const ImageTitle = styled.p`
+  width: 81px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: normal;
+  color: #111111;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 28px;
+    width: ${props =>
+      props.category !== 'your pet' && props.step === 2 ? '200px' : '114px'};
+    margin-bottom: ${props =>
+      props.category !== 'your pet' && props.step === 2 ? '8px' : '0'};
+  }
 `;
 
-export const InputComments = styled.input`
-  // color: ${({ theme }) => theme.colors.black};
+export const FieldInputComments = styled(Field)`
   box-sizing: border-box;
+  width: 100%;
+  padding: 9px 15px;
+  margin-top: 4px;
   font-weight: 400;
   font-size: 14px;
   line-hieght: normal;
   text-align: start;
-  padding-left: 16px;
   height: 92px;
-  width: 264px;
   border-radius: 20px;
-  // border-color: ${({ theme }) => theme.colors.blue};
-  @media screen and (min-width: 767px) {
-    width: 395px;
-    height: 48px;
-    margin-top: 8px;
-    padding-left: 16px;
+  color: #1111111;
+  border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
+  @media (min-width: 768px) {
+    height: ${props =>
+      props.category === 'lost/found' || props.category === 'in good hands'
+        ? '182px'
+        : '79px'};
   }
 `;
+
 export const SexBox = styled.div`
+  position: relative;
+  text-align: left;
+  margin-top: 16px;
+`;
+export const SexFlex = styled.div`
   display: flex;
   gap: 16px;
-  height: 24px;
-  width: 250px;
-  align-items: center;
-  margin-bottom: 16px;
+  margin-top: 8px;
+  jastify-content: center;
 `;
-export const SexInput = styled.input`
-  display: none;
-`;
+export const SexInput = styled(Field)``;
 export const SexLabel = styled.label`
-  height: 24px;
-  text-align: center;
+  display: inline-flex;
+  height: 35px;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+
   font-weight: 400;
   font-size: 14px;
   line-hieght: 24px;
-  // padding: 8px 16px;
+
   border: 0 solid;
   border-radius: 40px;
+  cursor: pointer;
+  color: ${props => (props.checked ? '#FFFFFF' : '#888888')};
 
-  color: ${props => {
-    switch (props.type) {
-      case 'checked':
-        return '#FFFFFF';
-      default:
-        return '#888888';
-    }
-  }};
-  background-color: ${props => {
-    switch (props.type) {
-      case 'checked':
-        return '#54adff';
-      default:
-        return '#FFFFFF';
-    }
-  }};
+  background-color: ${props => (props.checked ? '#54adff' : '#FFFFFF')};
+  > input[type='radio'] {
+    // visibility: hidden;
+    height: 0;
+    width: 0;
+  }
+  :hover {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.05);
+  }
 `;
+
 export const SexTitle = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-hieght: 19px;
+  color: #111111;
+  @media screen and (min-width: 767px) {
+    font-size: 20px;
+    line-hieght: 26px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+  }
 `;
-export const Male = styled.div``;
-export const Female = styled.div``;
-export const Photo = styled.div``;
+export const MessageErrors = styled.div`
+  color: #ff0000;
+`;

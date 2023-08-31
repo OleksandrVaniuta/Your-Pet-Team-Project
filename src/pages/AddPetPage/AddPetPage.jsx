@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ChooseOption } from './AddPetSteps/ChooseOptions/chooseOption';
-import { PersonalDetals } from './AddPetSteps/PersonalDetalis/personalDetalis';
-import { MoreInfo } from './AddPetSteps/MoreInfo/moreInfo';
+import { ChooseOption } from './AddPetSteps/chooseOption';
+import { PersonalDetals } from './AddPetSteps/personalDetalis';
+import { MoreInfo } from './AddPetSteps/moreInfo';
 import { useDispatch } from 'react-redux';
 import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -59,7 +59,7 @@ const AddPetPage = () => {
       formData.append('price', price);
     }
 
-    if (category === 'lost/found' || category === 'in good hands') {
+    if (category === 'lost-found' || category === 'in-good-hands') {
       formData.append('category', category);
       formData.append('avatarURL', pets.file);
       formData.append('title', pets.title);
@@ -77,13 +77,12 @@ const AddPetPage = () => {
         console.log(`${key}: ${value}`);
       }
       await dispatch(addMyPet(formData));
-      await dispatch(addMyPet(formData));
+      navigate(location.state?.from);
       return;
     }
     for (const [key, value] of formData.entries()) {
       console.log(`${key}: ${value}`);
     }
-    await dispatch(addPet(formData));
     await dispatch(addPet(formData));
 
     navigate(location.state?.from);

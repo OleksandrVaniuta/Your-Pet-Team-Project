@@ -1,21 +1,18 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  CategoryForm,
-  CheckedLabel,
-} from '../ChooseOption/chooseOption.styled';
+import { CategoryForm, CheckedLabel } from '../Styles/choosOptions.styled';
 
-import { AddPetHeader } from '../AddHeader/addHeader';
-import { Dog, Back } from '../AddIcons/addIcon';
+import { AddPetHeader } from './addHeader';
+import { Dog, Back } from './addIcon';
 import {
   BtnNextDone,
   BtnCancelBack,
   BtnTitle,
   LinkTitle,
   BtnBox,
-} from '../../Styles/button.styled';
+} from '../Styles/button.styled';
 
-import { Container } from '../../addPetPage.styled';
+import { Container } from '../addPetPage.styled';
 
 export const ChooseOption = ({ category, setCategory, setStep }) => {
   const location = useLocation();
@@ -54,22 +51,22 @@ export const ChooseOption = ({ category, setCategory, setStep }) => {
           />
           sell
         </CheckedLabel>
-        <CheckedLabel checked={category === 'lost/found'}>
+        <CheckedLabel checked={category === 'lost-found'}>
           <input
             type="radio"
             name="category"
-            value="lost/found"
-            checked={category === 'lost/found'}
+            value="lost-found"
+            checked={category === 'lost-found'}
             onChange={handleChange}
           />
           lost/found
         </CheckedLabel>
-        <CheckedLabel checked={category === 'in good hands'}>
+        <CheckedLabel checked={category === 'in-good-hands'}>
           <input
             type="radio"
             name="category"
-            value="in good hands"
-            checked={category === 'in good hands'}
+            value="in-good-hands"
+            checked={category === 'in-good-hands'}
             onChange={handleChange}
           />
           in good hands

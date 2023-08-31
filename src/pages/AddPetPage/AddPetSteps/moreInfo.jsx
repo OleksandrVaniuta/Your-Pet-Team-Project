@@ -4,9 +4,9 @@ import {
   ValidatePageTwo,
   ValidatePageTwoMyPet,
   ValidatePageSell,
-} from '../../ValidateAddPetPage/ValidateSchemaAdd';
-import { AddPetHeader } from '../AddHeader/addHeader';
-import { Dog, Back, PhotoIcon, Female, Male } from '../AddIcons/addIcon';
+} from '../ValidateAddPetPage/ValidateSchemaAdd';
+import { AddPetHeader } from './addHeader';
+import { Dog, Back, PhotoIcon, Female, Male } from './addIcon';
 
 import {
   ContainerMore,
@@ -24,15 +24,15 @@ import {
   Label,
   SexTitle,
   SexFlex,
-} from '../MoreInfo/moreInfo.styled';
+} from '../Styles/moreInfo.styled';
 import {
   BtnBox,
   BtnNextDone,
   BtnCancelBack,
   BtnTitle,
   LinkTitle,
-} from '../../Styles/button.styled';
-import { Container } from '../../Styles/addPetPage.styled';
+} from '../Styles/button.styled';
+import { Container } from '../addPetPage.styled';
 
 const validateForm = category => {
   switch (category) {
@@ -40,9 +40,9 @@ const validateForm = category => {
       return ValidatePageTwoMyPet;
     case 'sell':
       return ValidatePageSell;
-    case 'lost/found':
+    case 'lost-found':
       return ValidatePageTwo;
-    case 'in good hands':
+    case 'in-good-hands':
       return ValidatePageTwo;
     default:
       return ValidatePageTwo;
@@ -101,10 +101,10 @@ export const MoreInfo = ({
     }
   };
 
-  // const handleChange = evt => {
-  //   setSex(evt.target.value);
-  //   console.log();
-  // };
+  const handleChange = evt => {
+    setSex(evt.target.value);
+    console.log();
+  };
 
   const validate = validateForm(category);
 
@@ -135,8 +135,8 @@ export const MoreInfo = ({
                           type="radio"
                           name="sex"
                           value="female"
-                          // checked={sex === 'female'}
-                          // onChange={handleChange}
+                          checked={sex === 'female'}
+                          onChange={handleChange}
                         />
                         <Female />
                         Female
@@ -146,8 +146,8 @@ export const MoreInfo = ({
                           type="radio"
                           name="sex"
                           value="male"
-                          // checked={sex === 'male'}
-                          // onChange={handleChange}
+                          checked={sex === 'male'}
+                          onChange={handleChange}
                         />
                         <Male />
                         Male

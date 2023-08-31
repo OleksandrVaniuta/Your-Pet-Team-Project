@@ -1,63 +1,42 @@
-
 import {
   Options,
   OptionDecor,
-  OptionName,
   OptionBox,
   TitlePage,
-  HeaderBox,
 } from '../Styles/addHeader.styled';
 
 const options = [
-  { option: 'Choose option', id: 1 },
-  { option: 'Personal detalis', id: 2 },
-  { option: 'More info', id: 3 },
+  { option: 'Choose option', id: 1, index: 0 },
+  { option: 'Personal detalis', id: 2, index: 1 },
+  { option: 'More info', id: 3, index: 3 },
 ];
 
-export const AddHeader = () => {
-
-  return (
-    <HeaderBox >
-     <TitlePage>Add pet</TitlePage> 
-        <Options>
-        {options.map(({ option, id }) => (
-          <li key={id}>
-            <OptionBox id={id}>
-              <OptionName>{option}</OptionName>
-              <OptionDecor></OptionDecor>
-            </OptionBox>
-          </li>
-        ))}
-      </Options>
-    </HeaderBox>
-  );
-};
-
 export const AddPetHeader = ({ category, step }) => {
-
   return (
-    <HeaderBox>
-      {/* <TitlePage>Add pet</TitlePage>  */}
-      {category === 'your pet' ? <TitlePage>Add pet</TitlePage> : null}
-      {category === 'sell' ? (
-        <TitlePage>Add pet for sell</TitlePage>
-      ) : null}
-      {category === 'lost/found' ? (
-        <TitlePage>Add lost pet</TitlePage>
-      ) : null}
-      {category === 'in good hands' ? (
-        <TitlePage>Add in good hands</TitlePage>
-      ) : null}
-      <Options>
-        {options.map(({ option, id }) => (
+    <>
+      <TitlePage step={step} category={category}>
+        {step === 0
+          ? 'Add pet'
+          : category === 'your pet'
+          ? 'Add pet'
+          : category === 'sell'
+          ? 'Add pet for sell'
+          : category === 'lost-found'
+          ? 'Add lost pet'
+          : category === 'in-good-hands'
+          ? 'Add in good hands'
+          : null}
+      </TitlePage>
+      <Options step={step} category={category}>
+        {options.map(({ option, id, index }) => (
           <li key={id}>
-            <OptionBox id={id}>
-              <OptionName>{option}</OptionName>
-              <OptionDecor></OptionDecor>
+            <OptionBox step={step} index={index} category={category}>
+              {option}
+              <OptionDecor step={step} index={index} category={category} />
             </OptionBox>
           </li>
         ))}
       </Options>
-    </HeaderBox>
+    </>
   );
 };

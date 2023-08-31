@@ -1,27 +1,27 @@
 import { Formik, Form } from 'formik';
 import React from 'react';
-import { AddPetHeader } from '../AddHeader/addHeader';
+import { AddPetHeader } from './addHeader';
 
 import {
   InputBox,
   TitleLabel,
   FieldInput,
   Label,
-} from './personalDetalis.styled';
+} from '../Styles/personalDetalis.styled';
 import {
   BtnNextDone,
   BtnCancelBack,
   BtnTitle,
   LinkTitle,
   BtnBox,
-} from '../../Styles/button.styled';
-import { Container } from '../../Styles/addPetPage.styled';
+} from '../Styles/button.styled';
+import { Container } from '../addPetPage.styled';
 import {
   ValidateSchemaAdd,
   ValidateSchemaMyPet,
-} from '../../ValidateAddPetPage/ValidateSchemaAdd';
+} from '../ValidateAddPetPage/ValidateSchemaAdd';
 
-import { Dog, Back } from '../AddIcons/addIcon';
+import { Dog, Back } from './addIcon';
 
 export const PersonalDetals = ({ pets, category, setStep, handleNext }) => {
   const handleSubmit = async values => {
