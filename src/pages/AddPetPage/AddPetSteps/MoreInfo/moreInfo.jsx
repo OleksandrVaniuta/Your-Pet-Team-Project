@@ -101,10 +101,10 @@ export const MoreInfo = ({
     }
   };
 
-  const handleChange = evt => {
-    setSex(evt.target.value);
-    console.log();
-  };
+  // const handleChange = evt => {
+  //   setSex(evt.target.value);
+  //   console.log();
+  // };
 
   const validate = validateForm(category);
 
