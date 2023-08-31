@@ -1,4 +1,3 @@
-import Container from '../Container/Container';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 import UserMenu from '../UserMenu/UserMenu';
@@ -9,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { selectAuth, selectUser } from 'redux/Auth/AuthSelectors';
 import { useWindowSize } from 'hooks/useResize';
-import { HeaderWrapper, Wrapper, NavWrapper, Menu } from './Header.styled';
+import { HeaderWrapper, Wrapper, NavWrapper, Menu, Box } from './Header.styled';
 import { useEffect } from 'react';
 
 export const Header = () => {
@@ -26,7 +25,7 @@ export const Header = () => {
 
   return (
     <HeaderWrapper>
-      <Container>
+      <Box>
         <Wrapper user={user}>
           <Logo />
           <NavWrapper>
@@ -51,7 +50,7 @@ export const Header = () => {
             </Menu>
           </NavWrapper>
         </Wrapper>
-      </Container>
+      </Box>
     </HeaderWrapper>
   );
 };

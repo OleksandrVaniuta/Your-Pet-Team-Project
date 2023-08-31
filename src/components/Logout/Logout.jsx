@@ -18,9 +18,8 @@ const Logout = ({ setIsOpen }) => {
 
   const handlerClick = async () => {
     await dispatch(logout());
-    setIsOpen(false);
-    toggleModal();
     navigate('/');
+    setIsOpen(false);
   };
 
   return (

@@ -31,7 +31,7 @@ const SignupSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
   birthday: Yup.string()
-    .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date format')
+    .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date format, should be dd-mm-yyyy')
     .required('Required'),
   phone: Yup.string()
     .matches(/^\+\d{12}$/, 'Invalid phone number')
@@ -121,7 +121,7 @@ export default function UserFormItem({ edit, user, setEdit }) {
               <UserInput
                 name="birthday"
                 type="text"
-                placeholder="dd.mm.yyyy"
+                placeholder="dd-mm-yyyy"
                 disabled={!edit}
               />
               {errors.birthday && touched.birthday ? (

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export const AddPetPage = () => {
+const AddPetPage = () => {
   const [step, setStep] = useState(0);
   const [category, setCategory] = useState('your pet');
   const [pets, setPets] = useState({
@@ -21,6 +21,7 @@ export const AddPetPage = () => {
     comments: '',
   });
   const dispatch = useDispatch();
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -74,9 +75,11 @@ export const AddPetPage = () => {
       formData.append('dateOfBirth', pets.date);
       formData.append('comments', comments);
       await dispatch(addMyPet(formData));
+      await dispatch(addMyPet(formData));
       return;
     }
 
+    await dispatch(addPet(formData));
     await dispatch(addPet(formData));
 
     navigate(location.state?.from);

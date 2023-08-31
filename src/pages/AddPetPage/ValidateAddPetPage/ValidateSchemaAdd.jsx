@@ -62,7 +62,7 @@ export const ValidatePageTwo = Yup.object().shape({
 //   if (step === 0) {
 //     schema = Yup.object().shape({
 //       category: Yup.string()
-//         .oneOf(['my-pet', 'sell', 'lost-found', 'in good handle'])
+//         .oneOf(['my-pet', 'sell', 'lost-found', 'for-free'])
 //         .required(),
 //     });
 //   }

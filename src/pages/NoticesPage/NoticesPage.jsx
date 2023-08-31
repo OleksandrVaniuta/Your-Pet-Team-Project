@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchNoticesByCategory } from 'redux/notices/operations';
 import { selectNotices } from 'redux/notices/selectors';
+import { NoticesWrapper } from './NoticesPage.styled';
 
-export const NoticesPage = () => {
+const NoticesPage = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
 
@@ -24,26 +25,27 @@ export const NoticesPage = () => {
   useEffect(() => {
     setPage(1);
   }, [category, search]);
-  
-  const queryParams = useMemo(() => ({
-    category: category,
-    search: search,
-    page: page,
-    limit: 2,
-  }), [category, search, page]);
+
+  const queryParams = useMemo(
+    () => ({
+      category: category,
+      search: search,
+      page: page,
+      limit: 8,
+    }),
+    [category, search, page]
+  );
 
   const handleNoticeSearch = newSearch => setSearch(newSearch);
 
   const handlePagination = currentPage => setPage(currentPage);
 
   useEffect(() => {
-    dispatch(
-      fetchNoticesByCategory(queryParams)
-    );
+    dispatch(fetchNoticesByCategory(queryParams));
   }, [dispatch, queryParams]);
 
   return (
-    <div>
+    <NoticesWrapper>
       <PageTitle>Find your favorite pet</PageTitle>
       <NoticesSearch handleSearch={handleNoticeSearch} />
       <Box
@@ -56,11 +58,13 @@ export const NoticesPage = () => {
         <NotiesCategoriesNav />
         <NoticesAddPetBtn />
       </Box>
-      <NoticesCategoriesList notice={notices}></NoticesCategoriesList>
-      <Pagination 
-      handlePagination={handlePagination}
-      key={`${category}-${search}`}
+      <NoticesCategoriesList notices={notices}></NoticesCategoriesList>
+      <Pagination
+        handlePagination={handlePagination}
+        key={`${category}-${search}`}
       />
-    </div>
+    </NoticesWrapper>
   );
 };
+
+export default NoticesPage;

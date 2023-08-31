@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 
-import { register } from 'redux/Auth/AuthOperations';
+import { register, login } from 'redux/Auth/AuthOperations';
 
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -77,8 +76,6 @@ const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
   const [emailAvailable, setEmailAvailable] = useState(true);
 
-  const navigate = useNavigate();
-
   const togglePasswordVisibility = () => {
     setShowPassword(prevState => !prevState);
   };
@@ -105,7 +102,9 @@ const RegisterForm = () => {
         setEmailAvailable(false);
       } else {
         setEmailAvailable(true);
-        navigate('/login');
+        await dispatch(
+          login({ email: values.email, password: values.password })
+        );
       }
     } catch (error) {
       console.error(error);

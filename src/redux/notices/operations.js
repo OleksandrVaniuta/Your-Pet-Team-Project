@@ -25,3 +25,32 @@ export const fetchNoticesByCategory = createAsyncThunk(
     }
   }
 );
+
+export const fetchDataAndOpenModal = createAsyncThunk(
+  'notices/fetchByNoticeId',
+  async (noticeId, thunkApi) => {
+    console.log(noticeId);
+    try {
+      const response = await axios.get(`/api/notices/notice/${noticeId}`);
+      const data = response.data;
+      console.log(data.owner.email);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addToFavorite = createAsyncThunk(
+  '/notices/favorite',
+  async (noticeId, thunkApi) => {
+    console.log(noticeId);
+    try {
+      const response = await axios.patch(`/api/notices/${noticeId}/favorite`);
+      console.log(response.data);
+      return { data: response.data, id: noticeId};
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
