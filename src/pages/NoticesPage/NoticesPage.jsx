@@ -44,21 +44,23 @@ const NoticesPage = () => {
   const handlePagination = currentPage => setPage(currentPage);
 
   useEffect(() => {
-    if (['sell', 'lost-found', 'in-good-hands'].includes(category)) {
-      dispatch(
-        fetchNoticesByCategory(queryParams)
-      );        
-    }
-    else if (category === 'favorite-ads') {
-      dispatch(
-        fetchNoticesFavorite(queryParamsPrivat)
-      );
-    }
-    else if (category === 'my-ads') {
-      dispatch(
-        fetchNoticesMyAds(queryParamsPrivat)
-      );
-    }
+    // setTimeout(() => {
+      if (['sell', 'lost-found', 'in-good-hands'].includes(category)) {
+        dispatch(
+          fetchNoticesByCategory(queryParams)
+        );        
+      }
+      else if (category === 'favorite-ads') {
+        dispatch(
+          fetchNoticesFavorite(queryParamsPrivat)
+        );
+      }
+      else if (category === 'my-ads') {
+        dispatch(
+          fetchNoticesMyAds(queryParamsPrivat)
+        );
+      }
+    // }, 500);
   }, [dispatch, queryParams, queryParamsPrivat, category]);
 
   return (

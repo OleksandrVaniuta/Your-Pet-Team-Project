@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { 
   fetchNoticesByCategory, 
   fetchDataAndOpenModal, 
@@ -29,12 +29,6 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
-      .addCase(fetchNoticesByCategory.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(fetchNoticesByCategory.rejected, state => {
-        return { ...state, items: [], totalPages: null, isLoading: false };
-      })
       .addCase(fetchDataAndOpenModal.fulfilled, (state, action) => {
         return {
           ...state,
@@ -63,12 +57,6 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
-      .addCase(fetchNoticesFavorite.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(fetchNoticesFavorite.rejected, state => {
-        return { ...state, items: [], totalPages: null, isLoading: false };
-      })
       .addCase(fetchNoticesMyAds.fulfilled, (state, action) => {
         return {
           ...state,
@@ -77,10 +65,22 @@ export const noticesSlice = createSlice({
           isLoading: false,
         };
       })
-      .addCase(fetchNoticesMyAds.pending, state => {
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesByCategory.pending,
+          fetchNoticesFavorite.pending,
+          fetchNoticesMyAds.pending
+        ), 
+        state => {
         state.isLoading = true;
       })
-      .addCase(fetchNoticesMyAds.rejected, state => {
+      .addMatcher(
+        isAnyOf(
+          fetchNoticesByCategory.rejected,
+          fetchNoticesFavorite.rejected,
+          fetchNoticesMyAds.rejected
+        ), 
+        state => {
         return { ...state, items: [], totalPages: null, isLoading: false };
       });
   },
