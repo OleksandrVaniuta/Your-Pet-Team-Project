@@ -92,7 +92,7 @@ export const MoreInfo = ({
       console.log(petPhoto);
 
       handleFinalState(values);
-
+      setSex(values.sex);
       const { sex, comments, city, price } = values;
       await handlePets(sex, comments, city, price);
       // console.log(pets);
