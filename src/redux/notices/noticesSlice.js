@@ -13,7 +13,8 @@ const initialState = {
   isLoading: false,
   isFavorite: false,
   notice: {},
-  noticeFavorite: [],
+  noticesFavorite: [],
+  noticesMyAds: [],
 };
 
 export const noticesSlice = createSlice({
@@ -52,18 +53,26 @@ export const noticesSlice = createSlice({
       .addCase(fetchNoticesFavorite.fulfilled, (state, action) => {
         return {
           ...state,
-          items: [...action.payload.notices],
+          noticesFavorite: [...action.payload.notices],
           totalPages: action.payload.totalPages,
           isLoading: false,
         };
       })
+      .addCase(fetchNoticesFavorite.rejected, 
+        state => {
+        return { ...state, noticesFavorite: [], totalPages: null, isLoading: false };
+      })
       .addCase(fetchNoticesMyAds.fulfilled, (state, action) => {
         return {
           ...state,
-          items: [...action.payload.notices],
+          noticesMyAds: [...action.payload.notices],
           totalPages: action.payload.totalPages,
           isLoading: false,
         };
+      })
+      .addCase(fetchNoticesMyAds.rejected, 
+        state => {
+        return { ...state, noticesMyAds: [], totalPages: null, isLoading: false };
       })
       .addMatcher(
         isAnyOf(
@@ -76,9 +85,7 @@ export const noticesSlice = createSlice({
       })
       .addMatcher(
         isAnyOf(
-          fetchNoticesByCategory.rejected,
-          fetchNoticesFavorite.rejected,
-          fetchNoticesMyAds.rejected
+          fetchNoticesByCategory.rejected
         ), 
         state => {
         return { ...state, items: [], totalPages: null, isLoading: false };

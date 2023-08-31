@@ -3,6 +3,7 @@ import { fetchNews } from './operations';
 
 const initialState = {
   items: [],
+  totalPages: null,
   isLoading: false,
 };
 
@@ -23,7 +24,7 @@ export const newsSlice = createSlice({
         state.isLoading = true;
       })
       .addMatcher(isAnyOf(fetchNews.rejected), state => {
-        return { ...state, items: [], isLoading: false };
+        return { ...state, items: [], totalPages: null, isLoading: false };
       });
   },
   reducers: {},

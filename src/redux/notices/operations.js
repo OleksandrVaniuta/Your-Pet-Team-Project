@@ -70,8 +70,7 @@ export const fetchNoticesFavorite = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      toast.error(errorMsg);
-      return thunkAPI.rejectWithValue('');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -91,8 +90,7 @@ export const fetchNoticesMyAds = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      toast.error(errorMsg);
-      return thunkAPI.rejectWithValue('');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
