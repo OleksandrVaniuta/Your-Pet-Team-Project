@@ -48,7 +48,7 @@ export const addToFavorite = createAsyncThunk(
     try {
       const response = await axios.patch(`/api/notices/${noticeId}/favorite`);
       console.log(response.data);
-      return { data: response.data, id: noticeId};
+      return { data: response.data, id: noticeId };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -70,8 +70,7 @@ export const fetchNoticesFavorite = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      toast.error(errorMsg);
-      return thunkAPI.rejectWithValue('');
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -91,8 +90,20 @@ export const fetchNoticesMyAds = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      toast.error(errorMsg);
-      return thunkAPI.rejectWithValue('');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteNotice = createAsyncThunk(
+  '/notices/delete',
+  async (noticeId, thunkApi) => {
+    console.log(noticeId);
+    try {
+      await axios.delete(`/api/notices/${noticeId}`);
+      return { id: noticeId };
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );

@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { selectTotalPages } from 'redux/notices/selectors';
 import css from './Pagination.module.css';
 import { ReactComponent as VectorLeft } from './icons/vector-left.svg';
 import { ReactComponent as VectorRight } from './icons/vector-right.svg';
 
-const Pagination = ({handlePagination}) => {
+const Pagination = ({handlePagination, totalPages}) => {
     const firstLiRef = useRef();
     const secondLiRef = useRef();
     const thirdLiRef = useRef();
@@ -15,7 +13,6 @@ const Pagination = ({handlePagination}) => {
     const rightBtnRef = useRef();
 
     const[currentPage, setCurrentPage] = useState(1);
-    const totalPages = useSelector(selectTotalPages);
 
     const handleCurrentPage = (e) => {
         firstLiRef.current.classList.remove(css.current);

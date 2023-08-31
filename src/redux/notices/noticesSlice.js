@@ -1,10 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { 
-  fetchNoticesByCategory, 
-  fetchDataAndOpenModal, 
+import {
+  fetchNoticesByCategory,
+  fetchDataAndOpenModal,
   addToFavorite,
-  fetchNoticesFavorite, 
-  fetchNoticesMyAds 
+  fetchNoticesFavorite,
+  fetchNoticesMyAds,
+  deleteNotice,
 } from './operations';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   isLoading: false,
   isFavorite: false,
   notice: {},
-  noticeFavorite: [],
+  noticesFavorite: [],
+  noticesMyAds: [],
 };
 
 export const noticesSlice = createSlice({
@@ -48,39 +50,60 @@ export const noticesSlice = createSlice({
             }
           }
         });
+        const index = state.noticesFavorite.findIndex(
+          item => item._id === action.payload.id
+        );
+        state.noticesFavorite.splice(index, 1);
       })
       .addCase(fetchNoticesFavorite.fulfilled, (state, action) => {
         return {
           ...state,
-          items: [...action.payload.notices],
+          noticesFavorite: [...action.payload.notices],
           totalPages: action.payload.totalPages,
+          isLoading: false,
+        };
+      })
+      .addCase(fetchNoticesFavorite.rejected, state => {
+        return {
+          ...state,
+          noticesFavorite: [],
+          totalPages: null,
           isLoading: false,
         };
       })
       .addCase(fetchNoticesMyAds.fulfilled, (state, action) => {
         return {
           ...state,
-          items: [...action.payload.notices],
+          noticesMyAds: [...action.payload.notices],
           totalPages: action.payload.totalPages,
           isLoading: false,
         };
+      })
+      .addCase(fetchNoticesMyAds.rejected, state => {
+        return {
+          ...state,
+          noticesMyAds: [],
+          totalPages: null,
+          isLoading: false,
+        };
+      })
+      .addCase(deleteNotice.fulfilled, (state, action) => {
+        const index = state.noticesMyAds.findIndex(
+          item => item._id === action.payload.id
+        );
+        state.noticesMyAds.splice(index, 1);
       })
       .addMatcher(
         isAnyOf(
           fetchNoticesByCategory.pending,
           fetchNoticesFavorite.pending,
           fetchNoticesMyAds.pending
-        ), 
+        ),
         state => {
-        state.isLoading = true;
-      })
-      .addMatcher(
-        isAnyOf(
-          fetchNoticesByCategory.rejected,
-          fetchNoticesFavorite.rejected,
-          fetchNoticesMyAds.rejected
-        ), 
-        state => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(isAnyOf(fetchNoticesByCategory.rejected), state => {
         return { ...state, items: [], totalPages: null, isLoading: false };
       });
   },

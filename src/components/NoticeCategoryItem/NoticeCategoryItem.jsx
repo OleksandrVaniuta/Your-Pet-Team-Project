@@ -7,8 +7,10 @@ import FemaleIcon from '@mui/icons-material/Female';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import { Link } from 'react-router-dom';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 // import { selectIsFavorite } from 'redux/notices/selectors';
 import { selectUserId } from 'redux/Auth/AuthSelectors';
+import { deleteNotice } from 'redux/notices/operations';
 
 import CloseIcon from '@mui/icons-material/Close';
 // import { Link } from 'react-router-dom';
@@ -38,9 +40,9 @@ function NoticeCategoryItem({ notice }) {
   const [isActiveNologModal, setIsActiveNologModal] = useState(false);
   const dispatch = useDispatch();
   // const isFavorite = useSelector(selectIsFavorite);
-  const [togle, setTogle] = useState(notice.usersAddToFavorite.includes(userId))
-
-
+  const [togle, setTogle] = useState(
+    notice.usersAddToFavorite.includes(userId)
+  );
 
   const noticeItem = useSelector(selectNotice);
 
@@ -69,10 +71,14 @@ function NoticeCategoryItem({ notice }) {
   const onClickIconFavorite = () => {
     if (isLoggedIn) {
       dispatch(addToFavorite(notice._id));
-      setTogle(!togle)
+      setTogle(!togle);
     } else {
       openNologModal();
     }
+  };
+
+  const onClickDelete = () => {
+    dispatch(deleteNotice(notice._id));
   };
 
   const age = inputDate => {
@@ -125,11 +131,39 @@ function NoticeCategoryItem({ notice }) {
   return (
     <li key={notice._id} className={css.category_item}>
       <div className={css.category_item__content}>
+        {notice.owner === userId && (
+          <div
+            className={css.icon_box}
+            style={{
+              position: 'absolute',
+              top: '64px',
+              right: '0',
+              color: 'black',
+              zIndex: 90,
+            }}
+            onClick={onClickDelete}
+          >
+            <DeleteOutlineIcon
+              sx={[
+                {
+                  fontSize: 24,
+                  color: '#54ADFF',
+                  verticalAlign: 'middle',
+                  transition: 'color 1s ease',
+                },
+                { '&:hover': { color: '#85080a' } },
+              ]}
+            />
+          </div>
+        )}
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
             {noticeItem && (
-             <p className={css.category_text}>{notice.category === 'lost-found' ? (splitWordCategory(notice.category)) : (splitWord(notice.category))
-            }</p>
+              <p className={css.category_text}>
+                {notice.category === 'lost-found'
+                  ? splitWordCategory(notice.category)
+                  : splitWord(notice.category)}
+              </p>
             )}
             <div
               className={css.icon_box}
