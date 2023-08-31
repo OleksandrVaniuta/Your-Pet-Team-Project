@@ -30,13 +30,13 @@ const NoticesPage = () => {
     category: category,
     search: search,
     page: page,
-    limit: 2,
+    limit: 8,
   }), [category, search, page]);
 
   const queryParamsPrivat = useMemo(() => ({
     search: search,
     page: page,
-    limit: 2,
+    limit: 8,
   }), [search, page]);
 
   const handleNoticeSearch = newSearch => setSearch(newSearch);
