@@ -12,12 +12,11 @@ const FriendsPage = () => {
 
   useEffect(() => {
     dispatch(getAllFriends());
-    console.log(dispatch(getAllFriends()));
   }, [dispatch]);
 
   return (
     <FriendsWrapper>
-      <TitlePage>OurFriends</TitlePage>
+      <TitlePage>Our friends</TitlePage>
       <FriendsList friend={friends} />
     </FriendsWrapper>
   );

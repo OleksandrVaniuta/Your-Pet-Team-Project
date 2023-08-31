@@ -18,5 +18,13 @@ export const TitlePage = styled.h2`
 
 export const FriendsWrapper = styled.div`
   background-color: #fef9f9;
-  margin-bottom: 
+  margin-bottom: 75px;
+
+@media screen and (min-width: 748px) {
+  margin-bottom: 170px;
+}
+
+@media screen and (min-width: 1280px) {
+  margin-bottom: 69px;
+}
 `;
