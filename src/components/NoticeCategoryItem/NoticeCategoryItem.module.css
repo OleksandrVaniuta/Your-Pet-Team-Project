@@ -355,6 +355,19 @@
   line-height: normal;
   letter-spacing: 0.64px;
 }
+.button_contact:hover {
+  background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  border: 0px;
+}
+.button_contacn_link{
+  color: #54adff;
+  padding: 8px 29px;
+  border-radius: 18px;
+}
+.button_contacn_link:hover{
+  color: white;
+
+}
 .icon {
   color: white;
   width: 24px;

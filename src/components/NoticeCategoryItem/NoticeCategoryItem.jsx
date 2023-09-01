@@ -282,7 +282,10 @@ function NoticeCategoryItem({ notice }) {
                     </button>  
                 )}
              
-              <button className={css.button_contact}>Contact</button>
+              <button className={css.button_contact}>
+                <a href={`tel: ${noticeItem.owner.phone}`} className={css.button_contacn_link}>
+                Contact</a>
+                </button>
             </div>
             <button
               type="button"
