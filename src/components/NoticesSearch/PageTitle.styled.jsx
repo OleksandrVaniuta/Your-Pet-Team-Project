@@ -12,6 +12,5 @@ export const PageTitle = styled.h2`
   @media screen and (min-width: 748px) {
     font-size: 48px;
     margin-bottom: 40px;
-    padding-top: 80px;
   }
 `;
