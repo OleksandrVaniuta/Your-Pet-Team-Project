@@ -13,7 +13,7 @@
   @media screen and (min-width: 480px) {
     padding-bottom: 68px;
   }
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 768px) {
     justify-content: left;
   }
 }
