@@ -128,7 +128,7 @@ function NoticeCategoryItem({ notice }) {
     <li key={notice._id} className={css.category_item}>
       <div className={css.category_item__content}>
         {notice.owner === userId && (
-          <DltUserAddBtn id={notice._id} title={noticeItem.title} />
+          <DltUserAddBtn id={notice._id} title={notice.title} />
         )}
         <div className={css.category_info__container}>
           <div className={css.category_info__flexContainer}>
