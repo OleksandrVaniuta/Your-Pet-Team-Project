@@ -153,7 +153,7 @@ export const FieldInputComments = styled(Field)`
   border-color: ${props => (props.errors ? '#f43f5e' : '#54ADFF')};
   @media (min-width: 768px) {
     height: ${props =>
-      props.category === 'lost-found' || props.category === 'in/-good-hands'
+      props.category === 'lost-found' || props.category === 'in-good-hands'
         ? '182px'
         : '79px'};
   }
