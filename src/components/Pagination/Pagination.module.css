@@ -3,16 +3,11 @@
   justify-content: center;
   align-items: center;
   gap: 7px;
-  margin-top: 40px;
-  margin-bottom: 112px;
-
-  @media screen and (min-width: 370px) {
-    gap: 23px;
-  }
+  height: 187px;
+  padding-bottom: 112px;
 
   @media screen and (min-width: 480px) {
     gap: 40px;
-    margin-top: 68px;
   }
 }
 

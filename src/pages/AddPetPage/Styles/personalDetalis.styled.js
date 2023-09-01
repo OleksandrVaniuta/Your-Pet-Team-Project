@@ -3,7 +3,6 @@ import { Field } from 'formik';
 
 export const InputBox = styled.div`
   display: flex;
-
   flex-direction: column;
   gap: 20px;
   margin-top: 16px;

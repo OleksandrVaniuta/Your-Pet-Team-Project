@@ -1,5 +1,5 @@
 import { Formik, Form, ErrorMessage, Field } from 'formik';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   ValidatePageTwo,
   ValidatePageTwoMyPet,
@@ -58,19 +58,30 @@ export const MoreInfo = ({
   step,
 }) => {
   const [imageURL, setImageURL] = useState('');
-  const [petPhoto, setFile] = useState(null);
-  const [sex, setSex] = useState();
+  const [petPhoto, setFile] = useState(pets.file);
+  const [sex, setSex] = useState(pets.sex);
+  const [price, setPrice] = useState(pets.price);
+  const [city, setCity] = useState(pets.city);
+  const [comments, setComments] = useState(pets.comments);
+
+  useEffect(() => {
+    if (petPhoto) {
+      setImageURL(URL.createObjectURL(petPhoto));
+    }
+  }, [petPhoto]);
 
   const hebdleAddPhoto = e => {
     const photo = e.currentTarget.files[0];
-    console.log(photo);
+
     if (photo.size > 375000) {
       console.log('to large');
       return;
     }
 
     const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
+
     const fileType = photo.type;
+
     if (!supportedFormats.includes(fileType)) {
       console.log('Unsupported File Format');
       return;
@@ -78,32 +89,30 @@ export const MoreInfo = ({
     setFile(photo);
     const file = { file: photo };
     setImageURL(URL.createObjectURL(photo));
+
     handleFinalState(file);
-    // setImageURL()
+
     console.log(imageURL);
   };
 
   const handleSubmit = async (values, { validateForm }) => {
-    console.log(values);
     const validationErrors = await validateForm(values);
 
     if (Object.keys(validationErrors).length === 0) {
-      // console.log(values);
-      console.log(petPhoto);
 
       handleFinalState(values);
-      setSex(values.sex);
+
       const { sex, comments, city, price } = values;
+
       await handlePets(sex, comments, city, price);
-      // console.log(pets);
     } else {
       console.log('Форма содержит ошибки', validationErrors);
     }
   };
 
-  const handleChange = evt => {
-    setSex(evt.target.value);
-    console.log();
+  const handleChange = e => {
+    setSex(e.target.value);
+    handleFinalState({ sex: e.target.value });
   };
 
   const validate = validateForm(category);
@@ -113,12 +122,13 @@ export const MoreInfo = ({
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
-          sex: pets.sex || 'female',
-          price: pets.price,
-          city: pets.city,
-          comments: pets.comments,
+          sex: sex || pets.sex,
+          price: price || pets.price,
+          city: city || pets.city,
+          comments: comments || pets.comments,
         }}
         validationSchema={validate}
+        enableReinitialize={true}
       >
         {({ touched, errors }) => (
           <Form autoComplete="off">
@@ -188,6 +198,10 @@ export const MoreInfo = ({
                       name="city"
                       placeholder="New York"
                       required
+                      onChange={e => {
+                        setCity(e.target.value);
+                        handleFinalState({ city: e.target.value });
+                      }}
                       errors={touched.city && errors.city}
                     />
                     {touched.city && errors.name && <div>{errors.city}</div>}
@@ -201,6 +215,10 @@ export const MoreInfo = ({
                       type="text"
                       name="price"
                       placeholder="00$"
+                      onChange={e => {
+                        setPrice(e.target.value);
+                        handleFinalState({ price: e.target.value });
+                      }}
                       errors={touched.price && errors.price}
                     />
                     {touched.price && errors.price && <div>{errors.price}</div>}
@@ -214,8 +232,12 @@ export const MoreInfo = ({
                     id="comments"
                     type="text"
                     name="comments"
-                    rows="1"
+                    rows="2"
                     placeholder="Some comments"
+                    onChange={e => {
+                      setComments(e.target.value);
+                      handleFinalState({ comments: e.target.value });
+                    }}
                     errors={touched.comments && errors.comments}
                   />
                   {touched.comments && errors.comments && (
