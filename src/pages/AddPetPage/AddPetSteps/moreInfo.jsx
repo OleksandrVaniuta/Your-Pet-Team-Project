@@ -31,6 +31,7 @@ import {
   BtnCancelBack,
   BtnTitle,
   LinkTitle,
+  BtnClearUrl,
 } from '../Styles/button.styled';
 import { Container } from '../addPetPage.styled';
 
@@ -64,6 +65,7 @@ export const MoreInfo = ({
   const [city, setCity] = useState(pets.city);
   const [comments, setComments] = useState(pets.comments);
 
+
   useEffect(() => {
     if (petPhoto) {
       setImageURL(URL.createObjectURL(petPhoto));
@@ -74,10 +76,12 @@ export const MoreInfo = ({
     const photo = e.currentTarget.files[0];
 
     if (photo.size > 375000) {
-      console.log('to large');
-      return;
-    }
+ 
+          console.log('to large');
 
+           return ;
+    }
+   
     const supportedFormats = ['image/jpeg', 'image/png', 'image/gif'];
 
     const fileType = photo.type;
@@ -92,11 +96,11 @@ export const MoreInfo = ({
 
     handleFinalState(file);
 
-    console.log(imageURL);
   };
 
   const handleSubmit = async (values, { validateForm }) => {
     const validationErrors = await validateForm(values);
+
 
     if (Object.keys(validationErrors).length === 0) {
 
@@ -115,10 +119,9 @@ export const MoreInfo = ({
     handleFinalState({ sex: e.target.value });
   };
 
-  // const imageUrlClear = () => {
-  //   setImageURL();
-   
-  // }
+  const imageUrlClear = () => {
+    setImageURL();
+  }
 
   const validate = validateForm(category);
 
@@ -131,6 +134,7 @@ export const MoreInfo = ({
           price: price || pets.price,
           city: city || pets.city,
           comments: comments || pets.comments,
+          errorSize: '',
         }}
         validationSchema={validate}
         enableReinitialize={true}
@@ -172,9 +176,13 @@ export const MoreInfo = ({
                   </SexBox>
                 )}
                 <ImageBox category={category}>
+                  {/* <BtnClearUrl type="button" onClick={imageUrlClear()}>
+                    <ClearImURL />
+                  </BtnClearUrl> */}
                   <ImageTitle category={category} step={step}>
                     {pets.file ? 'Add photo' : 'Load the pet’s image: '}
                   </ImageTitle>
+
                   <Img category={category}>
                     <InputImage
                       id="photo"
@@ -186,18 +194,16 @@ export const MoreInfo = ({
                       onChange={e => {
                         hebdleAddPhoto(e);
                       }}
-                      errors={errors.file}
+                      // errors={errors.file}
                     />
                     {(imageURL && <img src={imageURL} alt="Pet" />) || (
                       <PhotoIcon />
                     )}
-                    {errors.file && <div>{errors.file}</div>}
-                    {/* <button type="submit" onClick={imageUrlClear()}>
-                      <ClearImURL />
-                    </button> */}
+                    {/* {errors.file && <div>{errors.file}</div>} */}
                   </Img>
                 </ImageBox>
               </ImgSexBox>
+
               <LabelBox category={category} step={step}>
                 {category !== 'your pet' && (
                   <Label>

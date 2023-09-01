@@ -75,7 +75,7 @@ export const ValidatePageSell = Yup.object().shape({
     .max(120, 'Maximum 120 characters!'),
   price: Yup.string().matches(/^[1-9]\d*([,.]\d+)?$/, 'Price must be a number'),
   file: Yup.mixed()
-    .required('Photo is required')
+    .required('Photo is required, size must be less then 3mb')
     .test(
       'photo',
       'photo size must be less then 3mb',
@@ -93,6 +93,13 @@ export const ValidatePageTwoMyPet = Yup.object().shape({
       'photo',
       'photo size must be less then 3mb',
       file => file && file.size <= 375000
+    ),
+  file: Yup.mixed()
+    .required('Photo is required')
+    .test(
+      'file',
+      'photo size must be less then 3mb',
+      file => file && file.size <= 375000 
     ),
 });
 
@@ -112,7 +119,7 @@ export const ValidatePageTwo = Yup.object().shape({
     .min(3, 'Minimum 3 characters!')
     .max(120, 'Maximum 120 characters!'),
   file: Yup.mixed()
-    .required('Photo is required')
+    .required('Photo is required, size must be less then 3mb')
     .test(
       'photo',
       'photo size must be less then 3mb',

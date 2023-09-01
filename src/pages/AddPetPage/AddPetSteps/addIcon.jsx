@@ -59,20 +59,23 @@ export const Female = () => {
         },
       ]}
     />
+  
   );
 };
 
 export const PhotoIcon = () => {
   return (
-    <Photo
-      sx={[
-        {
-          width: 112,
-          height: 112,
-          fill: '#F43F5E',
-        },
-      ]}
-    />
+  
+      <Photo
+        sx={[
+          {
+            width: 112,
+            height: 112,
+            fill: '#F43F5E',
+          },
+        ]}
+      />
+   
   );
 };
 export const Dog = () => {

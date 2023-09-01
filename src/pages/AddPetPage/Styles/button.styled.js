@@ -73,3 +73,12 @@ export const LinkTitle = styled.p`
   letter-spacing: 0.64px;
   
 `;
+export const BtnClearUrl = styled.button`
+   background: #ffffff;
+  width: 24px;
+  height: 24px;
+ reiht: 20px;
+  :disabled {
+    opacity: 0.5;
+  }
+`;
