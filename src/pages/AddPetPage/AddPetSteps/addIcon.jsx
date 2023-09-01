@@ -3,16 +3,18 @@ import { ReactComponent as Photo } from '../iconAdd/photo.svg';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SwipeUpAltOutlinedIcon from '@mui/icons-material/SwipeUpAltOutlined';
 import FemaleIcon from '@mui/icons-material/Female';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-export const Dog = () => {
+
+export const ClearImURL = () => {
   return (
-    <DogIcon
+    <CloseOutlinedIcon
       sx={[
         {
           width: 24,
           height: 24,
-          color: 'fff',
-          transform: 'rotate(25deg)',
+          color: '#F43F5E',
+          backgroundColor: 'transparent',
         },
       ]}
     />
@@ -68,6 +70,19 @@ export const PhotoIcon = () => {
           width: 112,
           height: 112,
           fill: '#F43F5E',
+        },
+      ]}
+    />
+  );
+};
+export const Dog = () => {
+  return (
+    <DogIcon
+      sx={[
+        {
+          width: 24,
+          height: 24,
+          color: '#54adff',
         },
       ]}
     />

@@ -6,7 +6,7 @@ import {
   ValidatePageSell,
 } from '../ValidateAddPetPage/ValidateSchemaAdd';
 import { AddPetHeader } from './addHeader';
-import { Dog, Back, PhotoIcon, Female, Male } from './addIcon';
+import { Dog, Back, PhotoIcon, Female, Male, ClearImURL} from './addIcon';
 
 import {
   ContainerMore,
@@ -115,6 +115,11 @@ export const MoreInfo = ({
     handleFinalState({ sex: e.target.value });
   };
 
+  // const imageUrlClear = () => {
+  //   setImageURL();
+   
+  // }
+
   const validate = validateForm(category);
 
   return (
@@ -181,10 +186,15 @@ export const MoreInfo = ({
                       onChange={e => {
                         hebdleAddPhoto(e);
                       }}
+                      errors={errors.file}
                     />
                     {(imageURL && <img src={imageURL} alt="Pet" />) || (
                       <PhotoIcon />
                     )}
+                    {errors.file && <div>{errors.file}</div>}
+                    {/* <button type="submit" onClick={imageUrlClear()}>
+                      <ClearImURL />
+                    </button> */}
                   </Img>
                 </ImageBox>
               </ImgSexBox>
@@ -204,7 +214,7 @@ export const MoreInfo = ({
                       }}
                       errors={touched.city && errors.city}
                     />
-                    {touched.city && errors.name && <div>{errors.city}</div>}
+                    {touched.city && errors.city && <div>{errors.city}</div>}
                   </Label>
                 )}
                 {category === 'sell' && (
@@ -241,7 +251,7 @@ export const MoreInfo = ({
                     errors={touched.comments && errors.comments}
                   />
                   {touched.comments && errors.comments && (
-                    <div>{errors.price}</div>
+                    <div>{errors.comments}</div>
                   )}
                 </Label>
               </LabelBox>
@@ -266,3 +276,5 @@ export const MoreInfo = ({
     </Container>
   );
 };
+
+

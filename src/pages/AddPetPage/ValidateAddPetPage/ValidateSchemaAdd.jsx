@@ -61,7 +61,7 @@ export const ValidateSchemaMyPet = Yup.object().shape({
 export const ValidatePageSell = Yup.object().shape({
   sex: Yup.mixed().oneOf(['male', 'female']).required('Required field!'),
   city: Yup.string()
-    .min(3, 'Minimum 5 characters!')
+    .min(3, 'Minimum 3 characters!')
     .max(60, 'Maximum 60 characters!')
     .test('is-capitalized', 'Name must start with a capital letter', value => {
       if (value) {
@@ -71,28 +71,35 @@ export const ValidatePageSell = Yup.object().shape({
     })
     .required('Required field!'),
   comments: Yup.string()
-    .min(4, 'Minimum 8 characters!')
+    .min(4, 'Minimum 3 characters!')
     .max(120, 'Maximum 120 characters!'),
   price: Yup.string().matches(/^[1-9]\d*([,.]\d+)?$/, 'Price must be a number'),
-  // file: Yup.mixed()
-  //   .required('Image is required')
-  //   .test(
-  //     'photo',
-  //     'photo size must be less then 3mb',
-  //     file => file && file.size <= 375000
-  //   ),
+  file: Yup.mixed()
+    .required('Photo is required')
+    .test(
+      'photo',
+      'photo size must be less then 3mb',
+      file => file && file.size <= 375000
+    ),
 });
 
 export const ValidatePageTwoMyPet = Yup.object().shape({
   comments: Yup.string()
-    .min(3, 'Minimum 8 characters!')
+    .min(3, 'Minimum 3 characters!')
     .max(120, 'Maximum 120 characters!'),
+  file: Yup.mixed()
+    .required('Photo is required')
+    .test(
+      'photo',
+      'photo size must be less then 3mb',
+      file => file && file.size <= 375000
+    ),
 });
 
 export const ValidatePageTwo = Yup.object().shape({
   sex: Yup.mixed().oneOf(['male', 'female']).required('Required field!'),
   city: Yup.string()
-    .min(4, 'Minimum 5 characters!')
+    .min(4, 'Minimum 4 characters!')
     .max(60, 'Maximum 60 characters!')
     .test('is-capitalized', 'Name must start with a capital letter', value => {
       if (value) {
@@ -102,6 +109,13 @@ export const ValidatePageTwo = Yup.object().shape({
     })
     .required('Required field!'),
   comments: Yup.string()
-    .min(3, 'Minimum 8 characters!')
+    .min(3, 'Minimum 3 characters!')
     .max(120, 'Maximum 120 characters!'),
+  file: Yup.mixed()
+    .required('Photo is required')
+    .test(
+      'photo',
+      'photo size must be less then 3mb',
+      file => file && file.size <= 375000
+    ),
 });
