@@ -285,11 +285,12 @@ function NoticeCategoryItem({ notice }) {
                   Remove from <FavoriteBorderIcon className={css.icon_remove} />
                 </button>
               )}
-
-              <button className={css.button_contact}>
+             {noticeItem.owner.phone && (
+               <button className={css.button_contact}>
                 <a href={`tel: ${noticeItem.owner.phone}`} className={css.button_contacn_link}>
                 Contact</a>
-                </button>
+              </button>
+             )}
             </div>
             <button
               type="button"
