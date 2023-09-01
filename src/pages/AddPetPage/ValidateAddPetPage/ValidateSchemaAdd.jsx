@@ -94,13 +94,6 @@ export const ValidatePageTwoMyPet = Yup.object().shape({
       'photo size must be less then 3mb',
       file => file && file.size <= 375000
     ),
-  file: Yup.mixed()
-    .required('Photo is required')
-    .test(
-      'file',
-      'photo size must be less then 3mb',
-      file => file && file.size <= 375000 
-    ),
 });
 
 export const ValidatePageTwo = Yup.object().shape({

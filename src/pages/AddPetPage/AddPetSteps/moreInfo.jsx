@@ -175,10 +175,11 @@ export const MoreInfo = ({
                     </SexFlex>
                   </SexBox>
                 )}
+
+                <BtnClearUrl type="button" onClick={imageUrlClear()}>
+                  <ClearImURL />
+                </BtnClearUrl>
                 <ImageBox category={category}>
-                  {/* <BtnClearUrl type="button" onClick={imageUrlClear()}>
-                    <ClearImURL />
-                  </BtnClearUrl> */}
                   <ImageTitle category={category} step={step}>
                     {pets.file ? 'Add photo' : 'Load the pet’s image: '}
                   </ImageTitle>
