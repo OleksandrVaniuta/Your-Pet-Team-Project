@@ -34,7 +34,7 @@ const MainContainer = styled.div`
 
   @media screen and (min-width: 1280px) {
     background-image: url('${mainpagedesktop}');
-    background-position: 220px -70px;
+    background-position: 450px -70px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
