@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
+import CloseOutlinedIcon from '@mui/icons-material/Close';
 import { Backdrop, ModalWindow, CloseBtn } from './ModalLogout.styled';
 
 const modalContainer = document.getElementById('modal-root');
@@ -35,7 +35,15 @@ const ModalLogout = ({ toggleModal, children }) => {
       <Backdrop onClick={onModalOpen} inNoticePage={inNoticePage}>
         <ModalWindow>
           <CloseBtn type="button" onClick={toggleModal}>
-            <CloseIcon />
+            <CloseOutlinedIcon
+              sx={[
+                {
+                  fontSize: 24,
+                  color: '#54ADFF',
+                  verticalAlign: 'middle',
+                },
+              ]}
+            />
           </CloseBtn>
           {children}
         </ModalWindow>
