@@ -38,7 +38,7 @@ export default function PetsItem({
           {`${comments}`}
         </PetDescr>
       </PetInfo>
-      <DltBtn id={id} />
+      <DltBtn id={id} title={name} />
     </PetItemCintainer>
   );
 }
