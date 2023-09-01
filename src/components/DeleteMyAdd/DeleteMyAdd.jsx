@@ -15,7 +15,8 @@ export default function DltUserAddBtn({ id, title }) {
   const dispatch = useDispatch();
 
   const toggleModal = () => {
-    setIsModalOpen(prevState => !prevState);
+    setIsModalOpen(PrevState => !PrevState);
+    console.log(isModalOpen);
   };
 
   const handledelete = () => {

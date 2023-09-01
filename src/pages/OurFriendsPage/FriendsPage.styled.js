@@ -18,13 +18,17 @@ export const TitlePage = styled.h2`
 
 export const FriendsWrapper = styled.div`
   background-color: #fef9f9;
+  padding: 0 ${({ theme }) => theme.space[2] * 5 + 'px'};
   padding-bottom: 75px;
 
-@media screen and (min-width: 748px) {
-  padding-bottom: 170px;
-}
+  @media screen and (min-width: 748px) {
+    padding: 0 ${({ theme }) => theme.space[5] + 'px'};
 
-@media screen and (min-width: 1280px) {
-  padding-bottom: 69px;
-}
+    padding-bottom: 170px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding: 0 ${({ theme }) => theme.space[4] + 'px'};
+    padding-bottom: 69px;
+  }
 `;

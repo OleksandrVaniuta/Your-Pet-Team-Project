@@ -5,6 +5,7 @@ import { MoreInfo } from './AddPetSteps/moreInfo';
 import { useDispatch } from 'react-redux';
 import { addPet, addMyPet } from 'redux/AddPets/AddpetsOperations';
 import { useNavigate } from 'react-router-dom';
+import { UserAddPetContainer } from './addPetPage.styled';
 
 const AddPetPage = () => {
   const [step, setStep] = useState(0);
@@ -87,7 +88,7 @@ const AddPetPage = () => {
   };
 
   return (
-    <div>
+    <UserAddPetContainer>
       {step === 0 && (
         <ChooseOption
           category={category}
@@ -118,7 +119,7 @@ const AddPetPage = () => {
           handlePets={handlePets}
         />
       )}
-    </div>
+    </UserAddPetContainer>
   );
 };
 export default AddPetPage;

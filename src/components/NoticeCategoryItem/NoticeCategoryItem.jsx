@@ -116,7 +116,7 @@ function NoticeCategoryItem({ notice }) {
       return word.split('-').join(' ');
     }
   };
-  console.log(notice)
+  console.log(notice);
 
   const splitWordCategory = word => {
     if (noticeItem) {
@@ -143,21 +143,23 @@ function NoticeCategoryItem({ notice }) {
               className={css.icon_box}
               onClick={() => onClickIconFavorite(notice._id)}
             >
-              
               {togle ? (
-                <FavoriteRoundedIcon className={css.icon_favorite} color="#54ADFF"  />
+                <FavoriteRoundedIcon
+                  className={css.icon_favorite}
+                  color="#54ADFF"
+                />
               ) : (
                 <>
                   <FavoriteBorderIcon className={css.icon} />
                   <FavoriteRoundedIcon className={css.icon_hidden} />
                 </>
-              )} 
-              {notice.usersAddToFavorite.length !== 0  && 
-               <div className={css.favority_number}>
-                <p>{notice.usersAddToFavorite.length}</p>
-              </div>}
+              )}
+              {notice.usersAddToFavorite.length !== 0 && (
+                <div className={css.favority_number}>
+                  <p>{notice.usersAddToFavorite.length}</p>
+                </div>
+              )}
             </div>
-            
           </div>
         </div>
         <div className={css.info_pet__container}>
@@ -185,7 +187,7 @@ function NoticeCategoryItem({ notice }) {
         </div>
       </div>
       <div className={css.text_container}>
-        <p className={css.title}>{noticeItem.title}</p>
+        <p className={css.title}>{notice.title}</p>
         <button
           className={css.button_more}
           onClick={() => openInfoModal(notice._id)}
@@ -265,23 +267,25 @@ function NoticeCategoryItem({ notice }) {
               {noticeItem.comment ? noticeItem.comment : <>no comment</>}
             </p>
             <div className={css.buttons_container}>
-              
-                {!togle ? (
+              {!togle ? (
                 <button
-                className={css.button_add}
-                onClick={() => onClickIconFavorite(notice._id)}
-                 > Add to
-                    <FavoriteBorderIcon className={css.icon_like} />
-                  </button>
-                ) : (
-                  <button
+                  className={css.button_add}
+                  onClick={() => onClickIconFavorite(notice._id)}
+                >
+                  {' '}
+                  Add to
+                  <FavoriteBorderIcon className={css.icon_like} />
+                </button>
+              ) : (
+                <button
                   className={css.button_remove}
                   onClick={() => onClickIconFavorite(notice._id)}
-                   > Remove from{' '}
-                   <FavoriteBorderIcon className={css.icon_remove} />
-                    </button>  
-                )}
-             
+                >
+                  {' '}
+                  Remove from <FavoriteBorderIcon className={css.icon_remove} />
+                </button>
+              )}
+
               <button className={css.button_contact}>
                 <a href={`tel: ${noticeItem.owner.phone}`} className={css.button_contacn_link}>
                 Contact</a>

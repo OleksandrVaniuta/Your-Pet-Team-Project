@@ -1,5 +1,24 @@
 import styled from '@emotion/styled';
 
+export const UserAddPetContainer = styled.div`
+  width: 100%;
+  text-align: center;
+
+  @media screen and (max-width: 767px) {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-top: 60px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-top: 80px;
+  }
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
